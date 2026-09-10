@@ -1,3 +1,4 @@
 Django==6.1.1
 gunicorn==23.0.0
 whitenoise==6.11.0
+pysqlite3-binary==0.5.4; sys_platform == "linux"
