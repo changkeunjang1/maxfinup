@@ -1,0 +1,106 @@
+{% extends "ledger/base.html" %}
+{% block title %}제{{ chapter_index }}편 · {{ chapter.title }} — 경영장부{% endblock %}
+{% block content %}
+<article class="chapter">
+
+  <header class="chapter-head">
+    <div class="stamp">{{ chapter.n }}</div>
+    <div>
+      <p class="kicker">제{{ chapter_index }}편</p>
+      <h1>{{ chapter.title }}</h1>
+      <p class="dek">{{ chapter.dek }}</p>
+    </div>
+  </header>
+  <p class="lede">{{ chapter.lede }}</p>
+
+  <div class="step-layout">
+    <div class="nav step-nav" id="stepTabs" role="tablist" aria-orientation="horizontal">
+      {% for entry in entries %}
+      <button class="step-link{% if forloop.first %} active{% endif %}"
+              id="tab-{{ entry.id }}"
+              data-bs-toggle="pill"
+              data-bs-target="#{{ entry.id }}"
+              type="button" role="tab"
+              aria-controls="{{ entry.id }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              title="{{ entry.title }}">
+        <span class="step-num">{{ entry.n }}</span>
+        <span class="step-title">{{ entry.title }}</span>
+      </button>
+      {% endfor %}
+    </div>
+
+    <div class="tab-content step-content" id="stepTabContent">
+      {% for entry in entries %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}"
+           id="{{ entry.id }}" role="tabpanel" aria-labelledby="tab-{{ entry.id }}" tabindex="0">
+        <h2 class="entry-title"><span class="num">{{ entry.n }}</span>{{ entry.title }}</h2>
+        {{ entry.html|safe }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <footer class="chapter-foot">
+    {% if chapter.related %}
+    <div class="related">
+      <span class="label">관련 항목</span>
+      {% for slug, anchor, label in chapter.related %}
+      <a href="{% url 'ledger:chapter' slug %}#{{ anchor }}">{{ label }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="source">{{ chapter.source }}</div>
+    <p class="source">내용 정정: 2026-09-09 · 주요 오류와 적용조건 보완. 개별 거래의 적용 여부는 별도 확인.</p>
+    {% for url, label in chapter.review_sources %}
+    <p class="source"><a href="{{ url }}">{{ label }}</a></p>
+    {% endfor %}
+  </footer>
+
+  <nav class="pager">
+    {% if prev_chapter %}
+    <a class="pager-link prev" href="{% url 'ledger:chapter' prev_chapter.slug %}">
+      <span class="plabel">이전 편</span>{{ prev_chapter.title }}
+    </a>
+    {% else %}
+    <a class="pager-link prev" href="{% url 'ledger:home' %}"><span class="plabel">처음으로</span>전체 목차</a>
+    {% endif %}
+    {% if next_chapter %}
+    <a class="pager-link next" href="{% url 'ledger:chapter' next_chapter.slug %}">
+      <span class="plabel">다음 편</span>{{ next_chapter.title }}
+    </a>
+    {% else %}
+    <a class="pager-link next" href="{% url 'ledger:home' %}"><span class="plabel">마지막 편</span>전체 목차로</a>
+    {% endif %}
+  </nav>
+</article>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  "use strict";
+  // 다른 편의 항목으로 연결된 링크(#e3-1 등)를 눌렀을 때 해당 탭을 열어준다.
+  function activateFromHash() {
+    var id = location.hash.replace("#", "");
+    if (!id) return;
+    var pane = document.getElementById(id);
+    var tabBtn = document.getElementById("tab-" + id);
+    if (pane && tabBtn && window.bootstrap) {
+      new bootstrap.Tab(tabBtn).show();
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+  }
+  activateFromHash();
+  window.addEventListener("hashchange", activateFromHash);
+
+  // 탭 전환 시 주소창 해시를 갱신해 북마크·공유가 가능하게 한다.
+  document.querySelectorAll('#stepTabs [data-bs-toggle="pill"]').forEach(function (btn) {
+    btn.addEventListener("shown.bs.tab", function (e) {
+      var target = e.target.getAttribute("data-bs-target");
+      history.replaceState(null, "", target);
+    });
+  });
+})();
+</script>
+{% endblock %}

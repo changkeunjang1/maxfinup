@@ -1,0 +1,15 @@
+﻿{% extends "ledger/base.html" %}
+{% block title %}경영장부 — 대표의 다음 결정을 위한 실무 안내{% endblock %}
+{% block content %}
+<div class="navy-home">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div><p class="hero-eyebrow">A GUIDE FOR YOUR BUSINESS</p><h1 id="home-title">회사를 세우고,<br><em>단단하게</em> 키우다.</h1><p class="hero-intro">첫 법인 설립부터 지분 관리, 세무와 승계까지.<br>대표의 다음 결정을 위한 경영 실무를 한곳에 담았습니다.</p><div class="hero-actions"><a class="hero-primary" href="{% url 'ledger:chapter' 'ch1' %}">법인 설립부터 시작하기 <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#chapters">전체 목차 둘러보기 ↓</a></div></div>
+    <aside class="roadmap" aria-labelledby="roadmap-title"><div class="roadmap-head"><strong id="roadmap-title">법인 설립 로드맵</strong><span>GUIDE 01</span></div><h2>첫 시작을 위한 순서</h2><p>설립 전 결정부터 운영 체계까지</p><ol><li><span class="roadmap-num">1</span><span>사업 구조·주주관계 설계</span><small>준비</small></li><li><span class="roadmap-num">2</span><span>정관 작성·설립등기</span><small>설립</small></li><li><span class="roadmap-num">3</span><span>사업자등록·인허가 확인</span><small>등록</small></li><li><span class="roadmap-num">4</span><span>회계·노무 체계 마련</span><small>운영</small></li></ol><p class="roadmap-note">인허가의 선행 여부와 순서는 업종에 따라 달라집니다.</p></aside>
+  </section>
+  <div class="home-metrics"><div><b>{{ chapters|length|stringformat:"02d" }}</b><span>핵심 분야</span></div><div><b>{{ total_entries }}</b><span>실무 항목</span></div><div><b>01</b><span>이어지는 경영 여정</span></div><p>설립 → 운영 → 성장 → 승계</p></div>
+  <section id="chapters" aria-labelledby="chapters-title"><div class="home-section-head"><div><p>EXPLORE THE CHAPTERS</p><h2 id="chapters-title">지금, 필요한 경영의 한 페이지</h2></div><span>관심 있는 주제부터 읽어보세요.</span></div><div class="home-cards">
+    {% for c in chapters %}<a class="home-card" href="{% url 'ledger:chapter' c.slug %}"><div class="home-card-top"><span>{{ c.n }} / CHAPTER</span><span aria-hidden="true">↗</span></div><h3>{{ c.title }}</h3><p>{{ c.lede }}</p><span class="home-card-foot">제{{ c.index }}편 · {{ c.count }}개 항목</span></a>{% endfor %}
+  </div></section>
+  <div class="home-editor-note"><strong>자료 안내</strong><p>2026-09-09 주요 오류와 적용조건을 정정했습니다. 법률·세무 자문을 대체하지 않으며, 실행 전 최신 법령과 전문가 확인이 필요합니다. 자사주매입·세무조사·특허경영 항목에는 출처를 표시한 컨설팅업체의 광고성 자료가 포함되어 있습니다.</p></div>
+</div>
+{% endblock %}

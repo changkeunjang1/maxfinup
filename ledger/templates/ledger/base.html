@@ -1,0 +1,54 @@
+{% load static %}<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}경영장부{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'ledger/css/ledger.css' %}">
+<link rel="stylesheet" href="{% static 'ledger/css/navy.css' %}?v=1">
+</head>
+<body>
+<div class="app-shell">
+
+  <header class="topbar">
+    <a class="brand" href="{% url 'ledger:home' %}">
+      <span class="brand-mark">帳</span>
+      <span class="brand-text">
+        <strong>경영장부</strong>
+        <small>THE BUSINESS HANDBOOK</small>
+      </span>
+    </a>
+    <nav class="header-links" aria-label="주요 메뉴"><a href="{% url 'ledger:home' %}#chapters">전체 목차</a><a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a><a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무 ↗</a></nav>
+    <span class="header-issue">VOL. 01 — 2026</span>
+  </header>
+
+  {% if chapter %}<nav class="chapter-tabs" aria-label="편 메뉴">
+    <a href="{% url 'ledger:home' %}" class="chapter-tab home{% if current_path == '/' %} active{% endif %}">
+      <span class="ct-badge">目</span>
+      <span class="ct-title">전체 목차</span>
+    </a>
+    {% for c in nav_chapters %}
+    <a href="{% url 'ledger:chapter' c.slug %}" class="chapter-tab{% if chapter.slug == c.slug %} active{% endif %}">
+      <span class="ct-badge">{{ c.n }}</span>
+      <span class="ct-text">
+        <span class="ct-title">{{ c.title }}</span>
+        <span class="ct-count">{{ c.entries|length }}개 항목</span>
+      </span>
+    </a>
+    {% endfor %}
+  </nav>{% endif %}
+
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer"><strong>경영장부 · 시작부터, 그다음까지.</strong><span>일반적인 경영 정보입니다. 실제 적용 전 최신 법령과 개별 요건을 확인하세요.</span><span>© 2026 경영장부</span></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

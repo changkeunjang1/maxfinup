@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko" data-theme="paper">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경영장부 · 홈페이지 테마 10선</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:'Noto Sans KR',sans-serif}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible{outline:3px solid var(--accent,#3879ef);outline-offset:5px}button:focus-visible{outline-color:#2767da}
+.studio{background:#fff;color:#222633;border-bottom:1px solid #e3e5eb;padding:20px 4vw;position:relative;z-index:2}.studio-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.studio-head strong{font-size:14px}.studio-head span{font-size:12px;color:#69717e}.choices{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:1400px;margin:auto}.choice{background:#f8f9fb;border:1px solid #dfe2e8;border-radius:9px;padding:12px;text-align:left;display:flex;align-items:center;gap:10px;color:#434b59}.choice[aria-pressed=true]{border-color:#182031;background:#182031;color:#fff;box-shadow:0 3px 9px #14203118}.choice b{display:block;font-size:12px}.choice small{display:block;font-size:10px;margin-top:3px;opacity:.7}.swatches{display:flex;flex-shrink:0}.swatches i{width:12px;height:28px;background:var(--s);display:block}.swatches i:first-child{border-radius:4px 0 0 4px}.swatches i:last-child{border-radius:0 4px 4px 0}.description{max-width:1400px;margin:14px auto 0;display:flex;justify-content:space-between;gap:15px;font-size:12px;color:#586171;line-height:1.8}.description b{color:#1c2637}.description a{text-decoration:underline;white-space:nowrap}
+:root{--bg:#f5f1e8;--ink:#252b27;--muted:#697067;--line:#cdcdbf;--accent:#974831;--surface:#eeeadd;--hero-font:'Noto Serif KR',serif;--radius:0px;--card:#f5f1e8}.site{background:var(--bg);color:var(--ink);min-height:100vh;padding:0 6vw 30px;transition:background .2s,color .2s}.wrap{max-width:1280px;margin:auto}.site-header{display:flex;align-items:center;justify-content:space-between;padding:29px 0;border-bottom:1px solid var(--line);gap:24px}.brand{display:flex;gap:12px;align-items:center}.mark{width:36px;height:40px;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-family:serif;font-size:24px}.brand strong{font-size:23px;letter-spacing:-1.5px}.brand small{display:block;font-size:8px;letter-spacing:2.4px;margin-top:3px}.nav{display:flex;gap:30px;font-size:12px}.nav a:last-child{color:var(--accent)}.issue{font-size:10px;letter-spacing:1.6px;color:var(--muted)}.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:7%;padding:66px 0 52px;align-items:center}.eyebrow{display:flex;gap:12px;align-items:center;font-size:10px;font-weight:600;letter-spacing:2px;color:var(--accent)}.eyebrow:before{content:'';width:26px;height:1px;background:currentColor}h1{font-family:var(--hero-font);font-size:clamp(38px,4.5vw,66px);font-weight:600;letter-spacing:-3.2px;line-height:1.4;margin:25px 0 22px}h1 em{font-style:normal;color:var(--accent)}.intro{font-size:14px;line-height:1.95;color:var(--muted);max-width:410px;word-break:keep-all}.actions{display:flex;align-items:center;gap:23px;margin-top:30px;font-size:12px}.primary{display:inline-flex;justify-content:space-between;gap:34px;align-items:center;padding:17px 22px;background:var(--ink);color:var(--bg);border-radius:var(--radius)}.secondary{border-bottom:1px solid var(--line);padding:10px 0}.hero-art{position:relative;min-height:340px;display:grid;place-items:center;background:var(--surface);overflow:hidden;border-radius:var(--radius)}.art-caption{position:absolute;bottom:20px;left:24px;font-size:9px;letter-spacing:2px;color:var(--muted)}.art-corner{position:absolute;right:23px;top:20px;font-size:10px;color:var(--muted)}.book{width:205px;height:260px;background:var(--ink);color:var(--bg);transform:rotate(-9deg);box-shadow:10px 14px 0 #00000012;border-left:9px double #ffffff25;padding:28px 23px;position:relative}.book:after{content:'';position:absolute;top:0;right:-7px;width:7px;height:100%;background:repeating-linear-gradient(0deg,#ddd8ca 0 2px,#aaa696 2px 3px);transform:skewY(-25deg);transform-origin:left}.book small{font-size:8px;letter-spacing:2px}.book strong{display:block;font-family:'Noto Serif KR',serif;font-size:37px;line-height:1.4;margin-top:25px;font-weight:500}.book-line{height:1px;background:currentColor;opacity:.35;margin:24px 0 12px}.book span{font-size:9px;opacity:.7}.orbit,.blocks,.dashboard{display:none}.metrics{display:flex;gap:40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:19px 0;align-items:center}.metrics div{display:flex;align-items:baseline;gap:9px}.metrics b{font-size:23px;font-weight:500}.metrics span{font-size:11px;color:var(--muted)}.metrics .metric-note{margin-left:auto;font-size:11px;color:var(--muted)}.section-head{display:flex;justify-content:space-between;align-items:end;margin:40px 0 23px}.section-head small{font-size:9px;letter-spacing:2px;color:var(--accent)}h2{font-size:23px;letter-spacing:-1px;margin:8px 0 0;font-weight:600}.section-head p{font-size:11px;color:var(--muted);margin:0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0 26px}.card{padding:26px 0;border-top:1px solid var(--line);position:relative;background:var(--card);border-radius:var(--radius);transition:transform .16s}.card:hover{transform:translateY(-4px)}.card-top{display:flex;justify-content:space-between;color:var(--accent);font-size:11px;letter-spacing:1px}.card-top span:last-child{font-size:15px}.card h3{font-size:17px;letter-spacing:-.6px;margin:20px 0 11px;font-weight:600}.card p{color:var(--muted);font-size:12px;line-height:1.9;margin:0;max-width:300px;word-break:keep-all}.card-foot{display:block;color:var(--muted);font-size:9px;margin-top:22px;letter-spacing:.5px}.bottom{display:flex;justify-content:space-between;gap:25px;padding:24px 0 0;margin-top:27px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);line-height:1.8}.bottom b{color:var(--ink);font-weight:500}.theme-tag{display:none}
+/* 02: professional navy, structured dashboard */
+html[data-theme=navy]{--bg:#f2f5fa;--ink:#152b4b;--muted:#62738a;--line:#d9e1ec;--accent:#285ddb;--surface:#e5ecf6;--hero-font:'Noto Sans KR',sans-serif;--radius:10px;--card:#fff}html[data-theme=navy] .site-header{background:#152b4b;color:white;margin:0 -6vw;padding:24px 6vw;border:0}html[data-theme=navy] .site-header .nav a:last-child,html[data-theme=navy] .issue{color:#afc5ed}html[data-theme=navy] .mark{background:#fff;color:#152b4b;border-radius:5px}html[data-theme=navy] h1{font-weight:800}html[data-theme=navy] .primary{background:var(--accent);color:#fff}html[data-theme=navy] .hero-art{background:transparent;overflow:visible}html[data-theme=navy] .book,html[data-theme=navy] .art-corner,html[data-theme=navy] .art-caption{display:none}.dashboard{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 60px #1c355510;padding:26px}.dash-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;border-bottom:1px solid var(--line);padding-bottom:20px}.dash-head span{font-size:9px;padding:5px 9px;background:#e7f5ed;color:#28784e;border-radius:15px}.dash-title{font-size:22px;font-weight:700;margin:23px 0 6px}.dash-sub{font-size:11px;color:var(--muted)}.dash-row{display:flex;gap:12px;align-items:center;font-size:12px;margin-top:20px}.dash-row i{font-style:normal;border-radius:50%;background:#edf2fd;color:var(--accent);width:26px;height:26px;display:grid;place-items:center}.dash-row span{margin-left:auto;color:var(--muted);font-size:10px}html[data-theme=navy] .dashboard{display:block}html[data-theme=navy] .cards{gap:16px}html[data-theme=navy] .card{padding:24px;border:1px solid var(--line)}html[data-theme=navy] .metrics{border:0;background:#fff;border-radius:10px;padding:18px 25px}
+/* 03: quiet forest, organic publication */
+html[data-theme=forest]{--bg:#f6f8f2;--ink:#234639;--muted:#6b7b6b;--line:#d6dfce;--accent:#42765a;--surface:#e4ecd9;--radius:20px;--card:#edf2e7}html[data-theme=forest] .hero{grid-template-columns:1.2fr 1fr}html[data-theme=forest] .mark{border-radius:50%}html[data-theme=forest] .hero-art{border-radius:180px 180px 25px 25px;background:#dce7ce}html[data-theme=forest] .book{background:#335a43;transform:rotate(8deg);border-radius:2px}html[data-theme=forest] .hero-art:before{content:'';position:absolute;width:310px;height:310px;border:1px solid #afc49f;border-radius:50%;left:-120px;bottom:-150px}html[data-theme=forest] .primary{border-radius:30px;background:var(--accent)}html[data-theme=forest] .cards{gap:16px}html[data-theme=forest] .card{padding:26px;border:0}html[data-theme=forest] .card:nth-child(even){background:#e5ecdd}html[data-theme=forest] .metrics{border:0;padding:10px 0}html[data-theme=forest] h1{font-weight:500}
+/* 04: black and lime, high-contrast startup journal */
+html[data-theme=night]{--bg:#141716;--ink:#f0f2e8;--muted:#a3ada5;--line:#353c37;--accent:#cef879;--surface:#202622;--hero-font:'Noto Sans KR',sans-serif;--radius:0px;--card:#141716}html[data-theme=night] .mark{color:#141716}html[data-theme=night] h1{font-weight:900;line-height:1.25;letter-spacing:-3px}html[data-theme=night] .hero{padding:70px 0}html[data-theme=night] .book{display:none}html[data-theme=night] .hero-art{background:transparent}html[data-theme=night] .orbit{display:block;width:260px;height:260px;border:1px solid #66744e;border-radius:50%;position:relative;transform:rotate(-25deg)}.orbit:before,.orbit:after{content:'';position:absolute;inset:32px -28px;border:1px solid var(--accent);border-radius:50%;transform:rotate(60deg)}.orbit:after{inset:-28px 32px;transform:rotate(10deg)}.orbit span{position:absolute;inset:0;display:grid;place-items:center;font-size:90px;letter-spacing:-10px;font-weight:800;color:var(--accent);transform:rotate(25deg)}html[data-theme=night] .primary{background:var(--accent);color:#141716;font-weight:700}html[data-theme=night] .metrics{padding:23px 0}html[data-theme=night] .metrics b{font-size:30px;color:var(--accent)}html[data-theme=night] .card h3{font-size:20px}html[data-theme=night] .card-top span:last-child{background:var(--accent);color:#141716;width:24px;height:24px;text-align:center}html[data-theme=night] .section-head h2{font-weight:800}
+/* 05: vivid cobalt and apricot, approachable guide */
+html[data-theme=pop]{--bg:#fffaf3;--ink:#203aca;--muted:#696c83;--line:#d9d8e4;--accent:#203aca;--surface:#ffdcc5;--hero-font:'Noto Sans KR',sans-serif;--radius:15px;--card:#fffaf3}html[data-theme=pop] h1{font-weight:900;line-height:1.3}html[data-theme=pop] h1 em{position:relative;background:linear-gradient(transparent 60%,#ffd2ae 60%)}html[data-theme=pop] .mark{border-radius:10px;background:#203aca;color:#fffaf3;transform:rotate(-7deg)}html[data-theme=pop] .hero-art{background:#f0eaff;min-height:350px;border:1px solid #203aca20}html[data-theme=pop] .book{display:none}html[data-theme=pop] .blocks{display:grid;grid-template-columns:repeat(2,105px);gap:10px;transform:rotate(-9deg)}.blocks div{height:105px;display:grid;place-items:center;font-size:38px;font-weight:800;border-radius:22px;background:#203aca;color:#fffaf3}.blocks div:nth-child(2){background:#ffc7a5;color:#203aca;border-radius:50%}.blocks div:nth-child(3){background:#d4e4b6;color:#203aca;border-radius:50%}.blocks div:nth-child(4){background:#fffaf3;color:#203aca}.blocks span{transform:rotate(9deg)}html[data-theme=pop] .primary{background:#203aca;color:#fffaf3;box-shadow:4px 4px 0 #b9c2fa}html[data-theme=pop] .metrics{border:0;border-radius:15px;padding:20px 25px;background:#edf0ff}html[data-theme=pop] .cards{gap:17px}html[data-theme=pop] .card{padding:25px;border:1px solid #203aca40;box-shadow:3px 3px 0 #203aca15}html[data-theme=pop] .card:nth-child(2),html[data-theme=pop] .card:nth-child(6){background:#fff0e5}html[data-theme=pop] .card:nth-child(3){background:#eff4e9}html[data-theme=pop] .card-top{font-weight:700}
+@media(min-width:1500px){.site{padding-left:calc((100vw - 1280px)/2);padding-right:calc((100vw - 1280px)/2)}html[data-theme=navy] .site-header{margin:0;padding:29px 25px;border-radius:0 0 10px 10px}}
+@media(max-width:850px){.choice{padding:10px 8px}.choice small{display:none}.swatches i{width:7px;height:23px}.choice b{font-size:10px}.hero{gap:5%;padding-top:40px}h1{font-size:38px;letter-spacing:-2px}.hero-art{min-height:290px}.book{width:170px;height:225px;padding:22px 18px}.book strong{font-size:30px}.nav{gap:17px}.issue{display:none}.cards{grid-template-columns:repeat(2,1fr)}.intro{font-size:12px}.dashboard{padding:18px}.dash-title{font-size:19px}.metrics .metric-note{display:none}}
+@media(max-width:580px){.studio{padding:16px}.studio-head span{font-size:10px}.choices{display:flex;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin}.choice{min-width:125px}.choice b{font-size:11px}.description{font-size:11px}.description a{display:none}.site{padding:0 22px 25px}.site-header{padding:22px 0}.brand strong{font-size:20px}.nav{font-size:10px;gap:16px}.nav a:nth-child(2){display:none}.hero,html[data-theme=forest] .hero{grid-template-columns:1fr;padding:34px 0 30px;gap:30px}.eyebrow{font-size:9px}h1{font-size:42px;margin:18px 0;letter-spacing:-2.6px}.intro{font-size:13px;max-width:330px}.hero-art{min-height:270px}.book{height:210px;width:168px}.book strong{margin-top:15px}.actions{margin-top:24px}.metrics{gap:24px}.metrics b{font-size:21px}.metrics span{font-size:10px}.section-head{margin-top:30px}.section-head p{display:none}.cards{grid-template-columns:1fr;gap:0}.card{padding:22px 0}.card h3{margin-top:14px}.card-foot{margin-top:14px}.card p{max-width:none}.bottom{flex-direction:column;gap:9px}.section-head h2{font-size:22px}html[data-theme=navy] .site-header{margin:0 -22px;padding:22px}html[data-theme=night] .hero{padding:35px 0}html[data-theme=night] .orbit{width:200px;height:200px}html[data-theme=pop] .hero-art{min-height:270px}.art-caption{font-size:8px}html[data-theme=pop] .metrics,html[data-theme=navy] .metrics{padding:18px}.dashboard{max-width:370px}.studio-head{margin-bottom:12px}}
+/* 06: burgundy report — a restrained executive publication */
+html[data-theme=burgundy]{--bg:#faf5ee;--ink:#40272d;--muted:#7b666a;--line:#dbc9c7;--accent:#802e42;--surface:#ede0db;--radius:0px;--card:#faf5ee}
+html[data-theme=burgundy] .site-header{border-bottom:3px double var(--accent)}
+html[data-theme=burgundy] .brand strong{font-family:'Noto Serif KR',serif}
+html[data-theme=burgundy] .hero-art{background:#802e42;border:8px solid #802e42;outline:1px solid #b79478;outline-offset:-18px}
+html[data-theme=burgundy] .art-caption,html[data-theme=burgundy] .art-corner{color:#ead0c3}
+html[data-theme=burgundy] .book{background:#f4eadb;color:#652b39;transform:rotate(0);box-shadow:12px 12px 0 #39182240;border-left-color:#c7a387}
+html[data-theme=burgundy] h1{font-weight:500}
+html[data-theme=burgundy] .primary{background:var(--accent);color:#fff6ed}
+html[data-theme=burgundy] .metrics{border-block:1px solid var(--accent)}
+html[data-theme=burgundy] .metrics b{font-family:Georgia,serif;font-size:31px}
+html[data-theme=burgundy] .card h3{font-family:'Noto Serif KR',serif}
+html[data-theme=burgundy] .card-top{color:#802e42}
+/* 07: Swiss minimal — oversized type and a red index */
+html[data-theme=swiss]{--bg:#fff;--ink:#171717;--muted:#646464;--line:#d4d4d4;--accent:#d82d24;--surface:#f1f1ef;--hero-font:'Noto Sans KR',sans-serif;--radius:0px;--card:#fff}
+html[data-theme=swiss] .site-header{border-bottom:2px solid #171717}
+html[data-theme=swiss] .brand small{letter-spacing:1.7px}
+html[data-theme=swiss] h1{font-weight:900;letter-spacing:-4px;line-height:1.2}
+html[data-theme=swiss] .hero-art{background:#d82d24;min-height:340px}
+html[data-theme=swiss] .book{display:none}
+html[data-theme=swiss] .hero-art:before{content:'01';font-family:Arial,sans-serif;font-size:230px;font-weight:900;letter-spacing:-25px;line-height:1;color:#fff}
+html[data-theme=swiss] .art-corner,html[data-theme=swiss] .art-caption{color:#fff}
+html[data-theme=swiss] .primary{background:var(--accent);color:#fff}
+html[data-theme=swiss] .metrics{border-top:2px solid var(--ink);border-bottom:0}
+html[data-theme=swiss] .metrics b{font-weight:800}
+html[data-theme=swiss] .cards{gap:0}
+html[data-theme=swiss] .card{border-top:2px solid var(--ink);padding:25px 24px 25px 0;margin-right:24px}
+html[data-theme=swiss] .card-top{font-size:12px;font-weight:800}
+html[data-theme=swiss] .card h3{font-weight:800}
+/* 08: blueprint — the company as a system to design */
+html[data-theme=blueprint]{--bg:#153c70;--ink:#eff6ff;--muted:#b4cee9;--line:#53759d;--accent:#a9e2f0;--surface:#204b80;--hero-font:'Noto Sans KR',sans-serif;--radius:0px;--card:#153c70}
+html[data-theme=blueprint] .site{background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:28px 28px}
+html[data-theme=blueprint] .mark{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+html[data-theme=blueprint] h1{font-weight:600}
+html[data-theme=blueprint] .hero-art{background:transparent;border:1px solid var(--line);overflow:visible}
+html[data-theme=blueprint] .hero-art:before,html[data-theme=blueprint] .hero-art:after{content:'+';position:absolute;color:var(--accent);font:24px monospace;top:-16px;left:-8px}
+html[data-theme=blueprint] .hero-art:after{top:auto;left:auto;bottom:-15px;right:-8px}
+html[data-theme=blueprint] .book{background:transparent;color:#eff6ff;border:1px solid #a9e2f0;box-shadow:12px 12px 0 #ffffff08;transform:rotate(-12deg)}
+html[data-theme=blueprint] .book:after{background:transparent;border:1px solid #a9e2f0}
+html[data-theme=blueprint] .primary{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+html[data-theme=blueprint] .metrics b,html[data-theme=blueprint] .card-top,html[data-theme=blueprint] .issue{font-family:monospace}
+html[data-theme=blueprint] .cards{gap:16px}
+html[data-theme=blueprint] .card{border:1px solid var(--line);padding:25px;background:#153c70cc}
+html[data-theme=blueprint] .card:hover{background:#23518a}
+/* 09: warm terracotta — a personable founder's studio */
+html[data-theme=terracotta]{--bg:#f8eee2;--ink:#54372d;--muted:#806c5d;--line:#d9c4b1;--accent:#a7492c;--surface:#e9c0a6;--radius:25px;--card:#fff8ee}
+html[data-theme=terracotta] .mark{border-radius:12px 12px 2px 2px}
+html[data-theme=terracotta] .hero-art{background:#eac1a5;border-radius:50% 50% 8px 8px;min-height:355px}
+html[data-theme=terracotta] .book{background:#a7492c;transform:rotate(9deg);color:#fff4df;box-shadow:15px 15px 0 #73452a17}
+html[data-theme=terracotta] .hero-art:before{content:'';position:absolute;width:240px;height:240px;background:#f4dcbb;border-radius:50%;right:-100px;bottom:-70px}
+html[data-theme=terracotta] .primary{background:var(--accent);color:#fff8ee;border-radius:40px}
+html[data-theme=terracotta] .metrics{background:#eadbc6;border:0;padding:20px 25px;border-radius:12px}
+html[data-theme=terracotta] .cards{gap:18px}
+html[data-theme=terracotta] .card{padding:27px;border:0;border-radius:4px 28px 4px 4px}
+html[data-theme=terracotta] .card:nth-child(2n){background:#efe2cf}
+html[data-theme=terracotta] .card h3{font-family:'Noto Serif KR',serif;font-weight:600}
+/* 10: mono archive — numbered files, utilitarian typography */
+html[data-theme=archive]{--bg:#e9e9e5;--ink:#242725;--muted:#666b66;--line:#adb2aa;--accent:#3e5346;--surface:#d4d8d0;--hero-font:'Noto Sans KR',sans-serif;--radius:0px;--card:#e9e9e5}
+html[data-theme=archive] .site-header{border-bottom:1px solid var(--ink)}
+html[data-theme=archive] .mark{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+html[data-theme=archive] .brand small,html[data-theme=archive] .eyebrow,html[data-theme=archive] .issue,html[data-theme=archive] .card-top,html[data-theme=archive] .card-foot{font-family:monospace;letter-spacing:1px}
+html[data-theme=archive] h1{font-weight:500;font-size:clamp(38px,4vw,58px);letter-spacing:-2.5px}
+html[data-theme=archive] .hero-art{background:repeating-linear-gradient(0deg,transparent 0 27px,#aab0a450 27px 28px),var(--surface)}
+html[data-theme=archive] .book{transform:rotate(0);background:#eeeee6;color:#303b32;border:1px solid #8b9486;border-left:12px solid #89967f;box-shadow:10px 10px 0 #b6bfad,11px 11px 0 #8b9486}
+html[data-theme=archive] .book:after{display:none}
+html[data-theme=archive] .book strong{font-family:'Noto Sans KR',sans-serif;font-size:34px;font-weight:600}
+html[data-theme=archive] .primary{background:transparent;border:1px solid var(--ink);color:var(--ink)}
+html[data-theme=archive] .metrics{gap:28px}
+html[data-theme=archive] .metrics b{font-family:monospace}
+html[data-theme=archive] .cards{grid-template-columns:repeat(2,1fr);gap:0 35px}
+html[data-theme=archive] .card{display:grid;grid-template-columns:1fr 1.3fr;gap:8px 18px;padding:24px 0}
+html[data-theme=archive] .card-top{grid-column:1/-1;font-size:10px}
+html[data-theme=archive] .card h3{margin:6px 0;font-size:18px;font-weight:500}
+html[data-theme=archive] .card p{margin:5px 0}
+html[data-theme=archive] .card-foot{grid-column:1/-1;margin-top:8px}
+@media(max-width:850px){html[data-theme=swiss] .hero-art:before{font-size:185px}html[data-theme=archive] .card{grid-template-columns:1fr}html[data-theme=archive] .card h3{margin-bottom:0}}
+@media(max-width:580px){.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;gap:7px}.choice{min-width:0;padding:9px 8px}.choice b{font-size:10px}.swatches i{height:20px}.studio-head span{letter-spacing:0;font-size:9px}html[data-theme=swiss] .hero-art,html[data-theme=terracotta] .hero-art{min-height:270px}html[data-theme=swiss] .hero-art:before{font-size:200px}html[data-theme=swiss] h1{letter-spacing:-2.5px}html[data-theme=swiss] .card{margin-right:0;padding-right:0}html[data-theme=archive] .cards{grid-template-columns:1fr}html[data-theme=terracotta] .metrics{padding:18px;gap:20px}html[data-theme=blueprint] .card,html[data-theme=terracotta] .card{padding:23px}.description{margin-top:10px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<aside class="studio" aria-label="홈페이지 테마 선택">
+ <div class="studio-head"><strong>경영장부 <span> / DESIGN COLLECTION</span></strong><span>HOMEPAGE · 10 CONCEPTS</span></div>
+ <div class="choices">
+  <button class="choice" data-theme="paper" aria-pressed="true"><span class="swatches"><i style="--s:#e4ded0"></i><i style="--s:#282e28"></i><i style="--s:#974831"></i></span><span><b>01 · 클래식 저널</b><small>EDITORIAL / PAPER</small></span></button>
+  <button class="choice" data-theme="navy" aria-pressed="false"><span class="swatches"><i style="--s:#e5ecf6"></i><i style="--s:#152b4b"></i><i style="--s:#285ddb"></i></span><span><b>02 · 네이비 데스크</b><small>TRUST / STRUCTURE</small></span></button>
+  <button class="choice" data-theme="forest" aria-pressed="false"><span class="swatches"><i style="--s:#e4ecd9"></i><i style="--s:#234639"></i><i style="--s:#a6bd86"></i></span><span><b>03 · 포레스트 노트</b><small>CALM / GROWTH</small></span></button>
+  <button class="choice" data-theme="night" aria-pressed="false"><span class="swatches"><i style="--s:#202622"></i><i style="--s:#cef879"></i><i style="--s:#eff1e8"></i></span><span><b>04 · 나이트 오피스</b><small>BOLD / STARTUP</small></span></button>
+  <button class="choice" data-theme="pop" aria-pressed="false"><span class="swatches"><i style="--s:#203aca"></i><i style="--s:#ffc7a5"></i><i style="--s:#d4e4b6"></i></span><span><b>05 · 프렌들리 가이드</b><small>FRIENDLY / COLOR</small></span></button>
+  <button class="choice" data-theme="burgundy" aria-pressed="false"><span class="swatches"><i style="--s:#faf5ee"></i><i style="--s:#802e42"></i><i style="--s:#b79478"></i></span><span><b>06 · 버건디 리포트</b><small>PREMIUM / REPORT</small></span></button>
+  <button class="choice" data-theme="swiss" aria-pressed="false"><span class="swatches"><i style="--s:#f1f1ef"></i><i style="--s:#171717"></i><i style="--s:#d82d24"></i></span><span><b>07 · 스위스 미니멀</b><small>TYPE / GRID</small></span></button>
+  <button class="choice" data-theme="blueprint" aria-pressed="false"><span class="swatches"><i style="--s:#153c70"></i><i style="--s:#a9e2f0"></i><i style="--s:#eff6ff"></i></span><span><b>08 · 블루프린트</b><small>SYSTEM / BLUEPRINT</small></span></button>
+  <button class="choice" data-theme="terracotta" aria-pressed="false"><span class="swatches"><i style="--s:#f8eee2"></i><i style="--s:#a7492c"></i><i style="--s:#eac1a5"></i></span><span><b>09 · 웜 테라코타</b><small>WARM / STUDIO</small></span></button>
+  <button class="choice" data-theme="archive" aria-pressed="false"><span class="swatches"><i style="--s:#e9e9e5"></i><i style="--s:#242725"></i><i style="--s:#89967f"></i></span><span><b>10 · 모노 아카이브</b><small>INDEX / ARCHIVE</small></span></button>
+ </div>
+ <div class="description"><span id="theme-description" aria-live="polite"><b>클래식 저널</b> — 종이 질감의 색감, 명조 제목, 여백과 가는 선으로 정리한 경영 전문지.</span><a href="/">현재 홈페이지 보기 ↗</a></div>
+</aside>
+<main class="site"><div class="wrap">
+ <header class="site-header">
+  <a class="brand" href="/" aria-label="경영장부 현재 홈페이지"><span class="mark">帳</span><span><strong>경영장부</strong><small>THE BUSINESS HANDBOOK</small></span></a>
+  <nav class="nav" aria-label="시안 메뉴"><a href="#chapters">전체 목차</a><a href="/chapter/ch1/">법인 설립</a><a href="/chapter/ch3/">세무와 재무 ↗</a></nav>
+  <span class="issue">VOL. 01 — 2026</span>
+ </header>
+ <section class="hero">
+  <div class="hero-copy"><div class="eyebrow">A GUIDE FOR YOUR BUSINESS</div><h1>회사를 세우고,<br><em>단단하게</em> 키우다.</h1><p class="intro">첫 법인 설립부터 지분 관리, 세무와 승계까지.<br>대표의 다음 결정을 위한 경영 실무를 한곳에 담았습니다.</p><div class="actions"><a class="primary" href="/chapter/ch1/">법인 설립부터 시작하기 <span>↗</span></a><a class="secondary" href="#chapters">전체 목차 둘러보기 ↓</a></div></div>
+  <div class="hero-art" aria-hidden="true"><span class="art-corner">EST. 2026 / VOL. 01</span><div class="book"><small>THE BUSINESS<br>HANDBOOK</small><strong>경영<br>장부.</strong><div class="book-line"></div><span>시작부터, 그다음까지.</span></div><div class="orbit"><span>帳</span></div><div class="blocks"><div><span>시작</span></div><div><span>↗</span></div><div><span>✳</span></div><div><span>성장</span></div></div><div class="dashboard"><div class="dash-head"><b>법인 설립 로드맵</b><span>GUIDE 01</span></div><div class="dash-title">첫 시작을 위한 순서</div><div class="dash-sub">설립 전 결정부터 운영 체계까지</div><div class="dash-row"><i>1</i> 사업 구조·주주관계 설계 <span>준비</span></div><div class="dash-row"><i>2</i> 정관 작성·설립등기 <span>설립</span></div><div class="dash-row"><i>3</i> 사업자등록·인허가 확인 <span>등록</span></div><div class="dash-row"><i>4</i> 회계·노무 체계 마련 <span>운영</span></div></div><span class="art-caption">YOUR NEXT CHAPTER STARTS HERE.</span></div>
+ </section>
+ <div class="metrics"><div><b>06</b><span>핵심 분야</span></div><div><b>22</b><span>실무 항목</span></div><div><b>01</b><span>이어지는 경영 여정</span></div><span class="metric-note">설립 → 운영 → 성장 → 승계</span></div>
+ <section id="chapters"><div class="section-head"><div><small>EXPLORE THE CHAPTERS</small><h2>지금, 필요한 경영의 한 페이지</h2></div><p>관심 있는 주제부터 읽어보세요.</p></div>
+ <div class="cards">
+  <a class="card" href="/chapter/ch1/"><div class="card-top"><span>01 / FOUNDATION</span><span>↗</span></div><h3>설립과 제도 정비</h3><p>어떤 회사로 시작할까?<br>설립 절차부터 개인사업의 법인전환까지.</p><span class="card-foot">설립 실무 · 세법 · 법인전환 / 4개 항목</span></a>
+  <a class="card" href="/chapter/ch2/"><div class="card-top"><span>02 / OWNERSHIP</span><span>↗</span></div><h3>주식과 지분 관리</h3><p>함께 만든 회사, 분명한 권리.<br>주식이동과 증여, 자기주식 취득의 기준.</p><span class="card-foot">주식이동 · 명의신탁 · 증여 / 4개 항목</span></a>
+  <a class="card" href="/chapter/ch3/"><div class="card-top"><span>03 / FINANCE</span><span>↗</span></div><h3>이익환원과 절세</h3><p>회사의 이익을 어떻게 나눌까?<br>급여·배당과 기업이 살펴볼 세제지원.</p><span class="card-foot">이익환원 · 세제지원 · 기부금 / 3개 항목</span></a>
+  <a class="card" href="/chapter/ch4/"><div class="card-top"><span>04 / GOVERNANCE</span><span>↗</span></div><h3>리스크 관리와 준법</h3><p>성장 전에 점검해야 할 것들.<br>기업진단부터 외부감사와 채권 관리까지.</p><span class="card-foot">기업진단 · 외부감사 · 세무조사 / 5개 항목</span></a>
+  <a class="card" href="/chapter/ch5/"><div class="card-top"><span>05 / SUCCESSION</span><span>↗</span></div><h3>가업승계와 기업가치</h3><p>회사의 다음 세대를 준비하다.<br>증여·상속 제도와 목적별 가치평가.</p><span class="card-foot">증여특례 · 가업승계 · 가치평가 / 3개 항목</span></a>
+  <a class="card" href="/chapter/ch6/"><div class="card-top"><span>06 / NEXT CHAPTER</span><span>↗</span></div><h3>확장과 엑시트</h3><p>더 큰 무대로 향하는 선택.<br>상장과 인수합병, 특허 활용의 검토사항.</p><span class="card-foot">IPO · M&amp;A · 특허경영 / 3개 항목</span></a>
+ </div></section>
+ <footer class="bottom"><b>경영장부 &nbsp; / &nbsp; 시작부터, 그다음까지.</b><span>일반적인 경영 정보입니다. 실제 적용 전 최신 법령과 개별 요건을 확인하세요.</span><span>© 2026 경영장부</span></footer>
+</div></main>
+<script>
+(()=>{'use strict';const themes={paper:['클래식 저널','종이 질감의 색감, 명조 제목, 여백과 가는 선으로 정리한 경영 전문지.'],navy:['네이비 데스크','네이비와 블루, 정돈된 카드와 로드맵으로 신뢰감을 주는 실무 포털.'],forest:['포레스트 노트','세이지와 깊은 녹색, 부드러운 곡선으로 오래 읽기 편안한 경영 노트.'],night:['나이트 오피스','차콜과 라임, 굵은 타이포그래피로 선명한 인상을 주는 스타트업 저널.'],pop:['프렌들리 가이드','코발트와 살구색, 도형과 경쾌한 카드로 쉽게 다가가는 창업 안내서.']};Object.assign(themes,{
+burgundy:['버건디 리포트','버건디와 크림, 금속빛 포인트와 명조체로 구성한 차분한 경영 리포트.'],
+swiss:['스위스 미니멀','흰 바탕과 레드, 커다란 숫자와 굵은 제목으로 정보를 명확하게 전달하는 디자인.'],
+blueprint:['블루프린트','설계도 블루와 얇은 격자, 선으로 그린 책으로 경영의 구조와 체계를 표현.'],
+terracotta:['웜 테라코타','벽돌색과 샌드, 아치와 부드러운 카드로 꾸민 따뜻한 창업자의 작업실.'],
+archive:['모노 아카이브','회색과 올리브, 파일철과 번호 색인으로 정리한 실용적인 경영 자료실.']
+});const buttons=[...document.querySelectorAll('.choice')];function apply(key){if(!themes[key])key='paper';document.documentElement.dataset.theme=key;buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===key)));const d=document.getElementById('theme-description');d.replaceChildren();const strong=document.createElement('b');strong.textContent=themes[key][0];d.append(strong,document.createTextNode(' — '+themes[key][1]));document.title=themes[key][0]+' · 경영장부 디자인 시안';}buttons.forEach(b=>b.addEventListener('click',()=>{apply(b.dataset.theme);const url=new URL(location.href);url.searchParams.set('theme',b.dataset.theme);history.replaceState(null,'',url);}));apply(new URLSearchParams(location.search).get('theme')||'paper');window.addEventListener('popstate',()=>apply(new URLSearchParams(location.search).get('theme')||'paper'));})();
+</script>
+</body>
+</html>
