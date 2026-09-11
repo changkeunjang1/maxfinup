@@ -8,6 +8,10 @@ def design_previews(request):
     return render(request, "ledger/designs.html")
 
 
+def trends(request):
+    return render(request, "ledger/trends.html")
+
+
 def home(request):
     chapters = [{**ch, "index": i, "count": len(ch["entries"])} for i, ch in enumerate(CHAPTERS, start=1)]
     return render(request, "ledger/home.html", {"chapters": chapters, "total_entries": sum(ch["count"] for ch in chapters)})
