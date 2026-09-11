@@ -1,5 +1,8 @@
 ﻿{% extends "ledger/base.html" %}
 {% block title %}AI종합법인자산 관리허브{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.css">
+{% endblock %}
 {% block content %}
 <div class="navy-home">
   <section class="home-hero" aria-labelledby="home-title">
@@ -7,9 +10,68 @@
     <aside class="roadmap" aria-labelledby="roadmap-title"><div class="roadmap-head"><strong id="roadmap-title">법인 설립 로드맵</strong><span>GUIDE 01</span></div><h2>첫 시작을 위한 순서</h2><p>설립 전 결정부터 운영 체계까지</p><ol><li><span class="roadmap-num">1</span><span>사업 구조·주주관계 설계</span><small>준비</small></li><li><span class="roadmap-num">2</span><span>정관 작성·설립등기</span><small>설립</small></li><li><span class="roadmap-num">3</span><span>사업자등록·인허가 확인</span><small>등록</small></li><li><span class="roadmap-num">4</span><span>회계·노무 체계 마련</span><small>운영</small></li></ol><p class="roadmap-note">인허가의 선행 여부와 순서는 업종에 따라 달라집니다.</p></aside>
   </section>
   <div class="home-metrics"><div><b>{{ chapters|length|stringformat:"02d" }}</b><span>핵심 분야</span></div><div><b>{{ total_entries }}</b><span>실무 항목</span></div><div><b>01</b><span>이어지는 경영 여정</span></div><p>설립 → 운영 → 성장 → 승계</p></div>
-  <section id="chapters" aria-labelledby="chapters-title"><div class="home-section-head"><div><p>EXPLORE THE CHAPTERS</p><h2 id="chapters-title">지금, 필요한 경영의 한 페이지</h2></div><span>관심 있는 주제부터 읽어보세요.</span></div><div class="home-cards">
-    {% for c in chapters %}<a class="home-card" href="{% url 'ledger:chapter' c.slug %}"><div class="home-card-top"><span>{{ c.n }} / CHAPTER</span><span aria-hidden="true">↗</span></div><h3>{{ c.title }}</h3><p>{{ c.lede }}</p><span class="home-card-foot">제{{ c.index }}편 · {{ c.count }}개 항목</span></a>{% endfor %}
-  </div></section>
+  <section id="chapters" aria-labelledby="chapters-title"><div class="home-section-head"><div><p>EXPLORE THE CHAPTERS</p><h2 id="chapters-title">지금, 필요한 경영의 한 페이지</h2></div><span>관심 있는 주제부터 읽어보세요.</span></div>
+    <div class="swiper home-cards-swiper">
+      <div class="swiper-wrapper">
+        {% for c in chapters %}
+        <div class="swiper-slide"><a class="home-card" href="{% url 'ledger:chapter' c.slug %}"><div class="home-card-top"><span>{{ c.n }} / CHAPTER</span><span aria-hidden="true">↗</span></div><h3>{{ c.title }}</h3><p>{{ c.lede }}</p><span class="home-card-foot">제{{ c.index }}편 · {{ c.count }}개 항목</span></a></div>
+        {% endfor %}
+      </div>
+      <div class="swiper-controller">
+        <div class="swiper-pagination-fraction"><span class="current">01</span> / <span class="total">{{ chapters|length|stringformat:"02d" }}</span></div>
+        <button class="swiper-nav-btn swiper-button-prev-custom" type="button" aria-label="이전 카드">‹</button>
+        <button class="swiper-nav-btn swiper-play-toggle play" type="button" aria-label="자동재생 시작" hidden>▶</button>
+        <button class="swiper-nav-btn swiper-play-toggle pause" type="button" aria-label="자동재생 정지">❚❚</button>
+        <button class="swiper-nav-btn swiper-button-next-custom" type="button" aria-label="다음 카드">›</button>
+      </div>
+    </div>
+  </section>
   <div class="home-editor-note"><strong>자료 안내</strong><p>2026-09-09 주요 오류와 적용조건을 정정했습니다. 법률·세무 자문을 대체하지 않으며, 실행 전 최신 법령과 전문가 확인이 필요합니다. 자사주매입·세무조사·특허경영 항목에는 출처를 표시한 컨설팅업체의 광고성 자료가 포함되어 있습니다.</p></div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  var root = document.querySelector(".home-cards-swiper");
+  if (!root || !window.Swiper) return;
+
+  var currentEl = root.querySelector(".swiper-pagination-fraction .current");
+  var playBtn = root.querySelector(".swiper-play-toggle.play");
+  var pauseBtn = root.querySelector(".swiper-play-toggle.pause");
+
+  var swiper = new Swiper(root, {
+    loop: true,
+    spaceBetween: 16,
+    slidesPerView: 1,
+    grabCursor: true,
+    autoplay: { delay: 3500, disableOnInteraction: false },
+    breakpoints: {
+      701: { slidesPerView: 2 },
+      1001: { slidesPerView: 3 }
+    },
+    navigation: {
+      nextEl: ".swiper-button-next-custom",
+      prevEl: ".swiper-button-prev-custom"
+    },
+    on: {
+      slideChange: function (sw) {
+        if (currentEl) {
+          var n = (sw.realIndex + 1);
+          currentEl.textContent = n < 10 ? "0" + n : "" + n;
+        }
+      }
+    }
+  });
+
+  function setPlaying(playing) {
+    if (playBtn) playBtn.hidden = playing;
+    if (pauseBtn) pauseBtn.hidden = !playing;
+  }
+  if (playBtn) playBtn.addEventListener("click", function () { swiper.autoplay.start(); setPlaying(true); });
+  if (pauseBtn) pauseBtn.addEventListener("click", function () { swiper.autoplay.stop(); setPlaying(false); });
+})();
+</script>
 {% endblock %}
