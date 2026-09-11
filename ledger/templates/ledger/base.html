@@ -51,7 +51,7 @@
   <main class="main-content">
     {% block content %}{% endblock %}
   </main>
-  <footer class="site-footer"><strong>경영장부 · 시작부터, 그다음까지.</strong><span>일반적인 경영 정보입니다. 실제 적용 전 최신 법령과 개별 요건을 확인하세요.</span><span>© 2026 경영장부</span></footer>
+  <footer class="site-footer"><strong>경영장부 · 시작부터, 그다음까지.</strong><span>일반적인 경영 정보입니다. 실제 적용 전 최신 법령과 개별 요건을 확인하세요.</span><nav class="footer-links" aria-label="정책"><a href="{% url 'ledger:privacy_policy' %}">개인정보처리방침</a><span aria-hidden="true">·</span><a href="{% url 'ledger:terms' %}">이용약관</a></nav><span>© 2026 MaxFinUp</span></footer>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>

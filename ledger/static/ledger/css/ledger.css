@@ -100,6 +100,9 @@ a { color: inherit; text-decoration: none; }
 }
 .brand-icon { height: 60px; width: auto; display: block; }
 .brand-wordmark-img { height: 40px; width: auto; display: block; }
+.footer-links { display: flex; align-items: center; gap: 8px; }
+.footer-links a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.footer-links a:hover { color: var(--brass); }
 .notice {
   margin: 0; flex: 1; text-align: right; font-size: 11.5px; color: var(--ink-faint);
   font-family: var(--mono);

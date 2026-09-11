@@ -12,6 +12,14 @@ def trends(request):
     return render(request, "ledger/trends.html")
 
 
+def privacy_policy(request):
+    return render(request, "ledger/privacy_policy.html")
+
+
+def terms(request):
+    return render(request, "ledger/terms.html")
+
+
 def home(request):
     chapters = [{**ch, "index": i, "count": len(ch["entries"])} for i, ch in enumerate(CHAPTERS, start=1)]
     return render(request, "ledger/home.html", {"chapters": chapters, "total_entries": sum(ch["count"] for ch in chapters)})
