@@ -20,6 +20,10 @@ def terms(request):
     return render(request, "ledger/terms.html")
 
 
+def email_refusal(request):
+    return render(request, "ledger/email_refusal.html")
+
+
 def home(request):
     chapters = [{**ch, "index": i, "count": len(ch["entries"])} for i, ch in enumerate(CHAPTERS, start=1)]
     return render(request, "ledger/home.html", {"chapters": chapters, "total_entries": sum(ch["count"] for ch in chapters)})
