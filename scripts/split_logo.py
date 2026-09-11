@@ -4,7 +4,7 @@ import os
 import numpy as np
 from PIL import Image
 
-SRC = r"C:\Users\mbc\Documents\카카오톡 받은 파일\KakaoTalk_20260911_165737561.png"
+SRC = r"C:\Users\mbc\Documents\카카오톡 받은 파일\KakaoTalk_20260911_172209282.png"
 OUT_DIR = os.path.join(os.path.dirname(__file__), "..", "ledger", "static", "ledger", "brand")
 
 WHITE_THRESHOLD = 245
