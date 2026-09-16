@@ -1,5 +1,5 @@
 ﻿{% extends "ledger/base.html" %}
-{% block title %}AI종합법인자산 관리허브{% endblock %}
+{% block title %}MAX AI종합법인자산관리허브{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.css">
 {% endblock %}
@@ -10,17 +10,17 @@
     <aside class="roadmap" aria-labelledby="roadmap-title"><div class="roadmap-head"><strong id="roadmap-title">법인 설립 로드맵</strong><span>GUIDE 01</span></div><h2>첫 시작을 위한 순서</h2><p>설립 전 결정부터 운영 체계까지</p>
       <ol class="roadmap-flow">
         <li class="rf-step rf-s1"><span class="roadmap-num">1</span><span class="rf-title">사업 구조·주주관계 설계</span><small>준비</small></li>
-        <li class="rf-arrow rf-a1" aria-hidden="true">→</li>
+        <li class="rf-arrow rf-a1" aria-hidden="true"><span class="rf-arrow-glyph">→</span></li>
         <li class="rf-step rf-s2"><span class="roadmap-num">2</span><span class="rf-title">정관 작성·설립등기</span><small>설립</small></li>
-        <li class="rf-arrow rf-a2" aria-hidden="true">↓</li>
+        <li class="rf-arrow rf-a2" aria-hidden="true"><span class="rf-arrow-glyph">↓</span></li>
         <li class="rf-step rf-s3"><span class="roadmap-num">3</span><span class="rf-title">사업자등록·인허가 확인</span><small>등록</small></li>
-        <li class="rf-arrow rf-a3" aria-hidden="true">←</li>
+        <li class="rf-arrow rf-a3" aria-hidden="true"><span class="rf-arrow-glyph">←</span></li>
         <li class="rf-step rf-s4"><span class="roadmap-num">4</span><span class="rf-title">회계·노무 체계 마련</span><small>운영</small></li>
       </ol>
     <p class="roadmap-note">인허가의 선행 여부와 순서는 업종에 따라 달라집니다.</p></aside>
   </section>
-  <div class="home-metrics"><div><b>{{ chapters|length|stringformat:"02d" }}</b><span>핵심 분야</span></div><div><b>{{ total_entries }}</b><span>실무 항목</span></div><div><b>01</b><span>이어지는 경영 여정</span></div><p>설립 → 운영 → 성장 → 승계</p></div>
-  <section id="chapters" aria-labelledby="chapters-title"><div class="home-section-head"><div><p>EXPLORE THE CHAPTERS</p><h2 id="chapters-title">지금, 필요한 경영의 한 페이지</h2></div><span>관심 있는 주제부터 읽어보세요.</span></div>
+  <div class="home-metrics reveal count-up-group"><div><b class="count-up">{{ chapters|length|stringformat:"02d" }}</b><span>핵심 분야</span></div><div><b class="count-up">{{ total_entries }}</b><span>실무 항목</span></div><div><b class="count-up">01</b><span>이어지는 경영 여정</span></div><p>설립 → 운영 → 성장 → 승계</p></div>
+  <section id="chapters" class="reveal" aria-labelledby="chapters-title"><div class="home-section-head"><div><p>EXPLORE THE CHAPTERS</p><h2 id="chapters-title">지금, 필요한 경영의 한 페이지</h2></div><span>관심 있는 주제부터 읽어보세요.</span></div>
     <div class="swiper home-cards-swiper">
       <div class="swiper-wrapper">
         {% for c in chapters %}
@@ -36,7 +36,7 @@
       </div>
     </div>
   </section>
-  <div class="home-editor-note"><strong>자료 안내</strong><p>2026-09-09 주요 오류와 적용조건을 정정했습니다. 법률·세무 자문을 대체하지 않으며, 실행 전 최신 법령과 전문가 확인이 필요합니다. 자사주매입·세무조사·특허경영 항목에는 출처를 표시한 컨설팅업체의 광고성 자료가 포함되어 있습니다.</p></div>
+  <div class="home-editor-note reveal"><strong>자료 안내</strong><p>2026-09-09 주요 오류와 적용조건을 정정했습니다. 법률·세무 자문을 대체하지 않으며, 실행 전 최신 법령과 전문가 확인이 필요합니다. 자사주매입·세무조사·특허경영 항목에는 출처를 표시한 컨설팅업체의 광고성 자료가 포함되어 있습니다.</p></div>
 </div>
 {% endblock %}
 
@@ -82,6 +82,49 @@
   }
   if (playBtn) playBtn.addEventListener("click", function () { swiper.autoplay.start(); setPlaying(true); });
   if (pauseBtn) pauseBtn.addEventListener("click", function () { swiper.autoplay.stop(); setPlaying(false); });
+})();
+
+(function () {
+  "use strict";
+  var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function animateCount(el) {
+    var target = parseInt(el.textContent, 10);
+    if (isNaN(target)) return;
+    var pad = el.textContent.trim().length;
+    if (reduced) { el.textContent = String(target).padStart(pad, "0"); return; }
+    var start = null, duration = 900;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = String(Math.round(target * eased)).padStart(pad, "0");
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if (!revealEls.length) return;
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        if (entry.target.classList.contains("count-up-group")) {
+          entry.target.querySelectorAll(".count-up").forEach(animateCount);
+        }
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) {
+      el.classList.add("is-visible");
+      el.querySelectorAll(".count-up").forEach(animateCount);
+    });
+  }
 })();
 </script>
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends "ledger/base.html" %}
+{% block title %}{{ topic.title }} — 전문가 소개 · MaxFinUp{% endblock %}
+{% block content %}
+<article class="chapter">
+  <header class="chapter-head">
+    <div class="stamp">{{ topic.icon }}</div>
+    <div>
+      <p class="kicker">상담 분야 {{ topic.num }}</p>
+      <h1>{{ topic.title }}</h1>
+      <p class="dek">{{ topic.dek }}</p>
+    </div>
+  </header>
+  <p class="lede">{{ topic.lede }}</p>
+
+  <div class="step-content">
+    {{ topic.html|safe }}
+  </div>
+
+  <footer class="chapter-foot">
+    <p class="expert-contact">이 내용을 대표님의 상황에 맞춰 점검하고 싶다면 —
+    <a href="mailto:contact@maxfinup.com">contact@maxfinup.com</a>으로 문의해 주세요.</p>
+  </footer>
+
+  <nav class="pager">
+    {% if prev_topic %}
+    <a class="pager-link prev" href="{% url 'ledger:asset_topic' prev_topic.slug %}">
+      <span class="plabel">이전 분야</span>{{ prev_topic.title }}
+    </a>
+    {% else %}
+    <a class="pager-link prev" href="{% url 'ledger:experts' %}"><span class="plabel">처음으로</span>전문가 소개</a>
+    {% endif %}
+    {% if next_topic %}
+    <a class="pager-link next" href="{% url 'ledger:asset_topic' next_topic.slug %}">
+      <span class="plabel">다음 분야</span>{{ next_topic.title }}
+    </a>
+    {% else %}
+    <a class="pager-link next" href="{% url 'ledger:experts' %}"><span class="plabel">마지막 분야</span>전문가 소개로</a>
+    {% endif %}
+  </nav>
+</article>
+{% endblock %}
