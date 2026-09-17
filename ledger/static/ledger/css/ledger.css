@@ -230,6 +230,9 @@ a { color: inherit; text-decoration: none; }
 
 /* Expert page — title row + hero banner */
 .expert-title-row { position: relative; text-align: center; margin: 4px 0 22px; }
+.expert-title-head { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.title-emblem { flex: 0 0 auto; width: 40px; height: 40px; }
+.title-emblem svg { width: 100%; height: 100%; display: block; }
 .expert-title-row h1 { font-family: var(--serif); font-size: 29px; font-weight: 700; margin: 0; }
 .expert-cta-link {
   position: absolute; right: 0; top: 50%; transform: translateY(-50%);
@@ -249,7 +252,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Card shell (profile / vows / services / CTA) */
 .expert-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 30px 32px; box-shadow: var(--shadow); margin-bottom: 22px; }
-.expert-card > h3 { font-family: var(--serif); font-size: 20px; font-weight: 700; margin: 0 0 6px; color: var(--ink); }
+.expert-card h3 { font-family: var(--serif); font-size: 20px; font-weight: 700; margin: 0 0 6px; color: var(--ink); }
 .expert-card > .card-note { font-size: 14.5px; color: var(--ink-soft); margin: 0 0 18px; }
 
 /* Profile card */
@@ -266,14 +269,31 @@ a { color: inherit; text-decoration: none; }
 .expert-fact-list li { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; font-size: 14px; color: var(--ink); }
 .expert-fact-list .yr, .expert-fact-list .note { color: var(--ink-faint); font-size: 12.5px; font-family: var(--mono); white-space: nowrap; }
 .expert-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.expert-tag { font-family: var(--mono); font-size: 12.5px; padding: 4px 10px; border-radius: 999px; background: var(--brass-tint); color: var(--brass-strong); border: 1px solid var(--brass-tint-strong); white-space: nowrap; }
+.expert-tag { font-family: var(--mono); font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--brass-tint); color: var(--brass-strong); border: 1px solid var(--brass-tint-strong); white-space: nowrap; }
+
+/* 카드 상단 로고 + 제목 (상담 분야 / 상담에서 지키는 12가지 공용) */
+.section-emblem-head { display: flex; align-items: center; gap: 16px; margin: 0 0 20px; }
+.section-emblem { flex: 0 0 auto; width: 56px; height: 56px; }
+.section-emblem svg { width: 100%; height: 100%; display: block; }
+.section-kicker { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-strong); margin: 0 0 3px; }
+.section-emblem-head h3 { margin: 0; }
 
 /* 상담에서 지키는 원칙 */
-.expert-vows { list-style: none; counter-reset: vow; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 30px; }
-.expert-vows li { counter-increment: vow; }
-.expert-vows li::before { content: counter(vow, decimal-leading-zero); font-family: var(--mono); font-weight: 700; font-size: 13.5px; color: var(--brass-strong); margin-right: 6px; letter-spacing: .03em; }
-.vow-title { display: inline; font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--ink); }
-.vow-desc { font-size: 14.5px; color: var(--ink-soft); margin: 5px 0 0; line-height: 1.75; }
+.expert-vows { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.expert-vows li {
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2);
+  padding: 16px 17px 18px; transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.expert-vows li:hover { border-color: var(--brass); transform: translateY(-2px); box-shadow: var(--shadow); }
+.vow-head { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; }
+.vow-icon {
+  flex: 0 0 auto; width: 34px; height: 34px; border-radius: 9px;
+  background: var(--brass-tint); color: var(--brass-strong);
+  display: flex; align-items: center; justify-content: center;
+}
+.vow-icon svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.vow-title { display: block; font-family: var(--serif); font-weight: 700; font-size: 15.5px; color: var(--ink); margin: 0; }
+.vow-desc { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.7; }
 
 /* 상담 분야 카드 그리드 */
 .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -298,6 +318,7 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 767.98px) {
   .service-grid { grid-template-columns: repeat(2, 1fr); }
+  .expert-vows { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 575.98px) {
   .expert-title-row { display: flex; flex-direction: column; gap: 10px; }
