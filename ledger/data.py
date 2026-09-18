@@ -21,6 +21,12 @@ CHAPTERS = [
                 <p>법인 설립은 등기만으로 끝나지 않는다. 사업 구조와 주주관계를 먼저 설계한 뒤
                 <strong>설립등기·사업자등록·인허가·회계·노무 체계</strong>를 갖춰야 한다.
                 인허가의 선행 여부와 신청 순서는 업종에 따라 다르므로 설립 전에 확인한다.</p>
+
+                <figure class="content-figure">
+                    <img src="/static/ledger/content/consult-ceo-fp.png" alt="대표와 FP가 테이블을 사이에 두고 설립 실무를 상담하는 모습" loading="lazy">
+                    <figcaption>설립 전 결정 사항은 대표 혼자보다 FP·세무사와 함께 점검하면 놓치는 부분을 줄일 수 있다.</figcaption>
+                </figure>
+
                 <h5>설립 전에 결정할 사항</h5>
                 <ul>
                     <li>회사 형태(주식회사·유한회사·유한책임회사), 상호, 본점 소재지, 사업목적, 자본금과 1주의 금액</li>
