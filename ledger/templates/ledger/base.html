@@ -23,39 +23,41 @@
 <div class="app-shell">
 
   <header class="topbar">
-    <div class="brand-block">
-      <a class="brand" href="{% url 'ledger:home' %}">
-        <img class="brand-icon" src="{% static 'ledger/brand/compass-icon.png' %}" alt="">
-        <img class="brand-wordmark-img" src="{% static 'ledger/brand/wordmark.png' %}" alt="MaxFinUp">
-      </a>
-      <span class="brand-tagline"><span class="tag-chip">AI</span><span class="tag-label">종합법인자산 관리허브</span></span>
+    <div class="topbar-row">
+      <div class="brand-block">
+        <a class="brand" href="{% url 'ledger:home' %}">
+          <img class="brand-icon" src="{% static 'ledger/brand/compass-icon.png' %}" alt="">
+          <img class="brand-wordmark-img" src="{% static 'ledger/brand/wordmark.png' %}" alt="MaxFinUp">
+        </a>
+        <span class="brand-tagline"><span class="tag-chip">AI</span><span class="tag-label">종합법인자산 관리허브</span></span>
+      </div>
+      <nav class="header-links" aria-label="주요 메뉴"><a href="{% url 'ledger:home' %}#chapters">전체 목차</a><a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a><a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a><a href="{% url 'ledger:asset_management' %}">자산관리</a></nav>
+      <button class="menu-toggle" id="mobileMenuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴">
+        <a href="{% url 'ledger:home' %}#chapters">전체 목차</a>
+        <a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a>
+        <a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a>
+        <a href="{% url 'ledger:asset_management' %}">자산관리</a>
+      </nav>
     </div>
-    <nav class="header-links" aria-label="주요 메뉴"><a href="{% url 'ledger:home' %}#chapters">전체 목차</a><a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a><a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a><a href="{% url 'ledger:asset_management' %}">자산관리</a></nav>
-    <button class="menu-toggle" id="mobileMenuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileNav">☰</button>
-    <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴">
-      <a href="{% url 'ledger:home' %}#chapters">전체 목차</a>
-      <a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a>
-      <a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a>
-      <a href="{% url 'ledger:asset_management' %}">자산관리</a>
-    </nav>
-  </header>
 
-  {% if chapter %}<nav class="chapter-tabs" aria-label="편 메뉴">
-    <span class="ct-indicator" aria-hidden="true"></span>
-    <a href="{% url 'ledger:home' %}" class="chapter-tab home{% if current_path == '/' %} active{% endif %}">
-      <span class="ct-badge">目</span>
-      <span class="ct-title">전체 목차</span>
-    </a>
-    {% for c in nav_chapters %}
-    <a href="{% url 'ledger:chapter' c.slug %}" class="chapter-tab{% if chapter.slug == c.slug %} active{% endif %}">
-      <span class="ct-badge">{{ c.n }}</span>
-      <span class="ct-text">
-        <span class="ct-title">{{ c.title }}</span>
-        <span class="ct-count">{{ c.entries|length }}개 항목</span>
-      </span>
-    </a>
-    {% endfor %}
-  </nav>{% endif %}
+    {% if chapter %}<nav class="chapter-tabs" aria-label="편 메뉴">
+      <span class="ct-indicator" aria-hidden="true"></span>
+      <a href="{% url 'ledger:home' %}" class="chapter-tab home{% if current_path == '/' %} active{% endif %}">
+        <span class="ct-badge">目</span>
+        <span class="ct-title">전체 목차</span>
+      </a>
+      {% for c in nav_chapters %}
+      <a href="{% url 'ledger:chapter' c.slug %}" class="chapter-tab{% if chapter.slug == c.slug %} active{% endif %}">
+        <span class="ct-badge">{{ c.n }}</span>
+        <span class="ct-text">
+          <span class="ct-title">{{ c.title }}</span>
+          <span class="ct-count">{{ c.entries|length }}개 항목</span>
+        </span>
+      </a>
+      {% endfor %}
+    </nav>{% endif %}
+  </header>
 
   <main class="main-content">
     {% block content %}{% endblock %}
