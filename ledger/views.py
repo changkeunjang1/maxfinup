@@ -103,6 +103,7 @@ def asset_topic(request, slug):
         "topic": topic,
         "prev_topic": prev_topic,
         "next_topic": next_topic,
+        "asset_topics": ASSET_TOPICS,
     })
 
 

@@ -10,6 +10,7 @@
       <p class="dek">{{ topic.dek }}</p>
     </div>
   </header>
+  {% include "ledger/_category_tabs.html" with active_slug=topic.slug %}
   <p class="lede">{{ topic.lede }}</p>
 
   <div class="step-content">

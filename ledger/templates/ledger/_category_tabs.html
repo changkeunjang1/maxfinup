@@ -1,0 +1,6 @@
+<nav class="category-tabs" aria-label="자산관리 분야">
+  <a href="{% url 'ledger:asset_management' %}" class="category-tab{% if not active_slug %} active{% endif %}">종합</a>
+  {% for t in asset_topics %}
+  <a href="{% url 'ledger:asset_topic' t.slug %}" class="category-tab{% if active_slug == t.slug %} active{% endif %}">{{ t.title }}</a>
+  {% endfor %}
+</nav>

@@ -211,6 +211,19 @@ a { color: inherit; text-decoration: none; }
 .dek { font-size: 12.5px; color: var(--ink-faint); margin: 6px 0 0; }
 .lede { font-size: 14.5px; color: var(--ink-soft); margin: 18px 0 26px; padding-bottom: 22px; border-bottom: 1px solid var(--line); line-height: 1.75; }
 
+/* Category tabs (자산관리 분야: 종합/국민연금/연금저축·IRP/ISA/...) — 페이지 상단 가로 탭 */
+.category-tabs {
+  display: flex; align-items: center; gap: 22px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid var(--line); margin: 18px 0 0; scrollbar-width: thin;
+}
+.category-tab {
+  flex: none; padding: 10px 2px 12px; font-family: var(--sans); font-size: 13.5px; font-weight: 600;
+  color: var(--ink-soft); border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .15s, border-color .15s;
+}
+.category-tab:hover { color: var(--ink); }
+.category-tab.active { color: var(--brass-strong); border-bottom-color: var(--brass); }
+
 /* Step tabs (= 법인 설립 단계별 항목) — 상단 가로 탭 */
 .step-layout { display: flex; flex-direction: column; gap: 0; }
 
