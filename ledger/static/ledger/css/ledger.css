@@ -15,6 +15,7 @@
   --seal: #a3372a;
   --seal-tint: rgba(163, 55, 42, .10);
   --seal-tint-strong: rgba(163, 55, 42, .18);
+  --logo-crimson: #9c2b30;
   --shadow: 0 1px 2px rgba(35, 38, 43, .06), 0 8px 24px -12px rgba(35, 38, 43, .25);
   --serif: 'Noto Serif KR', serif;
   --sans: 'Noto Sans KR', system-ui, sans-serif;
@@ -98,9 +99,15 @@ a { color: inherit; text-decoration: none; }
 .brand-block { display: flex; align-items: center; gap: 12px; flex: none; }
 .brand { display: flex; align-items: center; gap: 12px; flex: none; }
 .brand-tagline {
-  font-family: var(--mono); font-size: 25px; font-weight: 700; color: var(--ink);
-  letter-spacing: -.01em; padding-left: 12px; border-left: 1px solid var(--line); white-space: nowrap;
-  display: inline-block; transform: scaleY(1.15); transform-origin: center left;
+  display: flex; align-items: center; gap: 9px;
+  padding-left: 14px; border-left: 1px solid var(--line); white-space: nowrap;
+}
+.brand-tagline .tag-chip {
+  background: var(--logo-crimson); color: #fff; font-family: var(--sans); font-weight: 700;
+  font-size: 10.5px; letter-spacing: .03em; padding: 4px 7px 3px; border-radius: 4px; line-height: 1; flex: none;
+}
+.brand-tagline .tag-label {
+  font-family: var(--sans); font-weight: 700; font-size: 15px; color: var(--ink); letter-spacing: -.01em;
 }
 .brand-icon { height: 60px; width: auto; display: block; }
 .brand-wordmark-img { height: 40px; width: auto; display: block; }
