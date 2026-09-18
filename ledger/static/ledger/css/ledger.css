@@ -253,9 +253,13 @@ a { color: inherit; text-decoration: none; }
 
 .step-content p { margin: 0 0 13px; }
 .step-content p.muted { color: var(--ink-soft); font-size: 13.5px; }
-.step-content ul, .step-content ol { margin: 0 0 13px; padding-left: 20px; }
+.step-content ul, .step-content ol { margin: 0 0 13px; padding-left: 1em; }
+.step-content ul { list-style-type: disc; }
+.step-content ul ul { list-style-type: disc; }
+.step-content ol { list-style-type: decimal; }
+.step-content ol ol { list-style-type: decimal; }
 .step-content li { margin-bottom: 5px; }
-.step-content h5 { font-size: 13.5px; font-weight: 700; margin: 20px 0 8px; color: var(--ink-soft); }
+.step-content h5 { font-size: 16.5px; font-weight: 700; margin: 20px 0 8px; color: var(--ink); }
 .step-content strong { color: var(--ink); font-weight: 700; }
 .step-content a { color: var(--brass-strong); border-bottom: 1px dotted var(--brass); }
 .step-content a:hover { color: var(--seal); border-color: var(--seal); }

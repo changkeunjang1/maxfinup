@@ -122,11 +122,11 @@ ASSET_TOPICS = [
         바로 현금으로 받을 수 있습니다.</p>
 
         <h5>받을 때 지켜야 할 3가지 조건</h5>
-        <ol>
+        <ul>
           <li>가입 후 <strong>5년 이상</strong> 유지 (퇴직급여만 이전한 계좌는 별도 적용 없음)</li>
           <li><strong>만 55세 이후</strong> 연금 수령 신청</li>
           <li><strong>최소 10년 이상</strong> 나눠서 수령 — 짧게, 많이 받을수록 세율이 올라갑니다</li>
-        </ol>
+        </ul>
         <div class="callout callout-warn">
           <span class="tag">중도해지 주의</span>
           <p>요건을 채우지 못하고 중도해지하거나 연금 외 방식으로 인출하면, 공제받았던 금액과 운용수익에
