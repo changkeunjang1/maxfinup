@@ -1,0 +1,274 @@
+{% extends "ledger/base.html" %}
+{% load static %}
+{% block title %}전문가 소개 — MaxFinUp{% endblock %}
+{% block content %}
+<article class="chapter">
+
+  <div class="expert-title-row">
+    <div class="expert-title-head">
+      <span class="title-emblem" aria-hidden="true">
+        <svg viewBox="0 0 48 48">
+          <defs>
+            <linearGradient id="titleEmblemGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="var(--brass)"/>
+              <stop offset="1" stop-color="var(--seal)"/>
+            </linearGradient>
+          </defs>
+          <path d="M15 26 L9 42 L18 38 L24 44 L20 27Z" fill="url(#titleEmblemGrad)" opacity=".85"/>
+          <path d="M33 26 L39 42 L30 38 L24 44 L28 27Z" fill="url(#titleEmblemGrad)" opacity=".85"/>
+          <circle cx="24" cy="18" r="13" fill="url(#titleEmblemGrad)"/>
+          <path d="M24 11l2.2 4.6 5 .7-3.6 3.6.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.6 5-.7Z" fill="var(--surface)"/>
+        </svg>
+      </span>
+      <h1>전문가 소개</h1>
+    </div>
+    <a href="#consult" class="expert-cta-link">상담 문의하기 <span aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="expert-hero">
+    <h2>회사는 키웠는데, 대표님 개인 자산은 언제 챙기셨나요?</h2>
+    <p>국민연금부터 상속·증여까지, 법인 재무와 맞닿아 있는 개인 자산을 전문가와 함께 정리합니다.</p>
+  </div>
+
+  <div class="expert-card">
+    <div class="expert-profile">
+      <div class="expert-identity">
+        <img class="expert-photo" src="{% static 'ledger/expert/expert1.png' %}" alt="장창근 종합자산관리 FP 프로필 사진">
+        <div>
+          <p class="expert-name">장창근</p>
+          <p class="expert-role">종합자산관리 FP</p>
+        </div>
+      </div>
+      <div class="expert-facts">
+        <dl class="expert-fact">
+          <dt>경력</dt>
+          <dd><ul class="expert-fact-list">
+            <li><span>뉴욕생명</span><span class="yr">2002~2007</span></li>
+            <li><span>골든브릿지</span><span class="yr">2008~2011</span></li>
+            <li><span>한국금융판매</span><span class="yr">2012~2013</span></li>
+            <li><span>밸류마크</span><span class="yr">2013~2025</span></li>
+          </ul></dd>
+        </dl>
+        <dl class="expert-fact">
+          <dt>보유 자격</dt>
+          <dd><ul class="expert-fact-list">
+            <li><span>생명보험자격증</span><span class="yr">2002</span></li>
+            <li><span>손해보험자격증</span><span class="yr">2003</span></li>
+            <li><span>변액보험자격증</span><span class="yr">2006</span></li>
+            <li><span>부동산펀드자격증</span><span class="yr">2009</span></li>
+            <li><span>AFPK 자격증</span><span class="yr">2009</span></li>
+            <li><span>증권펀드자격증</span><span class="yr">2009</span></li>
+          </ul></dd>
+        </dl>
+        <dl class="expert-fact">
+          <dt>수상 경력</dt>
+          <dd><ul class="expert-fact-list">
+            <li><span>뉴욕생명</span><span class="note">Ten A Month</span></li>
+            <li><span>한국금융판매</span><span class="note">우수컨설턴트</span></li>
+            <li><span>골든브릿지</span><span class="note">우수컨설턴트</span></li>
+            <li><span>밸류마크</span><span class="note">AWARD</span></li>
+          </ul></dd>
+        </dl>
+        <dl class="expert-fact">
+          <dt>상담 분야</dt>
+          <dd class="expert-tags">
+            <span class="expert-tag">국민연금</span>
+            <span class="expert-tag">연금저축·IRP</span>
+            <span class="expert-tag">ISA</span>
+            <span class="expert-tag">보험 리모델링</span>
+            <span class="expert-tag">채권·부동산</span>
+            <span class="expert-tag">상속·증여</span>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="expert-card">
+    <div class="section-emblem-head">
+      <span class="section-emblem" aria-hidden="true">
+        <svg viewBox="0 0 64 64">
+          <defs>
+            <linearGradient id="fieldEmblemGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="var(--brass)"/>
+              <stop offset="1" stop-color="var(--seal)"/>
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="29" fill="none" stroke="url(#fieldEmblemGrad)" stroke-width="1.4" opacity=".5"/>
+          <g stroke="url(#fieldEmblemGrad)" stroke-width="2" stroke-linecap="round">
+            <line x1="32" y1="32" x2="32" y2="11"/>
+            <line x1="32" y1="32" x2="50.2" y2="21.5"/>
+            <line x1="32" y1="32" x2="50.2" y2="42.5"/>
+            <line x1="32" y1="32" x2="32" y2="53"/>
+            <line x1="32" y1="32" x2="13.8" y2="42.5"/>
+            <line x1="32" y1="32" x2="13.8" y2="21.5"/>
+          </g>
+          <circle cx="32" cy="11" r="4" fill="url(#fieldEmblemGrad)"/>
+          <circle cx="50.2" cy="21.5" r="4" fill="url(#fieldEmblemGrad)"/>
+          <circle cx="50.2" cy="42.5" r="4" fill="url(#fieldEmblemGrad)"/>
+          <circle cx="32" cy="53" r="4" fill="url(#fieldEmblemGrad)"/>
+          <circle cx="13.8" cy="42.5" r="4" fill="url(#fieldEmblemGrad)"/>
+          <circle cx="13.8" cy="21.5" r="4" fill="url(#fieldEmblemGrad)"/>
+          <circle cx="32" cy="32" r="7" fill="url(#fieldEmblemGrad)"/>
+        </svg>
+      </span>
+      <div>
+        <p class="section-kicker">Consulting Areas</p>
+        <h3>상담 분야</h3>
+      </div>
+    </div>
+    <p class="card-note">국민연금부터 상속·증여까지 — 흩어진 개인 자산을 법인 재무와 함께 한자리에서 점검합니다.</p>
+    <div class="service-grid">
+      {% for topic in asset_topics %}
+      <a class="service-card" href="{% url 'ledger:asset_topic' topic.slug %}">
+        <span class="service-num">{{ topic.num }}</span>
+        <h4>{{ topic.title }}</h4>
+        <p>{{ topic.lede }}</p>
+        <span class="service-link">자세히 보기 ↗</span>
+      </a>
+      {% endfor %}
+      <a class="service-card" href="{% url 'ledger:chapter' 'ch5' %}">
+        <span class="service-num">06</span>
+        <h4>상속·증여</h4>
+        <p>가업승계 이전, 사전 증여와 상속 설계로 세부담을 미리 준비합니다.</p>
+        <span class="service-link">가업승계와 기업가치 편 보기 ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="expert-card">
+    <div class="section-emblem-head">
+      <span class="section-emblem" aria-hidden="true">
+        <svg viewBox="0 0 64 64">
+          <defs>
+            <linearGradient id="vowEmblemGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="var(--brass)"/>
+              <stop offset="1" stop-color="var(--seal)"/>
+            </linearGradient>
+          </defs>
+          <circle cx="32" cy="32" r="29" fill="none" stroke="url(#vowEmblemGrad)" stroke-width="1.6"/>
+          <g stroke="url(#vowEmblemGrad)" stroke-width="2" stroke-linecap="round">
+            <line x1="32" y1="8" x2="32" y2="3"/>
+            <line x1="44" y1="11.2" x2="46.5" y2="6.9"/>
+            <line x1="52.8" y1="20" x2="57.1" y2="17.5"/>
+            <line x1="56" y1="32" x2="61" y2="32"/>
+            <line x1="52.8" y1="44" x2="57.1" y2="46.5"/>
+            <line x1="44" y1="52.8" x2="46.5" y2="57.1"/>
+            <line x1="32" y1="56" x2="32" y2="61"/>
+            <line x1="20" y1="52.8" x2="17.5" y2="57.1"/>
+            <line x1="11.2" y1="44" x2="6.9" y2="46.5"/>
+            <line x1="8" y1="32" x2="3" y2="32"/>
+            <line x1="11.2" y1="20" x2="6.9" y2="17.5"/>
+            <line x1="20" y1="11.2" x2="17.5" y2="6.9"/>
+          </g>
+          <path d="M32 16 L45 21 V31 C45 40 39 46 32 50 C25 46 19 40 19 31 V21 Z" fill="url(#vowEmblemGrad)" opacity=".14" stroke="url(#vowEmblemGrad)" stroke-width="1.6"/>
+          <path d="M25 32.5 L30 37.5 L40 25.5" fill="none" stroke="url(#vowEmblemGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div>
+        <p class="section-kicker">Our Principles</p>
+        <h3>상담에서 지키는 12가지</h3>
+      </div>
+    </div>
+    <ol class="expert-vows">
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-6.5-4-9-8c-2-3.2-.5-7 3-7 2 0 3.4 1.3 4 2.3.6-1 2-2.3 4-2.3 3.5 0 5 3.8 3 7-2.5 4-9 8-9 8Z"/></svg></span>
+          <p class="vow-title">고객 이익을 먼저 놓습니다</p>
+        </div>
+        <p class="vow-desc">수수료보다 대표님의 재무 목표와 이익을 먼저 봅니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5.5c2.2-1 5-1 8 .5v13c-3-1.5-5.8-1.5-8-.5Z"/><path d="M20 5.5c-2.2-1-5-1-8 .5v13c3-1.5 5.8-1.5 8-.5Z"/></svg></span>
+          <p class="vow-title">계속 공부합니다</p>
+        </div>
+        <p class="vow-desc">세제, 금융상품, 부동산, 상속·증여 법규는 수시로 바뀝니다. 늘 최신 기준으로 확인해 안내합니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M12 3l-6 3M12 3l6 3M4 8l2 5a2 2 0 0 0 4 0l-2-5M14 8l2 5a2 2 0 0 0 4 0l-2-5M8 21h8"/></svg></span>
+          <p class="vow-title">불리한 이야기도 그대로 전합니다</p>
+        </div>
+        <p class="vow-desc">상품 판매에 따른 이해상충 가능성을 항상 인식하고, 불리한 정보라도 숨기지 않습니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 13a5 5 0 0 1 9-3c1 1.5 1 3.5-.3 5-1 1-1.7 1.7-1.7 3a2 2 0 0 1-4 0"/><path d="M8 13c-2 0-3.5-1.5-3.5-3.5S6 6 8 6"/></svg></span>
+          <p class="vow-title">먼저 듣고, 나중에 권합니다</p>
+        </div>
+        <p class="vow-desc">법인 재무 상황과 목표를 충분히 듣기 전에는 어떤 상품도 섣불리 권하지 않습니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 15a4 4 0 1 1 0-8c2.5 0 3.8 2 5 4 1.2-2 2.5-4 5-4a4 4 0 1 1 0 8c-2.5 0-3.8-2-5-4-1.2 2-2.5 4-5 4Z"/></svg></span>
+          <p class="vow-title">한 번의 거래가 아니라 평생을 봅니다</p>
+        </div>
+        <p class="vow-desc">단기 실적보다 오래가는 관계를 중요하게 생각합니다. 평생 파트너라는 마음으로 함께합니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4v16M7 4l-3 4M7 4l3 4M17 20V4M17 20l-3-4M17 20l3-4"/></svg></span>
+          <p class="vow-title">수익률만 말하지 않습니다</p>
+        </div>
+        <p class="vow-desc">기대 수익과 함께 손실 가능성, 유동성 리스크까지 균형 있게 설명합니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6Z"/></svg></span>
+          <p class="vow-title">대표님의 상황에 맞춰 설계합니다</p>
+        </div>
+        <p class="vow-desc">획일적인 상품 추천 대신, 법인 단계와 재무목표에 맞춘 포트폴리오를 설계합니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></span>
+          <p class="vow-title">법인과 개인 자산을 하나로 봅니다</p>
+        </div>
+        <p class="vow-desc">이익환원·세무·상속·보험·부동산을 따로 보지 않고, 자산 전체를 유기적으로 연결해 조언합니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></svg></span>
+          <p class="vow-title">모르는 것은 모른다고 말합니다</p>
+        </div>
+        <p class="vow-desc">모든 것을 다 알 수는 없습니다. 필요하면 세무사·변호사와 협업하고, 한계를 솔직히 인정합니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M5 14a7 7 0 0 0 14 0M5 14H3M19 14h2"/></svg></span>
+          <p class="vow-title">시장이 흔들려도 원칙대로 조언합니다</p>
+        </div>
+        <p class="vow-desc">시장이 급변해도 감정적으로 대응하지 않고, 데이터와 원칙에 근거해 침착하게 안내합니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-4 4v-4H4Z"/><path d="M8 9h8M8 12h5"/></svg></span>
+          <p class="vow-title">쉬운 말로 설명합니다</p>
+        </div>
+        <p class="vow-desc">복잡한 금융·세무 개념도 대표님의 눈높이에 맞춰 쉽고 명확하게 풀어 설명합니다.</p>
+      </li>
+      <li>
+        <div class="vow-head">
+          <span class="vow-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.7M20 12a8 8 0 0 1-13.7 5.7"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></span>
+          <p class="vow-title">가입 이후에도 계속 챙깁니다</p>
+        </div>
+        <p class="vow-desc">계약이 끝이 아닙니다. 정기적으로 점검하고 사후관리해 드리는 것이 신뢰의 핵심이라고 믿습니다.</p>
+      </li>
+    </ol>
+  </div>
+
+  <div class="expert-card expert-cta" id="consult">
+    <div>
+      <h3>혼자 고민하지 마세요</h3>
+      <p>국민연금부터 상속·증여까지, 궁금한 분야와 상황을 남겨 주시면 다음 스텝을 정리해서 안내해 드립니다.</p>
+    </div>
+    <a href="mailto:contact@maxfinup.com" class="expert-cta-btn">✉️ 상담 문의하기</a>
+  </div>
+
+  <footer class="chapter-foot">
+    <p class="source">본 페이지는 전문가 소개를 위한 정보 제공을 목적으로 하며, 특정 금융회사나 상품을
+    권유하지 않습니다.</p>
+  </footer>
+</article>
+{% endblock %}

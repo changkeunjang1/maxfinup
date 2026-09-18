@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}경영장부{% endblock %}</title>
-<link rel="icon" href="{% static 'ledger/favicon/favicon.ico' %}" sizes="any">
-<link rel="icon" href="{% static 'ledger/favicon/favicon-16x16.png' %}" type="image/png" sizes="16x16">
-<link rel="icon" href="{% static 'ledger/favicon/favicon-32x32.png' %}" type="image/png" sizes="32x32">
-<link rel="icon" href="{% static 'ledger/favicon/android-chrome-192x192.png' %}" type="image/png" sizes="192x192">
-<link rel="icon" href="{% static 'ledger/favicon/android-chrome-512x512.png' %}" type="image/png" sizes="512x512">
-<link rel="apple-touch-icon" sizes="180x180" href="{% static 'ledger/favicon/apple-touch-icon.png' %}">
+<link rel="icon" href="{% static 'ledger/favicon/favicon.ico' %}?v=6" sizes="any">
+<link rel="icon" href="{% static 'ledger/favicon/favicon-16x16.png' %}?v=6" type="image/png" sizes="16x16">
+<link rel="icon" href="{% static 'ledger/favicon/favicon-32x32.png' %}?v=6" type="image/png" sizes="32x32">
+<link rel="icon" href="{% static 'ledger/favicon/android-chrome-192x192.png' %}?v=6" type="image/png" sizes="192x192">
+<link rel="icon" href="{% static 'ledger/favicon/android-chrome-512x512.png' %}?v=6" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'ledger/favicon/apple-touch-icon.png' %}?v=6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
 {% block extra_head %}{% endblock %}
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <div class="app-shell">
 
   <header class="topbar">
@@ -29,18 +30,18 @@
       </a>
       <span class="brand-tagline"><span class="tag-chip">AI</span><span class="tag-label">종합법인자산 관리허브</span></span>
     </div>
-    <nav class="header-links" aria-label="주요 메뉴"><a href="{% url 'ledger:home' %}#chapters">전체 목차</a><a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a><a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무 ↗</a><a href="{% url 'ledger:trends' %}">경제동향</a></nav>
-    <span class="header-issue">VOL. 01 — 2026</span>
+    <nav class="header-links" aria-label="주요 메뉴"><a href="{% url 'ledger:home' %}#chapters">전체 목차</a><a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a><a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a><a href="{% url 'ledger:asset_management' %}">자산관리</a></nav>
     <button class="menu-toggle" id="mobileMenuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileNav">☰</button>
     <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴">
       <a href="{% url 'ledger:home' %}#chapters">전체 목차</a>
       <a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a>
-      <a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무 ↗</a>
-      <a href="{% url 'ledger:trends' %}">경제동향</a>
+      <a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a>
+      <a href="{% url 'ledger:asset_management' %}">자산관리</a>
     </nav>
   </header>
 
   {% if chapter %}<nav class="chapter-tabs" aria-label="편 메뉴">
+    <span class="ct-indicator" aria-hidden="true"></span>
     <a href="{% url 'ledger:home' %}" class="chapter-tab home{% if current_path == '/' %} active{% endif %}">
       <span class="ct-badge">目</span>
       <span class="ct-title">전체 목차</span>
@@ -93,6 +94,43 @@
       btn.textContent = "☰";
     });
   });
+})();
+
+(function () {
+  "use strict";
+  var progressEl = document.getElementById("scrollProgress");
+  if (progressEl) {
+    var updateProgress = function () {
+      var doc = document.documentElement;
+      var scrollTop = doc.scrollTop || document.body.scrollTop;
+      var scrollable = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
+      var pct = scrollable > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollable) * 100)) : 0;
+      progressEl.style.width = pct + "%";
+    };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+  }
+
+  var tabsNav = document.querySelector(".chapter-tabs");
+  if (tabsNav) {
+    var indicator = tabsNav.querySelector(".ct-indicator");
+    var activeTab = tabsNav.querySelector(".chapter-tab.active");
+    var placeIndicator = function (animate) {
+      if (!indicator || !activeTab) return;
+      indicator.style.width = activeTab.offsetWidth + "px";
+      if (animate) {
+        requestAnimationFrame(function () {
+          indicator.style.transform = "translateX(" + activeTab.offsetLeft + "px)";
+          indicator.style.opacity = "1";
+        });
+      } else {
+        indicator.style.transform = "translateX(" + activeTab.offsetLeft + "px)";
+      }
+    };
+    placeIndicator(true);
+    window.addEventListener("resize", function () { placeIndicator(false); });
+  }
 })();
 </script>
 {% block extra_js %}{% endblock %}
