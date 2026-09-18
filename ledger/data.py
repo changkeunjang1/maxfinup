@@ -23,7 +23,7 @@ CHAPTERS = [
                 인허가의 선행 여부와 신청 순서는 업종에 따라 다르므로 설립 전에 확인한다.</p>
 
                 <figure class="content-figure">
-                    <img src="/static/ledger/content/consult-office.jpg" alt="대표가 사무실에서 전문가와 마주 앉아 설립 실무를 상담하는 모습" loading="lazy">
+                    <img src="/static/ledger/content/consult-office.jpg?v=2" alt="대표가 사무실에서 전문가와 마주 앉아 설립 실무를 상담하는 모습" loading="lazy">
                     <figcaption>설립 전 결정 사항은 대표 혼자보다 전문가와 함께 점검하면 놓치는 부분을 줄일 수 있다.</figcaption>
                 </figure>
 
