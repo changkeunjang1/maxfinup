@@ -206,6 +206,7 @@ a { color: inherit; text-decoration: none; }
   display: flex; align-items: center; justify-content: center; color: var(--brass);
   font-family: var(--mono); font-weight: 600; font-size: 16px;
 }
+.stamp svg { width: 26px; height: 26px; display: block; }
 .kicker { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; color: var(--ink-faint); margin: 2px 0 4px; text-transform: uppercase; }
 .chapter-head h1 { font-family: var(--serif); font-size: 27px; font-weight: 700; margin: 0; text-wrap: balance; }
 .dek { font-size: 12.5px; color: var(--ink-faint); margin: 6px 0 0; }
