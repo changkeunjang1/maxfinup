@@ -112,7 +112,7 @@ a { color: inherit; text-decoration: none; }
   position: relative; animation: tagPulse 2.6s ease-out infinite;
 }
 .brand-tagline .tag-label {
-  font-family: var(--sans); font-weight: 700; color: var(--ink);
+  font-family: var(--sans); font-weight: 700; color: #fff;
   font-size: 18px; letter-spacing: -.01em; line-height: 1;
 }
 @keyframes tagPulse {
