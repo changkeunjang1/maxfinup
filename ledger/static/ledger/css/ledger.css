@@ -385,7 +385,7 @@ a { color: inherit; text-decoration: none; }
 
 .callout { border-radius: 8px; padding: 16px 18px; margin: 16px 0 20px; font-size: 13.5px; line-height: 1.7; }
 .callout .tag {
-  display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10.5px;
+  display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 15px;
   letter-spacing: .06em; text-transform: uppercase; font-weight: 600; margin-bottom: 8px;
 }
 .callout-warn { background: var(--seal-tint); border: 1px solid var(--seal-tint-strong); }
