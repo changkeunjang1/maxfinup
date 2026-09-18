@@ -138,8 +138,9 @@ a { color: inherit; text-decoration: none; }
   position: sticky; top: var(--h-topbar); z-index: 19; min-height: var(--h-chaptertabs);
   display: flex; align-items: stretch; gap: 4px; overflow-x: auto; -webkit-overflow-scrolling: touch;
   background: var(--surface-2); border-bottom: 1px solid var(--line); padding: 0 20px;
-  scrollbar-width: thin;
+  scrollbar-width: thin; transition: transform .25s ease;
 }
+.chapter-tabs.is-hidden { transform: translateY(-100%); }
 .chapter-tab {
   position: relative; z-index: 1;
   display: flex; align-items: center; gap: 10px; flex: none; padding: 0 14px;
