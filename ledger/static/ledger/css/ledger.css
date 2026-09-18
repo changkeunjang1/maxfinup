@@ -103,15 +103,16 @@ a { color: inherit; text-decoration: none; }
 .brand-block { display: flex; align-items: center; gap: 12px; flex: none; }
 .brand { display: flex; align-items: center; gap: 12px; flex: none; }
 .brand-tagline {
-  display: flex; align-items: center; gap: 9px;
+  display: flex; align-items: center; gap: 6px;
   padding-left: 14px; border-left: 1px solid var(--line); white-space: nowrap;
 }
 .brand-tagline .tag-chip {
   background: var(--seal); color: #fff; font-family: var(--sans); font-weight: 700;
-  font-size: 10.5px; letter-spacing: .03em; padding: 4px 7px 3px; border-radius: 4px; line-height: 1; flex: none;
+  font-size: 13px; letter-spacing: .03em; padding: 5px 8px 4px; border-radius: 4px; line-height: 1; flex: none;
 }
 .brand-tagline .tag-label {
-  font-family: var(--sans); font-weight: 700; font-size: 15px; color: var(--ink); letter-spacing: -.01em;
+  background: var(--seal); color: #fff; font-family: var(--sans); font-weight: 700;
+  font-size: 15px; letter-spacing: -.01em; padding: 5px 10px 4px 8px; border-radius: 4px; line-height: 1;
 }
 .brand-icon { height: 60px; width: auto; display: block; }
 .brand-wordmark-img { height: 40px; width: auto; display: block; }
