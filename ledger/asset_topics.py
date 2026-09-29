@@ -10,6 +10,11 @@ ASSET_TOPICS = [
         "slug": "national-pension",
         "num": "01",
         "icon": "🏛️",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M8 22 L32 8 L56 22"/>'
+        '<line x1="6" y1="22" x2="58" y2="22"/><line x1="14" y1="26" x2="14" y2="50"/>'
+        '<line x1="32" y1="26" x2="32" y2="50"/><line x1="50" y1="26" x2="50" y2="50"/>'
+        '<line x1="8" y1="54" x2="56" y2="54"/></svg>',
         "title": "국민연금",
         "dek": "가입·보험료율부터 2026년 개정, 수급 개시 나이까지",
         "lede": "법인 대표님도 사업장가입자로 국민연금에 가입되어 있습니다. 노후 소득의 1층을 이루는 만큼, "
@@ -83,6 +88,39 @@ ASSET_TOPICS = [
           늘지만, 소득이 늘어난 것으로 인정되어 <strong>건강보험 피부양자 자격을 잃을 수 있어</strong>
           사전에 함께 점검이 필요합니다.</p>
         </div>
+
+        <h5>장애연금과 유족연금</h5>
+        <p>가입 중 질병·부상으로 완치 후에도 장애가 남았다면 <strong>장애연금</strong>을, 가입자(또는
+        수급자)가 사망하면 그 유족에게 <strong>유족연금</strong>이 지급됩니다.</p>
+        <ul>
+          <li><strong>장애연금</strong> — 장애등급에 따라 1급은 기본연금액의 100%, 2급 80%, 3급 60%를
+          매년 지급하고, 4급은 기본연금액의 225%를 일시보상금으로 한 번에 지급합니다.</li>
+          <li><strong>유족연금</strong> — 가입기간 10년 미만이면 기본연금액의 40%, 10년 이상 20년
+          미만이면 50%, 20년 이상이면 60%가 배우자·자녀 등 유족에게 지급됩니다.</li>
+        </ul>
+
+        <h5>반환일시금과 분할연금</h5>
+        <ul>
+          <li><strong>반환일시금</strong> — 가입기간 10년 미만인 상태로 60세에 도달했거나, 유족연금
+          대상이 아닌 사망 또는 국외 이주 시 그동안 낸 보험료를 이자와 함께 일시금으로 돌려받습니다.</li>
+          <li><strong>분할연금</strong> — 혼인기간 중 배우자의 가입기간이 5년 이상인 상태로 이혼했다면,
+          혼인기간에 해당하는 상대방의 노령연금액을 나눠 받을 수 있습니다. 원칙은 균등 분할(50%)이며,
+          2026년 개정으로 협의·재판을 통해 분할 비율을 달리 정하는 것도 가능해졌습니다.</li>
+        </ul>
+
+        <h5>가입기간을 채워주는 크레딧 제도</h5>
+        <p>출산·군복무·실업처럼 소득이 끊기거나 없는 기간에도 가입기간을 인정해주는 제도입니다.</p>
+        <div class="table-wrap"><table class="table">
+          <thead><tr><th>제도</th><th>인정 요건</th><th>인정 기간</th></tr></thead>
+          <tbody>
+            <tr><td>출산크레딧</td><td>자녀 출산·입양(2026년 개정으로 첫째 자녀부터 적용)</td>
+            <td>자녀 1명당 12개월, 최대 50개월</td></tr>
+            <tr><td>군복무크레딧</td><td>병역법에 따른 현역·상근예비역 등 복무</td><td>최대 12개월</td></tr>
+            <tr><td>실업크레딧</td><td>구직급여 수급자가 본인 보험료의 25%를 납부</td>
+            <td>생애 최대 12개월, 국가가 보험료 75% 지원</td></tr>
+          </tbody>
+        </table></div>
+
         <p class="muted">본 내용은 정보 제공을 목적으로 하며 특정 상품을 권유하지 않습니다. 정확한 예상
         연금액은 <a href="https://www.nps.or.kr">국민연금공단(NPS)</a> 「내 연금 알아보기」 또는
         국번없이 1355로 확인하실 수 있습니다.</p>
@@ -92,6 +130,11 @@ ASSET_TOPICS = [
         "slug": "pension-savings-irp",
         "num": "02",
         "icon": "💰",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="17" width="46" height="32" rx="6"/>'
+        '<path d="M9 25h46"/><circle cx="25" cy="35" r="3" fill="currentColor" stroke="none"/>'
+        '<circle cx="39" cy="43" r="3" fill="currentColor" stroke="none"/>'
+        '<line x1="23" y1="45" x2="41" y2="31"/></svg>',
         "title": "연금저축·IRP",
         "dek": "세액공제 한도 900만원, 퇴직금과 만나는 계좌",
         "lede": "연금저축과 IRP는 세액공제 한도를 공유하는 개인연금 계좌입니다. 급여·상여로 받은 소득 중 일부를 "
@@ -175,6 +218,11 @@ ASSET_TOPICS = [
         "slug": "isa",
         "num": "03",
         "icon": "📊",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><line x1="32" y1="12" x2="32" y2="46"/>'
+        '<line x1="16" y1="20" x2="48" y2="20"/><line x1="16" y1="20" x2="16" y2="30"/>'
+        '<line x1="48" y1="20" x2="48" y2="30"/><path d="M9 30a7 7 0 0 0 14 0z"/>'
+        '<path d="M41 30a7 7 0 0 0 14 0z"/><line x1="24" y1="46" x2="40" y2="46"/></svg>',
         "title": "ISA",
         "dek": "3년만 채우면 손익통산·비과세로 굴리는 계좌",
         "lede": "예금·펀드·ETF를 한 계좌에 담아 손익을 통산하고, 3년만 채우면 순이익에 비과세·저율분리과세 "
@@ -222,6 +270,19 @@ ASSET_TOPICS = [
           <li><strong>만기 후 연금계좌 전환</strong> — 만기자금을 연금저축·IRP로 옮기면 옮긴 금액의
           10%(최대 300만원)를 세액공제로 추가로 받을 수 있습니다.</li>
         </ul>
+
+        <div class="callout callout-quote">
+          <span class="tag">전환 예시 — ISA 만기 5,000만원 → 연금저축펀드</span>
+          <p>3년 만기된 ISA 평가금액 5,000만원을 만기 후 60일 이내에 연금저축펀드로 옮기면, 이체 금액의
+          10%인 500만원 중 한도인 <strong>300만원까지</strong> 그해 추가 세액공제 대상이 됩니다. 이
+          300만원은 연금저축·IRP의 기존 세액공제 한도(연 900만원)와는 <strong>별도로 더해지므로</strong>,
+          그해 다른 적립이 없어도 이 전환만으로 총급여 5,500만원 이하 기준 16.5%를 적용받아 <strong>약
+          49만 5,000원</strong>을 추가로 환급받을 수 있습니다. 나머지 4,700만원은 세액공제 없이
+          연금계좌에 들어가 계속 운용되는데, 세액공제를 받지 않은 원금이라 훗날 연금으로 찾을 때 이
+          부분에는 세금이 매겨지지 않고, 세액공제 받은 300만원과 운용수익에만 연금소득세(3.3~5.5%)가
+          적용됩니다. 목돈은 그대로 지키면서 절세 혜택까지 한 번 더 챙기는 셈입니다.</p>
+        </div>
+
         <p class="muted">목돈 마련은 ISA, 노후자금은 연금저축·IRP로 역할을 나눠 쓰는 경우가 많습니다.
         본 내용은 2026년 기준 일반적인 정보이며 세법 개정에 따라 달라질 수 있습니다.</p>
         """,
@@ -230,6 +291,10 @@ ASSET_TOPICS = [
         "slug": "insurance",
         "num": "04",
         "icon": "🛡️",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M32 6 L54 14 L54 30 C54 44 44 54 32 58 C20 54 10 44 10 30 L10 14 Z"/>'
+        '<path d="M22 32l7 7 15-15"/></svg>',
         "title": "보험 리모델링",
         "dek": "손해보험·생명보험의 구조부터 가입 전 체크리스트까지",
         "lede": "보험은 크게 손해보험과 생명보험으로 나뉘고, 그 안에 종신·정기·변액·제3보험까지 다섯 갈래가 더 "
@@ -263,6 +328,67 @@ ASSET_TOPICS = [
         <p class="muted">예) 같은 사망보험금 1억원을 준비하더라도, 정기보험료는 종신보험료의 대략 10분의
         1 안팎인 경우가 많습니다. 다만 정기보험은 정해진 기간이 지나면 보장이 사라지고 해지환급금도 거의
         없어, 평생 보장이 필요한지·한시적 보장이면 충분한지에 따라 선택이 달라집니다.</p>
+
+        <h5>보험사만 가능한 연금 — 즉시연금과 종신형 지급</h5>
+        <p>은행·증권사가 파는 연금저축·IRP는 정해진 기간(보통 10~30년) 동안 나눠 받는 구조인 반면,
+        <strong>즉시연금</strong>은 보험사만 제공할 수 있는 상품입니다. 목돈을 한 번에 맡기면 다음 달부터
+        바로 연금을 받기 시작하며, 특히 <strong>종신형</strong>을 선택하면 가입자가 아무리 오래 살아도
+        평생 지급이 끊기지 않습니다. 다수 가입자의 생명표를 바탕으로 사망·장수 위험을 분산시키는
+        <strong>위험률 기반 상품</strong>이기 때문에 가능한 구조로, 은행·증권사는 이런 종신 지급을
+        보증할 수 없습니다.</p>
+        <ul>
+          <li><strong>종신형</strong> — 가입자가 생존하는 동안 평생 지급. 사망 시 지급이 끝나며(상속형
+          특약이 없으면 원금은 상속되지 않음), 오래 살수록 유리합니다.</li>
+          <li><strong>확정기간형</strong> — 10년·20년 등 정해진 기간만 지급. 기간 중 사망하면 남은
+          회차는 상속인이 이어받습니다.</li>
+          <li><strong>상속형</strong> — 원금은 그대로 두고 이자만 매달 받다가, 사망 시 원금을
+          상속인에게 넘깁니다. 목돈을 유지하며 생활비만 충당하고 싶을 때 적합합니다.</li>
+        </ul>
+
+        <h5>세제 혜택 — 보험차익 비과세</h5>
+        <p>즉시연금은 연금저축·IRP와 달리 <strong>납입액 세액공제가 없는 대신</strong>, 일정 요건을
+        채우면 이자(보험차익)에 대한 <strong>이자소득세(15.4%)가 전액 비과세</strong>됩니다.</p>
+        <div class="table-wrap"><table class="table">
+          <thead><tr><th>요건</th><th>일반형(확정기간·상속형)</th><th>종신형</th></tr></thead>
+          <tbody>
+            <tr><td>납입 한도</td><td>1인당 합산 1억원 이하(일시납)</td><td>한도 없음</td></tr>
+            <tr><td>유지 조건</td><td>10년 이상 유지</td><td>순수종신형 등 요건 충족 시 종신 유지</td></tr>
+          </tbody>
+        </table></div>
+        <p class="muted">2017년 4월 세법 개정으로 일반형 즉시연금에 1억원 한도가 새로 생겼습니다. 종신형은
+        한도가 없는 대신 요건이 더 까다로우므로, 가입 전 반드시 상품설명서의 비과세 요건을 확인해야
+        합니다.</p>
+
+        <div class="callout callout-quote">
+          <span class="tag">가입 예시 — 65세, 퇴직금 3억원</span>
+          <p>65세에 퇴직금 3억원을 <strong>종신형 즉시연금</strong>에 일시납으로 넣으면, 공시이율 기준으로
+          월 약 <strong>110만~130만원</strong>을 평생 받을 수 있습니다(상품·이율·성별에 따라 달라짐).
+          기대여명을 90세로 보면 25년간 받는 총액이 원금 3억원을 훌쩍 넘어서고, <strong>비과세 요건</strong>을
+          충족하면 이 금액에 이자소득세(15.4%)가 전혀 붙지 않습니다. 같은 3억원을 예금(세후 연 3%)에
+          넣고 이자만 찾아 쓴다면 월 약 63만원(이자소득세 차감 후)에 그치고, 원금을 헐지 않는 한 이보다
+          늘릴 수 없습니다. <strong>65세는 아직 국민연금(만 65세부터) 수급 개시 전후라 소득 공백을
+          메우기에도 알맞은 시점</strong>입니다.</p>
+        </div>
+
+        <h5>연금저축·IRP와 즉시연금, 무엇이 다른가</h5>
+        <div class="table-wrap"><table class="table">
+          <thead><tr><th>구분</th><th>연금저축·IRP(은행·증권사)</th><th>즉시연금(보험사)</th></tr></thead>
+          <tbody>
+            <tr><td>가입 방식</td><td>매달 적립(적립식)</td><td>목돈 일시납</td></tr>
+            <tr><td>수령 개시</td><td>만 55세 이후</td><td>가입 즉시(다음 달부터)</td></tr>
+            <tr><td>세제 혜택</td><td>납입액 세액공제(연 900만원 한도)</td><td>보험차익 비과세(요건 충족 시)</td></tr>
+            <tr><td>수령 시 과세</td><td>연금소득세 3.3~5.5%</td><td>비과세 요건 충족 시 전액 비과세</td></tr>
+            <tr><td>평생 지급 보증</td><td>불가능(적립금 소진 시 종료)</td><td>종신형 선택 시 가능</td></tr>
+          </tbody>
+        </table></div>
+
+        <div class="callout callout-tip">
+          <span class="tag">선택 기준</span>
+          <p>목돈이 없고 매달 급여에서 나눠 넣을 계획이라면 세액공제를 받을 수 있는
+          <strong>연금저축·IRP</strong>가 유리하고, 퇴직금·부동산 매도대금 등 <strong>목돈이 이미 있고
+          평생 현금흐름</strong>이 필요하다면 <strong>즉시연금(특히 종신형)</strong>이 은행·증권사
+          상품으로는 대체할 수 없는 선택지가 됩니다.</p>
+        </div>
 
         <h5>제3보험 — 실제 가입자가 가장 많은 영역</h5>
         <p>실손의료보험·암보험·간병보험처럼 사람의 신체를 대상으로 하되 실손과 정액이 섞여 있어 손해보험과
@@ -303,6 +429,11 @@ ASSET_TOPICS = [
         "slug": "bond-realestate",
         "num": "05",
         "icon": "📜",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><line x1="32" y1="10" x2="32" y2="46"/>'
+        '<line x1="14" y1="20" x2="50" y2="20"/><line x1="14" y1="20" x2="14" y2="30"/>'
+        '<line x1="50" y1="20" x2="50" y2="30"/><rect x="8" y="30" width="12" height="10" rx="2"/>'
+        '<path d="M44 30 L50 25 L56 30 L56 40 L44 40 Z"/><line x1="22" y1="46" x2="42" y2="46"/></svg>',
         "title": "채권·부동산",
         "dek": "이익환원 이후의 여유자금, 어디에 둘 것인가",
         "lede": "이익환원 이후의 여유자금을 어디에 둘지 고민이라면, 안정적인 채권과 실물자산인 부동산을 함께 "
@@ -378,6 +509,10 @@ ASSET_TOPICS = [
         "slug": "inheritance-gift",
         "num": "06",
         "icon": "⚖️",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="44" width="9" height="10"/>'
+        '<rect x="17" y="36" width="9" height="18"/><rect x="28" y="28" width="9" height="26"/>'
+        '<rect x="39" y="20" width="9" height="34"/><rect x="50" y="12" width="9" height="42"/></svg>',
         "title": "상속·증여",
         "dek": "공제 한도부터 세율표, 10년 합산 규칙까지",
         "lede": "가족에게 재산을 넘길 때는 상속과 증여 중 무엇을, 언제, 어떻게 넘기느냐에 따라 세부담이 크게 "

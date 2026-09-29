@@ -2,8 +2,11 @@
 {% block title %}{{ topic.title }} — 전문가 소개 · MaxFinUp{% endblock %}
 {% block content %}
 <article class="chapter">
-  <header class="chapter-head">
-    <div class="stamp">{{ topic.icon }}</div>
+  <header class="chapter-head{% if topic.icon_svg %} chapter-head--watermark{% endif %}">
+    {% if topic.icon_svg %}<div class="head-watermark" aria-hidden="true">{{ topic.icon_svg|safe }}</div>{% endif %}
+    <div class="stamp{% if topic.icon_svg %} topic-stamp{% endif %}">
+      {% if topic.icon_svg %}{{ topic.icon_svg|safe }}{% else %}{{ topic.icon }}{% endif %}
+    </div>
     <div>
       <p class="kicker">상담 분야 {{ topic.num }}</p>
       <h1>{{ topic.title }}</h1>

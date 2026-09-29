@@ -207,6 +207,17 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--mono); font-weight: 600; font-size: 16px;
 }
 .stamp svg { width: 26px; height: 26px; display: block; }
+.chapter-head--watermark {
+  position: relative; overflow: hidden; padding: 22px 26px; border-radius: 16px;
+  background: var(--brass-tint); border: 1px solid var(--line);
+}
+.chapter-head--watermark > .stamp, .chapter-head--watermark > div:last-child { position: relative; z-index: 1; }
+.head-watermark {
+  position: absolute; right: -50px; top: -55px; width: 220px; height: 220px;
+  color: var(--brass); opacity: .12; filter: blur(3px); pointer-events: none; z-index: 0;
+}
+.head-watermark svg { width: 100%; height: 100%; display: block; }
+.stamp.topic-stamp { background: var(--brand-gradient, var(--brass)); border: 0; color: #fff; }
 .kicker { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; color: var(--ink-faint); margin: 2px 0 4px; text-transform: uppercase; }
 .chapter-head h1 { font-family: var(--serif); font-size: 27px; font-weight: 700; margin: 0; text-wrap: balance; }
 .dek { font-size: 12.5px; color: var(--ink-faint); margin: 6px 0 0; }
