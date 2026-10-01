@@ -1,0 +1,196 @@
+{% extends "ledger/base.html" %}
+{% load static %}
+{% block title %}MAX AI 종합법인자산관리허브 — MaxFinUp{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'ledger/css/asset-tool.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'ledger/css/hub.css' %}?v=1">
+{% endblock %}
+{% block content %}
+<article class="chapter hub">
+  <header class="chapter-head">
+    <div class="stamp">
+      <svg viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <circle cx="13" cy="13" r="9" stroke="#fff" stroke-width="1.6" opacity=".55"/>
+        <circle cx="13" cy="13" r="3.2" fill="#ff9a86"/>
+        <path d="M13 2v4M13 20v4M2 13h4M20 13h4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="kicker">MAX AI HUB</p>
+      <h1>MAX AI 종합법인자산관리허브</h1>
+      <p class="dek">법인 자산을 등록하면 AI 진단 엔진이 비중·유동성·리스크를 분석하고, 필요한 콘텐츠로 안내합니다.</p>
+    </div>
+  </header>
+
+  <p class="lede">자산 현황을 입력하고 월 고정비를 설정하면 <strong>AI 자산건강 점수</strong>와 맞춤 진단이 즉시
+  계산됩니다. 입력한 정보는 서버로 전송되지 않고 <strong>이 브라우저에만 저장</strong>됩니다.</p>
+
+  <section class="asset-tool" id="hubTool">
+    <div class="asset-tool-head">
+      <div>
+        <p class="kicker">ASSET DASHBOARD</p>
+        <h2>우리 회사 자산 현황</h2>
+        <p class="dek">부동산·예적금·주식·보험·차량 등 법인 명의 자산을 등록하세요.</p>
+      </div>
+      <div class="hub-head-actions">
+        <button class="asset-btn-ghost" id="hubSampleBtn" type="button">샘플 불러오기</button>
+        <button class="asset-btn-ghost" id="hubExportBtn" type="button">CSV 내보내기</button>
+        <button class="asset-add-btn" id="hubAddBtn" type="button">＋ 자산 추가</button>
+      </div>
+    </div>
+
+    <div class="hub-profile">
+      <label>월 고정비(인건비·임차료 등, 원)
+        <input type="number" id="hubMonthlyCost" min="0" step="1" placeholder="예: 30000000" inputmode="numeric">
+      </label>
+      <label>연 매출(원)
+        <input type="number" id="hubRevenue" min="0" step="1" placeholder="예: 2000000000" inputmode="numeric">
+      </label>
+      <button class="asset-btn-ghost danger" id="hubResetBtn" type="button">전체 초기화</button>
+    </div>
+
+    <div class="asset-stats hub-stats">
+      <div class="asset-stat">
+        <span class="asset-stat-label">총 자산</span>
+        <strong class="accent" id="statTotal">0원</strong>
+      </div>
+      <div class="asset-stat">
+        <span class="asset-stat-label">유동성 자산 비중</span>
+        <strong id="statLiquid">-</strong>
+      </div>
+      <div class="asset-stat">
+        <span class="asset-stat-label">운영자금 버팀 기간</span>
+        <strong id="statRunway">-</strong>
+      </div>
+      <div class="asset-stat hub-score-stat">
+        <span class="asset-stat-label">AI 자산건강 점수</span>
+        <strong id="statScore">-</strong>
+        <span class="hub-score-bar"><span id="statScoreBar"></span></span>
+      </div>
+    </div>
+
+    <div class="hub-grid">
+      <div class="asset-chart-card">
+        <canvas id="hubChart" width="220" height="220" role="img" aria-label="자산 분류별 비중 도넛 차트"></canvas>
+        <ul class="asset-legend" id="hubLegend"></ul>
+        <p class="asset-empty" id="chartEmpty" hidden>등록된 자산이 없습니다.</p>
+      </div>
+      <div class="hub-ai-card">
+        <div class="hub-ai-head">
+          <span class="tag-chip">AI</span>
+          <h3>AI 진단 리포트</h3>
+          <span class="hub-ai-count" id="hubAiCount"></span>
+        </div>
+        <ul class="hub-insights" id="hubInsights"></ul>
+      </div>
+    </div>
+
+    <div class="asset-table-card hub-table-card">
+      <div class="asset-table-toolbar">
+        <input type="search" id="hubSearch" placeholder="자산명으로 검색" aria-label="자산 검색">
+      </div>
+      <div class="table-wrap">
+        <table class="asset-table">
+          <thead>
+            <tr><th>자산명</th><th>분류</th><th>취득일</th><th>메모</th><th class="num">평가금액</th><th></th></tr>
+          </thead>
+          <tbody id="hubTableBody"></tbody>
+        </table>
+      </div>
+      <p class="asset-empty" id="tableEmpty" hidden>등록된 자산이 없습니다. '자산 추가' 또는 '샘플 불러오기'로 시작해 보세요.</p>
+    </div>
+  </section>
+
+  <section class="hub-section">
+    <div class="hub-section-head">
+      <p class="kicker">KNOWLEDGE HUB</p>
+      <h2>법인 경영 가이드</h2>
+    </div>
+    <div class="hub-links">
+      {% for c in chapters %}
+      <a class="hub-link" href="{% url 'ledger:chapter' c.slug %}">
+        <span class="hub-link-num">{{ c.n }}</span>
+        <span class="hub-link-title">{{ c.title }}</span>
+        <span class="hub-link-meta">{{ c.count }}개 항목 ↗</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="hub-section">
+    <div class="hub-section-head">
+      <p class="kicker">ASSET TOPICS</p>
+      <h2>대표님 개인·가족 자산관리</h2>
+    </div>
+    <div class="hub-links">
+      {% for t in asset_topics %}
+      <a class="hub-link" href="{% url 'ledger:asset_topic' t.slug %}">
+        <span class="hub-link-num">{{ t.num }}</span>
+        <span class="hub-link-title">{{ t.title }}</span>
+        <span class="hub-link-meta">자세히 보기 ↗</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <div class="expert-card expert-cta">
+    <div>
+      <h3>AI 진단 결과를 전문가와 함께 검토하세요</h3>
+      <p>자동 진단은 출발점일 뿐입니다. 실제 실행 전에는 대표님 상황에 맞춘 전문가 점검이 필요합니다.</p>
+    </div>
+    <a href="{% url 'ledger:experts' %}" class="expert-cta-btn">👤 전문가 소개 보기 ↗</a>
+  </div>
+
+  <footer class="chapter-foot">
+    <p class="source">AI 진단은 입력값에 대한 규칙 기반 자동 분석으로, 일반적인 참고 정보이며 특정 금융회사나
+    상품을 권유하지 않습니다. 입력한 데이터는 이 브라우저의 로컬 저장소에만 보관됩니다.</p>
+  </footer>
+</article>
+
+<div class="asset-modal" id="hubModal" hidden>
+  <div class="asset-modal-backdrop" data-close></div>
+  <form class="asset-modal-card" id="hubForm">
+    <h3 id="hubModalTitle">자산 추가</h3>
+    <input type="hidden" id="f_id">
+    <label>자산명
+      <input type="text" id="f_name" required maxlength="100" placeholder="예: 본사 사옥">
+    </label>
+    <label>분류
+      <select id="f_category">
+        {% for key, label in category_choices %}<option value="{{ key }}">{{ label }}</option>{% endfor %}
+      </select>
+    </label>
+    <label>평가금액(원)
+      <input type="number" id="f_amount" required min="0" step="1" placeholder="예: 150000000">
+    </label>
+    <label>취득일
+      <input type="date" id="f_acquired">
+    </label>
+    <label>메모
+      <input type="text" id="f_memo" maxlength="200" placeholder="선택 입력">
+    </label>
+    <div class="asset-modal-actions">
+      <button type="button" class="asset-btn-ghost" data-close>취소</button>
+      <button type="submit" class="asset-btn-primary">저장</button>
+    </div>
+  </form>
+</div>
+{{ category_colors|json_script:"hubColors" }}
+<script id="hubLinks" type="application/json">{
+  "pension": "{% url 'ledger:asset_topic' 'national-pension' %}",
+  "irp": "{% url 'ledger:asset_topic' 'pension-savings-irp' %}",
+  "insurance": "{% url 'ledger:asset_topic' 'insurance' %}",
+  "realestate": "{% url 'ledger:asset_topic' 'bond-realestate' %}",
+  "inheritance": "{% url 'ledger:asset_topic' 'inheritance-gift' %}",
+  "risk": "{% url 'ledger:chapter' 'ch4' %}",
+  "profit": "{% url 'ledger:chapter' 'ch3' %}",
+  "succession": "{% url 'ledger:chapter' 'ch5' %}",
+  "experts": "{% url 'ledger:experts' %}"
+}</script>
+<script id="hubLabels" type="application/json">{ {% for key, label in category_choices %}"{{ key }}": "{{ label }}"{% if not forloop.last %}, {% endif %}{% endfor %} }</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+<script src="{% static 'ledger/js/hub.js' %}?v=1"></script>
+{% endblock %}
