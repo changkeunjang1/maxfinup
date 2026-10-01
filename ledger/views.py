@@ -86,16 +86,6 @@ def asset_api_detail(request, pk):
     return JsonResponse({"ok": False, "errors": _form_errors(form)}, status=400)
 
 
-def hub(request):
-    chapters = [{**ch, "index": i, "count": len(ch["entries"])} for i, ch in enumerate(CHAPTERS, start=1)]
-    return render(request, "ledger/hub.html", {
-        "chapters": chapters,
-        "asset_topics": ASSET_TOPICS,
-        "category_choices": Asset.CATEGORY_CHOICES,
-        "category_colors": CATEGORY_COLORS,
-    })
-
-
 def experts(request):
     return render(request, "ledger/experts.html", {"asset_topics": ASSET_TOPICS})
 

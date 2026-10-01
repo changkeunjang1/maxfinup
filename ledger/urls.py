@@ -6,7 +6,6 @@ app_name = "ledger"
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("hub/", views.hub, name="hub"),
     path("designs/", views.design_previews, name="designs"),
     path("trends/", views.trends, name="trends"),
     path("asset-management/", views.asset_management, name="asset_management"),
