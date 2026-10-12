@@ -14,6 +14,10 @@
   .tl-brand-name { font-size: 21px; }
 }
 
+/* 꼬리말 (base.html 의 tl_tab 분기) */
+.tl-footer span { text-wrap: balance; word-break: keep-all; }
+.tl-footer .footer-links { flex-wrap: wrap; justify-content: center; row-gap: 4px; }
+
 /* 하위 탭 */
 .tl-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; padding: 4px; background: var(--surface-2); border-radius: 10px; width: fit-content; max-width: 100%; }
 .tl-tabs a { padding: 8px 16px; border-radius: 7px; font-size: 14px; font-weight: 600; color: var(--ink-soft); text-decoration: none; }

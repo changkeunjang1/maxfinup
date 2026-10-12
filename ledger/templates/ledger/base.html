@@ -80,6 +80,22 @@
   <main class="main-content">
     {% block content %}{% endblock %}
   </main>
+  {% if tl_tab %}
+  <footer class="site-footer tl-footer">
+    <strong>TrafficLens — YOLO 기반 도로 위 차량·보행자 실시간 인식 시스템</strong>
+    <span>팀 로드비전(팀장 장창근 · 팀원 반광수, 지명준, 장혜원)이 MBC 아카데미 YOLO 과정 과제로 만든 결과물입니다.
+    YOLOv8 · ByteTrack · OpenCV로 구현했으며, 수치는 삼성역 교차로 영상 90초를 GTX 1060 GPU와 i5-6600 CPU에서 측정한 결과입니다.</span>
+    <span>테스트 영상: Spotting Korea 「삼성역 교차로 자동차 영상 4K Spotting Seoul」(YouTube), 수업 과제용</span>
+    <nav class="footer-links" aria-label="TrafficLens 바로가기">
+      <a href="{{ tl_urls.overview }}">개요</a><span aria-hidden="true">·</span>
+      <a href="{{ tl_urls.report }}">보고서</a><span aria-hidden="true">·</span>
+      <a href="{{ tl_urls.slides }}">발표 자료</a><span aria-hidden="true">·</span>
+      <a href="{{ tl_urls.overview }}#tl-files">자료실</a><span aria-hidden="true">·</span>
+      <a href="https://www.youtube.com/watch?v=wVVlhfh724Q" target="_blank" rel="noopener">원본 영상</a>
+    </nav>
+    <span>© 2026 팀 로드비전 · MBC 아카데미</span>
+  </footer>
+  {% else %}
   <footer class="site-footer">
     <strong>MaxFinUp — AI종합법인자산 관리허브</strong>
     <span>본 서비스에서 제공되는 모든 콘텐츠는 일반적인 경영·세무·법인 실무 참고 정보이며,
@@ -93,6 +109,7 @@
     </nav>
     <span>© 2026 MaxFinUp. All rights reserved.</span>
   </footer>
+  {% endif %}
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
