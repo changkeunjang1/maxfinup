@@ -5,12 +5,13 @@
 
 /* 상단 헤더: TrafficLens 로고와 메뉴 (base.html 의 tl_tab 분기) */
 .tl-brand { gap: 10px; text-decoration: none; }
-.tl-brand-mark { width: 44px; height: 44px; border-radius: 10px; background: var(--brand-gradient, #123a5d); color: #fff; display: grid; place-items: center; font-size: 22px; font-weight: 700; flex: none; }
+.tl-brand-mark { width: 44px; height: 44px; display: block; flex: none; }
+.tl-stamp .tl-stamp-mark { width: 38px; height: 38px; }
 .tl-brand-name { font-size: 26px; font-weight: 800; letter-spacing: -.5px; color: #0c2740; line-height: 1; white-space: nowrap; }
 .tl-brand-name em { font-style: normal; color: #b8860b; }
 .header-links a[aria-current="page"] { font-weight: 700; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
 @media (max-width: 700px) {
-  .tl-brand-mark { width: 36px; height: 36px; font-size: 18px; }
+  .tl-brand-mark { width: 36px; height: 36px; }
   .tl-brand-name { font-size: 21px; }
 }
 
