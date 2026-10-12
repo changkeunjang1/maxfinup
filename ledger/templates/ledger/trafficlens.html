@@ -1,0 +1,147 @@
+{% extends "ledger/base.html" %}
+{% load static %}
+{% block title %}TrafficLens — 경영장부{% endblock %}
+{% block extra_head %}
+<style>
+  .tl { display: flex; flex-direction: column; gap: 40px; }
+  .tl-team { font-size: 13.5px; color: var(--ink-soft); margin: 10px 0 0; }
+  .tl-team b { color: var(--brass); }
+  .tl-section { display: flex; flex-direction: column; gap: 16px; }
+  .tl-section > h2 { font-size: 20px; font-weight: 700; margin: 0; color: var(--ink); }
+  .tl-section > p { margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.7; max-width: 70ch; }
+
+  .tl-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .tl-link { display: flex; flex-direction: column; gap: 8px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); text-decoration: none; transition: border-color .15s, box-shadow .15s, transform .15s; min-width: 0; }
+  .tl-link:hover, .tl-link:focus-visible { border-color: var(--brass); box-shadow: var(--shadow); transform: translateY(-2px); color: var(--ink); }
+  .tl-link .tl-kind { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; color: var(--ink-faint); text-transform: uppercase; }
+  .tl-link strong { font-size: 17px; }
+  .tl-link span.tl-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+  .tl-link .tl-go { margin-top: auto; padding-top: 6px; font-size: 13.5px; font-weight: 600; color: var(--brass); }
+  .tl-note { font-size: 12.5px; color: var(--ink-faint); margin: 0; }
+
+  .tl-flow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tl-step { flex: 1 1 140px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .tl-step b { font-size: 15px; }
+  .tl-step span { font-size: 12.5px; color: var(--ink-soft); }
+  .tl-step.out { background: var(--brand-gradient, var(--brass)); border-color: transparent; color: #fff; }
+  .tl-step.out span { color: #d5e2ef; }
+
+  .tl-table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .tl-table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .tl-table th, .tl-table td { padding: 10px 14px; text-align: right; border-bottom: 1px solid var(--line-soft); }
+  .tl-table th:first-child, .tl-table td:first-child { text-align: left; }
+  .tl-table thead th { font-size: 12px; color: var(--ink-faint); font-weight: 600; background: var(--surface-2); }
+  .tl-table tbody tr:last-child td { border-bottom: 0; }
+  .tl-table tr.hl td { background: var(--brass-tint); font-weight: 600; }
+  .tl-down { color: #1b7a4b; font-weight: 600; }
+
+  .tl-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .tl-shot { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .tl-shot img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: var(--surface-2); }
+  .tl-shot figcaption { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+  .tl-source { font-size: 12.5px; color: var(--ink-faint); border-top: 1px solid var(--line); padding-top: 14px; margin: 0; }
+  .tl-source a { color: inherit; }
+  @media (prefers-reduced-motion: reduce) { .tl-link { transition: none; } .tl-link:hover { transform: none; } }
+</style>
+{% endblock %}
+{% block content %}
+<article class="chapter tl">
+  <div>
+    <header class="chapter-head">
+      <div class="stamp">路</div>
+      <div>
+        <p class="kicker">PROJECT · YOLO 과제</p>
+        <h1>TrafficLens</h1>
+        <p class="dek">YOLO 기반 도로 위 차량·보행자 실시간 인식 시스템</p>
+      </div>
+    </header>
+    <p class="tl-team"><b>팀 로드비전</b> · 팀장 장창근 · 팀원 반광수, 지명준, 장혜원 · MBC 아카데미</p>
+  </div>
+
+  <section class="tl-section" aria-labelledby="tl-docs">
+    <h2 id="tl-docs">결과물 보기</h2>
+    <p>세 문서는 claude.ai에서 열립니다. 새 탭으로 열리니 이 페이지로 돌아오려면 탭을 바꾸면 됩니다.</p>
+    <div class="tl-links">
+      <a class="tl-link" href="https://claude.ai/artifact/5bTKULL9xcbBSN6e3xEZxd" target="_blank" rel="noopener">
+        <span class="tl-kind">한눈에 보기</span>
+        <strong>프로젝트 현황</strong>
+        <span class="tl-desc">결과물, 시스템 구성, 개선 실험과 속도 결과, 파일 목록, 남은 할 일을 한 장에 정리했습니다.</span>
+        <span class="tl-go">현황 페이지 열기 ↗</span>
+      </a>
+      <a class="tl-link" href="https://claude.ai/code/artifact/1ee58bfd-2852-4e85-b803-dbc4024635b7#d4b36e21-2203" target="_blank" rel="noopener">
+        <span class="tl-kind">보고서</span>
+        <strong>과제 보고서</strong>
+        <span class="tl-desc">서론부터 결론까지 7장. 처리 흐름 다이어그램, 실행 화면, 개선 실험(6.5절)을 담았습니다.</span>
+        <span class="tl-go">보고서 열기 ↗</span>
+      </a>
+      <a class="tl-link" href="https://claude.ai/artifact/VR8jsYQ5wpmUkTv6Pf7foj#slide-c73fe23465bb" target="_blank" rel="noopener">
+        <span class="tl-kind">발표 자료</span>
+        <strong>발표 슬라이드 12장</strong>
+        <span class="tl-desc">장마다 발표 대본이 있습니다. 5~7분 분량입니다.</span>
+        <span class="tl-go">발표 자료 열기 ↗</span>
+      </a>
+    </div>
+    <p class="tl-note">claude.ai 보안 정책 때문에 이 사이트 안에 직접 띄울 수 없어 링크로 연결합니다.</p>
+  </section>
+
+  <section class="tl-section" aria-labelledby="tl-system">
+    <h2 id="tl-system">시스템 구성</h2>
+    <p>도로 영상의 한 프레임마다 다섯 단계를 거칩니다. 화면 가운데 기준선을 넘은 객체를 방향별로 한 번씩 셉니다.</p>
+    <div class="tl-flow">
+      <div class="tl-step"><b>입력</b><span>도로 영상 · 웹캠</span></div>
+      <div class="tl-step"><b>탐지</b><span>YOLOv8s · 1280 해상도</span></div>
+      <div class="tl-step"><b>추적</b><span>ByteTrack · 객체별 ID</span></div>
+      <div class="tl-step"><b>카운팅</b><span>now · line · total</span></div>
+      <div class="tl-step out"><b>출력</b><span>화면 표시 · 영상 저장</span></div>
+    </div>
+  </section>
+
+  <section class="tl-section" aria-labelledby="tl-result">
+    <h2 id="tl-result">개선 실험 결과</h2>
+    <p>삼성역 교차로 영상 90초. 위치 기반 정지 물체 필터, 클래스 다수결, 짧은 추적 제거를 적용하자 기준선 통과 차량(line)은 151대로 그대로이고, 부풀려졌던 누적 수(total)는 차량 36%, 보행자 53% 줄었습니다.</p>
+    <div class="tl-table-wrap">
+      <table class="tl-table">
+        <thead><tr><th>구분</th><th>기본 line</th><th>개선 line</th><th>기본 total</th><th>개선 total</th><th>total 변화</th></tr></thead>
+        <tbody>
+          <tr><td>승용차</td><td>146</td><td>144</td><td>531</td><td>391</td><td class="tl-down">−26%</td></tr>
+          <tr><td>버스</td><td>3</td><td>3</td><td>125</td><td>67</td><td class="tl-down">−46%</td></tr>
+          <tr><td>트럭</td><td>2</td><td>4</td><td>97</td><td>27</td><td class="tl-down">−72%</td></tr>
+          <tr class="hl"><td>차량 합계</td><td>151</td><td>151</td><td>753</td><td>485</td><td class="tl-down">−36%</td></tr>
+          <tr><td>보행자</td><td>1</td><td>1</td><td>75</td><td>35</td><td class="tl-down">−53%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tl-table-wrap">
+      <table class="tl-table">
+        <thead><tr><th>모델 (탐지 속도, FPS)</th><th>CPU 640</th><th>CPU 1280</th><th>GPU 640</th><th>GPU 1280</th></tr></thead>
+        <tbody>
+          <tr><td>YOLOv8n</td><td>21.8</td><td>6.6</td><td>70.7</td><td>46.6</td></tr>
+          <tr class="hl"><td>YOLOv8s (사용)</td><td>9.6</td><td>2.6</td><td>63.4</td><td>27.8</td></tr>
+          <tr><td>YOLOv8m</td><td>4.2</td><td>1.1</td><td>37.0</td><td>14.4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tl-note">CPU Intel Core i5-6600 · GPU GeForce GTX 1060 3GB. 실시간 기준은 30 FPS입니다.</p>
+  </section>
+
+  <section class="tl-section" aria-labelledby="tl-shots">
+    <h2 id="tl-shots">실행 화면</h2>
+    <div class="tl-shots">
+      <figure class="tl-shot">
+        <img src="{% static 'ledger/projects/trafficlens/detect-50s.jpg' %}" alt="약 50초 지점 탐지 화면. 화면 속 차량 49대, 기준선 통과 110대" loading="lazy" width="1280" height="720">
+        <figcaption>약 50초: 화면 속 차량 49대, 기준선 통과 110대</figcaption>
+      </figure>
+      <figure class="tl-shot">
+        <img src="{% static 'ledger/projects/trafficlens/detect-end.jpg' %}" alt="영상 끝 기본 버전 화면. 신호등 다섯 개가 보행자로 잘못 잡힘" loading="lazy" width="1280" height="720">
+        <figcaption>기본 버전, 영상 끝: 신호등 5개가 보행자로 잡힘</figcaption>
+      </figure>
+      <figure class="tl-shot">
+        <img src="{% static 'ledger/projects/trafficlens/improved-end.jpg' %}" alt="영상 끝 개선 버전 화면. 신호등 세 개가 보행자에서 제외됨" loading="lazy" width="1280" height="720">
+        <figcaption>개선 버전, 같은 장면: 신호등 3개 제외, 화면 속 보행자 6명 → 2명</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <p class="tl-source">테스트 영상 출처: Spotting Korea, 「삼성역 교차로 자동차 영상 4K Spotting Seoul」, YouTube (<a href="https://www.youtube.com/watch?v=wVVlhfh724Q" target="_blank" rel="noopener">원본 영상</a>). 수업 과제용으로만 사용했습니다.</p>
+</article>
+{% endblock %}

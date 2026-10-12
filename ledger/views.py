@@ -29,6 +29,10 @@ def trends(request):
     return render(request, "ledger/trends.html")
 
 
+def trafficlens(request):
+    return render(request, "ledger/trafficlens.html")
+
+
 def _serialize_asset(asset):
     return {
         "id": asset.id,
