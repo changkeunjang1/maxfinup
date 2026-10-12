@@ -10,13 +10,13 @@
     <h2 id="tl-summary">한눈에 보기</h2>
     <p>삼성역 교차로 영상 90초에서 차량과 보행자를 찾아 추적하고, 화면 가운데 기준선을 넘은 수를 셉니다. 기준선을 지난 차량은 151대였고, 개선 기능으로 부풀려진 누적 수(total)를 차량 36%, 보행자 53% 줄였습니다.</p>
     <div class="tl-links">
-      <a class="tl-link" href="{% url 'ledger:trafficlens_report' %}">
+      <a class="tl-link" href="{{ tl_urls.report }}">
         <span class="tl-kind">보고서</span>
         <strong>과제 보고서 전문</strong>
         <span class="tl-desc">서론부터 결론까지 7장. 처리 흐름, 핵심 코드, 실험 결과와 개선 실험(6.5절)을 담았습니다.</span>
         <span class="tl-go">보고서 읽기 →</span>
       </a>
-      <a class="tl-link" href="{% url 'ledger:trafficlens_slides' %}">
+      <a class="tl-link" href="{{ tl_urls.slides }}">
         <span class="tl-kind">발표 자료</span>
         <strong>발표 슬라이드 {{ slide_count }}장</strong>
         <span class="tl-desc">한 장씩 넘겨 보며 발표 대본을 함께 읽을 수 있습니다. 5~7분 분량입니다.</span>

@@ -25,7 +25,7 @@
   <header class="topbar">
     <div class="topbar-row">
       <div class="brand-block">
-        <a class="brand" href="{% url 'ledger:home' %}">
+        <a class="brand" href="{% if tl_subdomain %}{{ main_site_url }}/{% else %}{% url 'ledger:home' %}{% endif %}">
           <img class="brand-icon" src="{% static 'ledger/brand/compass-icon.png' %}" alt="">
           <img class="brand-wordmark-img" src="{% static 'ledger/brand/wordmark.png' %}" alt="MaxFinUp">
         </a>

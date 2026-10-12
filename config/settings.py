@@ -33,6 +33,15 @@ ALLOWED_HOSTS = [
     h.strip() for h in os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if h.strip()
 ]
 
+# TrafficLens(YOLO 과제) 서브도메인: ledger.middleware.TrafficLensSubdomainMiddleware
+TRAFFICLENS_HOST = os.environ.get('TRAFFICLENS_HOST', 'trafficlens.maxfinup.com')
+TRAFFICLENS_MAIN_HOSTS = [
+    h.strip() for h in os.environ.get('TRAFFICLENS_MAIN_HOSTS', 'maxfinup.com,www.maxfinup.com').split(',') if h.strip()
+]
+MAIN_SITE_URL = os.environ.get('MAIN_SITE_URL', 'https://maxfinup.com')
+if TRAFFICLENS_HOST and TRAFFICLENS_HOST not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(TRAFFICLENS_HOST)
+
 
 # Application definition
 
@@ -49,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'ledger.middleware.TrafficLensSubdomainMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -70,6 +80,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'ledger.context_processors.nav_chapters',
+                'ledger.context_processors.trafficlens_urls',
             ],
         },
     },
