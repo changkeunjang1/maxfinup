@@ -1,5 +1,3 @@
-from django.conf import settings
-
 from .data import CHAPTERS
 
 
@@ -16,6 +14,5 @@ def trafficlens_urls(request):
     base = "" if sub else "/projects/trafficlens"
     return {
         "tl_subdomain": sub,
-        "main_site_url": settings.MAIN_SITE_URL.rstrip("/"),
         "tl_urls": {"overview": base + "/", "report": base + "/report/", "slides": base + "/slides/"},
     }

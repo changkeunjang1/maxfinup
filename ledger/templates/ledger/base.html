@@ -24,8 +24,25 @@
 
   <header class="topbar">
     <div class="topbar-row">
+      {% if tl_tab %}
       <div class="brand-block">
-        <a class="brand" href="{% if tl_subdomain %}{{ main_site_url }}/{% else %}{% url 'ledger:home' %}{% endif %}">
+        <a class="brand tl-brand" href="{{ tl_urls.overview }}" aria-label="TrafficLens 처음으로">
+          <span class="tl-brand-mark" aria-hidden="true">路</span>
+          <span class="tl-brand-name">Traffic<em>Lens</em></span>
+        </a>
+        <span class="brand-tagline"><span class="tag-chip">YOLO</span><span class="tag-label">팀 로드비전 · 도로 위 차량·보행자 인식</span></span>
+      </div>
+      <nav class="header-links" aria-label="TrafficLens 메뉴"><a href="{{ tl_urls.overview }}"{% if tl_tab == 'overview' %} aria-current="page"{% endif %}>개요</a><a href="{{ tl_urls.report }}"{% if tl_tab == 'report' %} aria-current="page"{% endif %}>보고서</a><a href="{{ tl_urls.slides }}"{% if tl_tab == 'slides' %} aria-current="page"{% endif %}>발표 자료</a><a href="{{ tl_urls.overview }}#tl-files">자료실</a></nav>
+      <button class="menu-toggle" id="mobileMenuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴">
+        <a href="{{ tl_urls.overview }}">개요</a>
+        <a href="{{ tl_urls.report }}">보고서</a>
+        <a href="{{ tl_urls.slides }}">발표 자료</a>
+        <a href="{{ tl_urls.overview }}#tl-files">자료실</a>
+      </nav>
+      {% else %}
+      <div class="brand-block">
+        <a class="brand" href="{% url 'ledger:home' %}">
           <img class="brand-icon" src="{% static 'ledger/brand/compass-icon.png' %}" alt="">
           <img class="brand-wordmark-img" src="{% static 'ledger/brand/wordmark.png' %}" alt="MaxFinUp">
         </a>
@@ -39,6 +56,7 @@
         <a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a>
         <a href="{% url 'ledger:asset_management' %}">자산관리</a>
       </nav>
+      {% endif %}
     </div>
 
     {% if chapter %}<nav class="chapter-tabs" aria-label="편 메뉴">
