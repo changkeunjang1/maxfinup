@@ -1,0 +1,97 @@
+{% extends "ledger/base.html" %}
+{% load static %}
+{% block title %}TrafficLens 발표 자료 — 경영장부{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'ledger/css/trafficlens.css' %}?v=2">{% endblock %}
+{% block content %}
+<article class="chapter tl">
+  {% include "ledger/_trafficlens_head.html" %}
+
+  <section class="tl-section" aria-labelledby="tl-viewer-title">
+    <h2 id="tl-viewer-title">발표 슬라이드 {{ slides|length }}장</h2>
+    <p>버튼이나 키보드 ← → 로 넘깁니다. 아래에 장마다 발표 대본이 나옵니다.</p>
+    <div class="tl-viewer" id="tlViewer">
+      <div class="tl-stage">
+        <img id="tlSlideImg" src="{% static slides.0.image %}" alt="슬라이드 1: {{ slides.0.title }}" width="1600" height="900">
+      </div>
+      <div class="tl-controls">
+        <p class="tl-current-title" id="tlSlideTitle">{{ slides.0.title }}</p>
+        <div class="tl-btns">
+          <button class="tl-btn" type="button" id="tlPrev" aria-label="이전 슬라이드">← 이전</button>
+          <span class="tl-count" id="tlCount" aria-live="polite">1 / {{ slides|length }}</span>
+          <button class="tl-btn" type="button" id="tlNext" aria-label="다음 슬라이드">다음 →</button>
+        </div>
+      </div>
+      <div class="tl-notes">
+        <span class="tl-kind">발표 대본</span>
+        <p id="tlSlideNotes">{{ slides.0.notes }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tl-section" aria-labelledby="tl-all">
+    <h2 id="tl-all">전체 슬라이드</h2>
+    <ol class="tl-thumbs" id="tlThumbs">
+      {% for s in slides %}
+      <li><a href="#slide-{{ s.n }}" data-index="{{ forloop.counter0 }}"{% if forloop.first %} aria-current="true"{% endif %}>
+        <img src="{% static s.image %}" alt="" loading="lazy" width="1600" height="900">
+        <span>{{ s.n }}. {{ s.title }}</span>
+      </a></li>
+      {% endfor %}
+    </ol>
+    <p class="tl-note">PPTX·PDF 파일이 필요하면 <a href="https://claude.ai/artifact/VR8jsYQ5wpmUkTv6Pf7foj#slide-c73fe23465bb" target="_blank" rel="noopener">원본 발표 자료</a>에서 내려받을 수 있습니다.</p>
+  </section>
+</article>
+{{ slides_json|json_script:"tlSlidesData" }}
+{% endblock %}
+{% block extra_js %}
+<script>
+(function () {
+  "use strict";
+  var data = JSON.parse(document.getElementById("tlSlidesData").textContent);
+  var img = document.getElementById("tlSlideImg");
+  var title = document.getElementById("tlSlideTitle");
+  var notes = document.getElementById("tlSlideNotes");
+  var count = document.getElementById("tlCount");
+  var prev = document.getElementById("tlPrev");
+  var next = document.getElementById("tlNext");
+  var thumbs = document.querySelectorAll("#tlThumbs a");
+  var current = 0;
+
+  function show(i, updateHash) {
+    current = Math.max(0, Math.min(data.length - 1, i));
+    var s = data[current];
+    img.src = s.url;
+    img.alt = "슬라이드 " + s.n + ": " + s.title;
+    title.textContent = s.title;
+    notes.textContent = s.notes || "대본 없음";
+    count.textContent = s.n + " / " + data.length;
+    prev.disabled = current === 0;
+    next.disabled = current === data.length - 1;
+    thumbs.forEach(function (a, k) {
+      if (k === current) { a.setAttribute("aria-current", "true"); } else { a.removeAttribute("aria-current"); }
+    });
+    if (updateHash && history.replaceState) { history.replaceState(null, "", "#slide-" + s.n); }
+    if (data[current + 1]) { (new Image()).src = data[current + 1].url; }
+  }
+
+  prev.addEventListener("click", function () { show(current - 1, true); });
+  next.addEventListener("click", function () { show(current + 1, true); });
+  thumbs.forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      show(parseInt(a.getAttribute("data-index"), 10), true);
+      document.getElementById("tlViewer").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    var tag = (e.target && e.target.tagName) || "";
+    if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+    if (e.key === "ArrowRight") { show(current + 1, true); }
+    if (e.key === "ArrowLeft") { show(current - 1, true); }
+  });
+
+  var m = /^#slide-(\d+)$/.exec(location.hash);
+  show(m ? parseInt(m[1], 10) - 1 : 0, false);
+})();
+</script>
+{% endblock %}

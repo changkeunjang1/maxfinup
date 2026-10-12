@@ -2,6 +2,7 @@ import json
 
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.templatetags.static import static
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_http_methods
 
@@ -9,6 +10,7 @@ from .asset_topics import ASSET_TOPICS, ASSET_TOPICS_BY_SLUG
 from .data import CHAPTERS, get_chapter
 from .forms import AssetForm
 from .models import Asset
+from .trafficlens_data import SLIDES as TRAFFICLENS_SLIDES
 
 CATEGORY_COLORS = {
     "real_estate": "#2a78d6",
@@ -30,7 +32,20 @@ def trends(request):
 
 
 def trafficlens(request):
-    return render(request, "ledger/trafficlens.html")
+    return render(request, "ledger/trafficlens.html", {"tl_tab": "overview", "slide_count": len(TRAFFICLENS_SLIDES)})
+
+
+def trafficlens_report(request):
+    return render(request, "ledger/trafficlens_report.html", {"tl_tab": "report"})
+
+
+def trafficlens_slides(request):
+    slides_json = [
+        {"n": s["n"], "title": s["title"], "notes": s["notes"], "url": static(s["image"])}
+        for s in TRAFFICLENS_SLIDES
+    ]
+    context = {"tl_tab": "slides", "slides": TRAFFICLENS_SLIDES, "slides_json": slides_json}
+    return render(request, "ledger/trafficlens_slides.html", context)
 
 
 def _serialize_asset(asset):

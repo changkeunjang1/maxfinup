@@ -1,0 +1,274 @@
+{% extends "ledger/base.html" %}
+{% load static %}
+{% block title %}TrafficLens 보고서 — 경영장부{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'ledger/css/trafficlens.css' %}?v=2">{% endblock %}
+{% block content %}
+<article class="chapter tl">
+  {% include "ledger/_trafficlens_head.html" %}
+
+  <div class="tl-report">
+    <nav class="tl-toc" aria-label="보고서 목차">
+      <b>목차</b>
+      <a href="#r1">1. 서론</a>
+      <a href="#r2">2. YOLO 개요</a>
+      <a href="#r3">3. 개발 환경</a>
+      <a href="#r4">4. 데이터셋과 탐지 클래스</a>
+      <a href="#r5">5. 시스템 설계 및 구현</a>
+      <a href="#r6">6. 실험 결과 및 분석</a>
+      <a class="sub" href="#r6-5">6.5 개선 실험</a>
+      <a href="#r7">7. 결론 및 향후 개선점</a>
+      <a href="#rref">참고문헌</a>
+    </nav>
+
+    <div class="tl-doc">
+      <p class="tl-note">YOLOv8을 활용한 교통 영상 객체 탐지 및 성능 분석 · 팀 로드비전 · 2026년 10월 12일</p>
+
+      <h2 id="r1">1. 서론</h2>
+      <p>본 과제는 TrafficLens 시스템을 통해 YOLOv8 모델로 도로 영상 속 차량과 보행자를 실시간으로 탐지하고, 종류별 개수를 화면에 표시하는 시스템을 구현한다.</p>
+      <h3>1.1 연구 배경</h3>
+      <p>도로 위 차량과 보행자를 사람이 직접 감시하는 방식은 인력과 시간이 많이 들고, 놓치는 상황이 생기기 쉽다. 딥러닝 기반 객체 탐지 기술은 CCTV나 차량 카메라 영상에서 객체를 자동으로 찾아내 이 문제를 줄일 수 있다. 특히 YOLO는 속도가 빨라 실시간 처리가 필요한 교통 분야에 적합하다.</p>
+      <h3>1.2 연구 목적</h3>
+      <ul>
+        <li>사전 학습된 YOLOv8 모델로 차량(승용차, 버스, 트럭, 오토바이)과 보행자를 탐지한다.</li>
+        <li>탐지된 객체를 종류별로 세어 화면에 실시간으로 표시한다.</li>
+        <li>모델 크기별 정확도(mAP)와 처리 속도(FPS)를 비교해 실시간 적용 가능성을 확인한다.</li>
+      </ul>
+      <h3>1.3 활용 분야</h3>
+      <ul>
+        <li>스마트 교차로의 신호 제어와 교통량 조사</li>
+        <li>어린이 보호구역의 보행자 감지 및 경고</li>
+        <li>자율주행 차량의 주변 인식</li>
+      </ul>
+
+      <h2 id="r2">2. YOLO 개요</h2>
+      <p>YOLO(You Only Look Once)는 이미지를 한 번만 보고 객체의 위치와 종류를 동시에 예측하는 1단계(one-stage) 객체 탐지 모델이다.</p>
+      <h3>2.1 동작 원리</h3>
+      <ol>
+        <li>입력 이미지를 일정한 크기(예: 640×640)로 맞춘다.</li>
+        <li>백본(Backbone) 네트워크가 이미지의 특징을 추출한다.</li>
+        <li>넥(Neck)이 여러 크기의 특징을 합쳐 작은 객체와 큰 객체를 모두 찾을 수 있게 한다.</li>
+        <li>헤드(Head)가 바운딩 박스 좌표, 클래스, 신뢰도(confidence)를 출력한다.</li>
+        <li>NMS(Non-Maximum Suppression)로 같은 객체에 겹친 박스를 하나만 남긴다.</li>
+      </ol>
+      <h3>2.2 2단계 탐지기와의 비교</h3>
+      <div class="tl-table-wrap"><table class="tl-table text">
+        <thead><tr><th>구분</th><th>2단계 (Faster R-CNN 등)</th><th>1단계 (YOLO)</th></tr></thead>
+        <tbody>
+          <tr><td>처리 방식</td><td>후보 영역 추출 후 분류</td><td>한 번에 위치와 클래스 예측</td></tr>
+          <tr><td>속도</td><td>느림</td><td>빠름 (실시간 가능)</td></tr>
+          <tr><td>적합한 용도</td><td>정밀 분석</td><td>영상·웹캠 실시간 처리</td></tr>
+        </tbody>
+      </table></div>
+      <h3>2.3 주요 버전</h3>
+      <div class="tl-table-wrap"><table class="tl-table text">
+        <thead><tr><th>버전</th><th>발표</th><th>특징</th></tr></thead>
+        <tbody>
+          <tr><td>YOLOv1</td><td>2016</td><td>최초의 YOLO, 실시간 탐지 개념 제시</td></tr>
+          <tr><td>YOLOv3</td><td>2018</td><td>다중 스케일 예측으로 작은 객체 성능 향상</td></tr>
+          <tr><td>YOLOv5</td><td>2020</td><td>PyTorch 기반, 사용이 쉬워 널리 보급</td></tr>
+          <tr><td>YOLOv8</td><td>2023</td><td>앵커 프리(anchor-free) 구조, Ultralytics 패키지로 제공</td></tr>
+          <tr><td>YOLO11</td><td>2024</td><td>v8보다 적은 파라미터로 더 높은 정확도</td></tr>
+        </tbody>
+      </table></div>
+      <p>본 과제는 자료가 많고 설치가 간단한 <b>YOLOv8</b>을 사용한다.</p>
+
+      <h2 id="r3">3. 개발 환경</h2>
+      <div class="tl-table-wrap"><table class="tl-table text">
+        <thead><tr><th>항목</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>언어</td><td>Python 3.10 이상</td></tr>
+          <tr><td>탐지 라이브러리</td><td>Ultralytics (YOLOv8)</td></tr>
+          <tr><td>영상 처리</td><td>OpenCV</td></tr>
+          <tr><td>실행 환경</td><td>로컬 PC (Windows, i5-6600 CPU, GTX 1060 3GB GPU)</td></tr>
+          <tr><td>입력</td><td>도로 영상 파일(road.mp4) 또는 웹캠</td></tr>
+        </tbody>
+      </table></div>
+      <p>설치 명령어는 한 줄이다.</p>
+<pre>{% verbatim %}pip install ultralytics opencv-python
+# GPU 사용 시 (GTX 10시리즈는 CUDA 12.6 빌드)
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126{% endverbatim %}</pre>
+
+      <h2 id="r4">4. 데이터셋과 탐지 클래스</h2>
+      <p>별도 학습 없이 COCO 데이터셋(80개 클래스, 약 33만 장)으로 사전 학습된 가중치를 사용하고, 그중 교통 관련 5개 클래스만 골라 탐지한다.</p>
+      <div class="tl-table-wrap"><table class="tl-table text">
+        <thead><tr><th>COCO ID</th><th>클래스</th><th>분류</th><th>화면 표시</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td>person</td><td>보행자</td><td>보행자</td></tr>
+          <tr><td>2</td><td>car</td><td>차량</td><td>승용차</td></tr>
+          <tr><td>3</td><td>motorcycle</td><td>차량</td><td>오토바이</td></tr>
+          <tr><td>5</td><td>bus</td><td>차량</td><td>버스</td></tr>
+          <tr><td>7</td><td>truck</td><td>차량</td><td>트럭</td></tr>
+        </tbody>
+      </table></div>
+      <p>테스트 영상은 서울 삼성역 교차로를 촬영한 YouTube 영상(Spotting Korea)의 일부 구간을 1080p로 받아 사용한다. 한국 도로에 더 맞추려면 AI Hub의 차량·보행자 데이터로 추가 학습(fine-tuning)할 수 있다.</p>
+
+      <h2 id="r5">5. 시스템 설계 및 구현</h2>
+      <p>시스템은 영상 프레임마다 탐지와 추적을 거쳐, 현재 화면의 개수(now), 기준선 통과 개수(line), 누적 등장 개수(total)를 함께 표시한다.</p>
+      <h3>5.1 처리 흐름</h3>
+      <div class="tl-flow">
+        <div class="tl-step"><b>입력</b><span>도로 영상 · 웹캠</span></div>
+        <div class="tl-step"><b>YOLOv8 탐지</b><span>교통 5개 클래스</span></div>
+        <div class="tl-step"><b>ByteTrack 추적</b><span>객체마다 ID 부여</span></div>
+        <div class="tl-step"><b>카운팅</b><span>now · line · total</span></div>
+        <div class="tl-step out"><b>출력</b><span>화면 표시 · 저장</span></div>
+      </div>
+      <p class="tl-loop">↻ 다음 프레임으로 반복</p>
+      <p>한 프레임의 처리가 끝나면 다음 프레임으로 돌아가며, 추적 ID는 프레임이 바뀌어도 유지되어 누적 개수가 중복 없이 쌓인다.</p>
+      <h3>5.2 핵심 기능</h3>
+      <ul>
+        <li><b>클래스 필터링</b>: <code>classes=[0, 2, 3, 5, 7]</code>로 보행자와 차량 4종만 탐지한다.</li>
+        <li><b>작은 보행자 대응</b>: 높은 곳에서 찍은 영상은 사람이 약 20픽셀로 작아, YOLOv8s 모델과 1280 추론 해상도를 쓰고 보행자 신뢰도 기준만 0.25로 낮췄다 (차량은 0.4).</li>
+        <li><b>객체 추적(ByteTrack)</b>: <code>model.track(persist=True)</code>가 같은 객체에 프레임이 바뀌어도 같은 ID를 붙인다.</li>
+        <li><b>기준선 통과 카운팅(line)</b>: 화면에 기준선을 긋고, 객체 중심점의 이동 경로가 선을 가로지르면 방향별로 한 번만 센다.</li>
+        <li><b>누적 카운팅(total)</b>: 클래스별로 처음 본 추적 ID를 집합(set)에 넣어 센다.</li>
+        <li><b>화면 표시</b>: 클래스별 색상 박스, 신뢰도와 ID 라벨, 노란 기준선(통과 순간 초록으로 깜빡임), now·line·total 집계표, FPS를 그린다.</li>
+        <li><b>결과 저장</b>: 처리된 영상을 <code>result.mp4</code>로 저장한다.</li>
+      </ul>
+      <h3>5.3 핵심 코드</h3>
+      <p>전체 코드는 <code>traffic_detect.py</code>(약 200줄, <a href="{% static 'ledger/projects/trafficlens/files/traffic_detect.py' %}" download="traffic_detect.py">내려받기</a>)이며, 아래는 기준선 통과 판정과 카운팅 부분이다.</p>
+<pre>{% verbatim %}def crossed(p_prev, p_now, a, b):
+    """이동 경로(p_prev -> p_now)가 기준선 a-b를 가로질렀으면 방향(+1/-1), 아니면 0"""
+    s1, s2 = side(p_prev, a, b), side(p_now, a, b)
+    if s1 == 0 or s1 * s2 > 0:
+        return 0
+    if side(a, p_prev, p_now) * side(b, p_prev, p_now) > 0:   # 선분 범위 밖
+        return 0
+    return 1 if s2 > 0 else -1
+
+results = model.track(frame, classes=list(TARGET_CLASSES), conf=0.25, imgsz=1280,
+                      persist=True, tracker="bytetrack.yaml")
+for xyxy, cls, conf, tid in zip(...):
+    if conf < (0.25 if cls == 0 else 0.4):     # 보행자는 낮게, 차량은 높게
+        continue
+    current[cls] += 1                           # now
+    total_ids[cls].add(tid)                     # total
+    if tid in last_pos and tid not in counted:
+        d = crossed(last_pos[tid], center, A, B)
+        if d:
+            line_count[cls][d] += 1             # line
+            counted.add(tid)
+    last_pos[tid] = center{% endverbatim %}</pre>
+      <h3>5.4 실행 방법</h3>
+<pre>{% verbatim %}python traffic_detect.py                                  # road.mp4, yolov8s, 1280
+python traffic_detect.py --source 0                       # 웹캠
+python traffic_detect.py --model yolov8n.pt --imgsz 640   # 빠른 설정
+python traffic_detect.py --line 0.1,0.6,0.9,0.6           # 가로 기준선 (x1,y1,x2,y2 비율)
+python traffic_detect.py --baseline                       # 개선 기능 끄기 (6.5절 비교용)
+python traffic_detect.py --save ""                        # 영상 저장 끄기 (더 빠름){% endverbatim %}</pre>
+
+      <h2 id="r6">6. 실험 결과 및 분석</h2>
+      <p>모델이 클수록 정확도는 오르고 속도는 떨어지므로, 실시간(초당 30프레임 이상)을 유지하는 가장 큰 모델을 고르는 것이 핵심이다.</p>
+      <h3>6.1 공식 성능 (COCO val2017, 640×640)</h3>
+      <div class="tl-table-wrap"><table class="tl-table">
+        <thead><tr><th>모델</th><th>파라미터</th><th>mAP50-95</th><th>CPU 추론 (ONNX)</th></tr></thead>
+        <tbody>
+          <tr><td>YOLOv8n</td><td>3.2M</td><td>37.3</td><td>80.4 ms</td></tr>
+          <tr><td>YOLOv8s</td><td>11.2M</td><td>44.9</td><td>128.4 ms</td></tr>
+          <tr><td>YOLOv8m</td><td>25.9M</td><td>50.2</td><td>234.7 ms</td></tr>
+        </tbody>
+      </table></div>
+      <p class="tl-note">출처: Ultralytics YOLOv8 공식 문서 (80개 클래스 전체 기준).</p>
+      <h3>6.2 직접 측정한 결과</h3>
+      <p><code>evaluate.py</code>로 삼성역 교차로 영상 150프레임을 처리해 평균 FPS를 쟀다 (탐지만 측정). GPU(GTX 1060)는 CPU보다 3~13배 빨랐고, 본 시스템 설정(YOLOv8s·1280)은 2.6 FPS에서 27.8 FPS로 올라 실시간(30 FPS)에 가까워졌다.</p>
+      <div class="tl-table-wrap"><table class="tl-table">
+        <thead><tr><th>모델</th><th>CPU 640</th><th>CPU 1280</th><th>GPU 640</th><th>GPU 1280</th></tr></thead>
+        <tbody>
+          <tr><td>YOLOv8n</td><td>21.8</td><td>6.6</td><td>70.7</td><td>46.6</td></tr>
+          <tr class="hl"><td>YOLOv8s (본 시스템)</td><td>9.6</td><td>2.6</td><td>63.4</td><td>27.8</td></tr>
+          <tr><td>YOLOv8m</td><td>4.2</td><td>1.1</td><td>37.0</td><td>14.4</td></tr>
+        </tbody>
+      </table></div>
+      <p>추적·화면 표시·영상 저장까지 포함한 전체 처리(90초, 2,698프레임)는 CPU 19분(약 2.4 FPS), GPU 238초(약 11 FPS)가 걸렸고, 탐지·카운팅 결과는 두 장치에서 같았다.</p>
+      <p class="tl-note">측정 환경: CPU Intel Core i5-6600, 메모리 16GB, GPU NVIDIA GeForce GTX 1060 3GB, PyTorch 2.14 (CUDA 12.6), Python 3.14. mAP는 COCO 데이터 다운로드가 커서 직접 재지 않고 6.1절의 공식 수치를 따른다.</p>
+      <h3>6.3 탐지 화면</h3>
+      <p>삼성역 교차로 영상 90초(2,698프레임)를 YOLOv8s·1280 설정으로 처리한 <code>result.mp4</code>의 장면이다. 왼쪽 위 표가 now·line·total, 가운데 노란 세로선이 기준선이다.</p>
+      <figure class="tl-shot">
+        <img src="{% static 'ledger/projects/trafficlens/detect-50s.jpg' %}" alt="약 50초 지점 탐지 화면" loading="lazy" width="1280" height="720">
+        <figcaption>약 50초 지점: 차량 49대 탐지, 기준선 통과 110대</figcaption>
+      </figure>
+      <figure class="tl-shot">
+        <img src="{% static 'ledger/projects/trafficlens/detect-end.jpg' %}" alt="영상 끝 탐지 화면" loading="lazy" width="1280" height="720">
+        <figcaption>영상 끝: 기준선 통과 차량 151대, 신호등이 보행자로 오탐지된 모습도 보인다</figcaption>
+      </figure>
+      <p><b>최종 집계 (90초)</b></p>
+      <div class="tl-table-wrap"><table class="tl-table">
+        <thead><tr><th>구분</th><th>line (기준선 통과)</th><th>total (누적 고유 ID)</th></tr></thead>
+        <tbody>
+          <tr><td>승용차</td><td>146 (방향별 75 / 71)</td><td>531</td></tr>
+          <tr><td>버스</td><td>3</td><td>125</td></tr>
+          <tr><td>트럭</td><td>2</td><td>97</td></tr>
+          <tr><td>오토바이</td><td>0</td><td>0</td></tr>
+          <tr><td>보행자</td><td>1</td><td>75</td></tr>
+        </tbody>
+      </table></div>
+      <h3>6.4 분석</h3>
+      <ul>
+        <li><b>잘 된 점</b>: 화면에 동시에 있는 차량 50~60대를 대부분 탐지했고, 기준선 통과 승용차는 양방향 75대·71대로 고르게 집계됐다.</li>
+        <li><b>작은 보행자</b>: 사람이 약 20픽셀로 작아 기본 설정(YOLOv8n·640)에서는 한 장면에 1명만 잡혔다. YOLOv8s·1280으로 바꾸자 5명으로 늘었지만, 횡단보도 위 보행자는 여전히 자주 놓쳤다.</li>
+        <li><b>오탐지</b>: 신호등이 보행자(Person)로 잡히는 경우가 많았다. 보행자 신뢰도 기준을 0.25로 낮춘 대가다. (6.5절에서 개선)</li>
+        <li><b>클래스 혼동</b>: 짐칸 트럭이 버스로 잡히는 등, 같은 차가 프레임마다 클래스가 바뀌었다.</li>
+        <li><b>total이 부풀려짐</b>: 차가 다른 차나 기둥에 가려졌다 나타나면 새 ID가 붙고, 클래스가 바뀌면 다른 클래스에도 집계돼 버스 total이 125까지 올랐다. 실제 교통량은 line 값이 더 믿을 만하다. (6.5절에서 개선)</li>
+        <li><b>속도</b>: CPU(i5-6600)에서는 약 2.4 FPS로 90초 영상에 19분이 걸렸지만, GPU(GTX 1060)로 바꾸자 약 11 FPS, 238초로 줄었다. 탐지만 보면 27.8 FPS이므로, 남은 병목은 추적·화면 그리기·영상 저장이다.</li>
+      </ul>
+      <h3 id="r6-5">6.5 개선 실험: 오탐지와 total 부풀림 줄이기</h3>
+      <p>6.4절에서 찾은 문제 세 가지를 고친 개선 버전을 같은 90초 영상에 돌린 결과, 차량 total은 753에서 485로(36% 감소), 보행자 total은 75에서 35로(53% 감소) 줄었고 교통량(line)은 그대로 유지됐다.</p>
+      <div class="tl-table-wrap"><table class="tl-table text">
+        <thead><tr><th>문제</th><th>개선 방법</th></tr></thead>
+        <tbody>
+          <tr><td>신호등이 보행자로 오탐지</td><td><b>위치 기반 정지 물체 필터</b>: 화면을 32픽셀 칸으로 나눠, 20초 이후 지금까지 프레임의 15% 이상 '보행자'가 나온 칸의 보행자는 제외한다. 신호등은 탐지가 끊겼다 이어지며 ID가 계속 바뀌므로 ID가 아니라 위치로 판단한다.</td></tr>
+          <tr><td>트럭·버스 클래스 혼동</td><td><b>클래스 다수결</b>: 추적 ID별로 지금까지 가장 많이 나온 클래스를 쓴다.</td></tr>
+          <tr><td>잠깐 나타난 ID로 total 부풀림</td><td><b>짧은 추적 제거</b>: 5프레임보다 짧게 보인 ID는 total에서 뺀다.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tl-table-wrap"><table class="tl-table">
+        <thead><tr><th>구분</th><th>기본 line</th><th>개선 line</th><th>기본 total</th><th>개선 total</th></tr></thead>
+        <tbody>
+          <tr><td>승용차</td><td>146</td><td>144</td><td>531</td><td>391</td></tr>
+          <tr><td>버스</td><td>3</td><td>3</td><td>125</td><td>67</td></tr>
+          <tr><td>트럭</td><td>2</td><td>4</td><td>97</td><td>27</td></tr>
+          <tr class="hl"><td>차량 합계</td><td>151</td><td>151</td><td>753</td><td>485</td></tr>
+          <tr><td>보행자</td><td>1</td><td>1</td><td>75</td><td>35</td></tr>
+        </tbody>
+      </table></div>
+      <figure class="tl-shot">
+        <img src="{% static 'ledger/projects/trafficlens/improved-end.jpg' %}" alt="개선 버전 영상 끝 화면" loading="lazy" width="1280" height="720">
+        <figcaption>개선 버전, 영상 끝 같은 장면: 신호등 5개 중 3개가 보행자에서 빠져 화면 속 보행자(now)가 6명에서 2명으로 줄었다</figcaption>
+      </figure>
+      <ul>
+        <li><b>정지 물체 필터</b>: 21개 ID가 정지 물체로 판정됐다. 6.3절 두 번째 캡처와 같은 장면에서 신호등 5개 중 3개가 걸러졌고, 영상 후반에 처음 나타난 2개는 비율이 기준에 못 미쳐 남았다.</li>
+        <li><b>클래스 다수결</b>: 차량 line 합계는 151로 같고, 승용차 2대가 트럭으로 다시 분류됐다. 버스 total은 125에서 67, 트럭 total은 97에서 27로 줄었다.</li>
+        <li><b>한계</b>: 신호등 위치의 '보행자' 비율은 18~45%였지만, 실제 보행자가 신호를 기다리는 모퉁이도 28%가 나왔다. 그래서 이 필터는 한자리에 오래 서 있는 진짜 보행자도 뺄 수 있다.</li>
+        <li><b>속도</b>: 영상을 저장하지 않는 같은 조건에서 기본 16.7 FPS, 개선 16.8 FPS로 차이가 없었다. 1080p 결과 영상을 저장하면 약 11.9 FPS로 떨어져, 속도를 가장 많이 잡아먹는 것은 영상 저장이었다.</li>
+      </ul>
+      <p>개선 기능은 PC용 <code>traffic_detect.py</code>에 기본으로 들어 있고(<code>--baseline</code>으로 끌 수 있음), 이 실험은 Colab 노트북 <code>TrafficLens_Colab.ipynb</code>(<a href="{% static 'ledger/projects/trafficlens/files/TrafficLens_Colab.ipynb' %}" download="TrafficLens_Colab.ipynb">내려받기</a>)의 실험 2·3으로 그대로 재현할 수 있다.</p>
+
+      <h2 id="r7">7. 결론 및 향후 개선점</h2>
+      <p>YOLOv8과 ByteTrack을 결합해, 별도 학습 없이도 도로 영상에서 차량과 보행자를 탐지하고 기준선을 지나는 교통량을 종류별로 셀 수 있음을 확인했다. 처리 속도는 GPU로 바꾸자 CPU 대비 약 4.8배 빨라졌지만, 전체 처리 기준 약 11 FPS로 실시간(30 FPS)에는 아직 못 미쳤다.</p>
+      <h3>7.1 결론</h3>
+      <ul>
+        <li>사전 학습 모델과 클래스 필터만으로 교통 객체 5종을 탐지할 수 있었다.</li>
+        <li>기준선 통과 카운팅으로 90초 동안 승용차 146대의 교통량을 방향별로 집계했다. 누적 ID(total)는 가림과 클래스 혼동으로 부풀려졌지만, 클래스 다수결·짧은 추적 제거·위치 기반 정지 필터로 차량 36%, 보행자 53%를 줄였다.</li>
+        <li>높은 곳에서 찍은 영상의 작은 보행자는 모델과 해상도를 키워야 잡혔고, 그만큼 속도가 떨어졌다 (CPU 2.4 FPS → GPU 약 11 FPS).</li>
+      </ul>
+      <h3>7.2 향후 개선점</h3>
+      <ol>
+        <li><b>실시간 처리</b>: GPU 적용으로 탐지는 27.8 FPS까지 올랐으므로, 영상 저장을 끄거나 화면 그리기를 줄여 전체 처리도 실시간에 가깝게 만든다.</li>
+        <li><b>보행자 오탐지 줄이기</b>: 위치 기반 필터는 신호등 5개 중 3개만 걸렀다. 후반에 나타난 신호등까지 잡도록 판단 방식을 다듬고, 기다리는 보행자와 구분하려면 높은 시점의 보행자 데이터로 추가 학습한다.</li>
+        <li><b>크게 나눠 탐지(타일링)</b>: 화면을 여러 조각으로 나눠 탐지하면 작은 보행자를 더 잘 찾을 수 있다.</li>
+        <li><b>영상 저장 속도</b>: 1080p 결과 영상 저장만으로 16.8 FPS가 11.9 FPS로 떨어진다. 저장 해상도를 낮추거나 별도 스레드에서 저장해 속도를 되찾는다.</li>
+        <li><b>한국 도로 데이터 학습</b>: AI Hub 데이터로 fine-tuning해 국내 버스·트럭 인식률을 높인다.</li>
+      </ol>
+
+      <h2 id="rref">참고문헌</h2>
+      <ol>
+        <li>Redmon, J. et al. (2016). <a href="https://arxiv.org/abs/1506.02640" target="_blank" rel="noopener">You Only Look Once: Unified, Real-Time Object Detection</a>. CVPR.</li>
+        <li>Jocher, G. et al. (2023). <a href="https://docs.ultralytics.com/models/yolov8/" target="_blank" rel="noopener">Ultralytics YOLOv8</a>. Ultralytics 공식 문서.</li>
+        <li>Zhang, Y. et al. (2022). <a href="https://arxiv.org/abs/2110.06864" target="_blank" rel="noopener">ByteTrack: Multi-Object Tracking by Associating Every Detection Box</a>. ECCV.</li>
+        <li>Lin, T.-Y. et al. (2014). <a href="https://arxiv.org/abs/1405.0312" target="_blank" rel="noopener">Microsoft COCO: Common Objects in Context</a>. ECCV.</li>
+        <li><a href="https://www.aihub.or.kr/" target="_blank" rel="noopener">AI Hub</a> 차량·보행자 관련 데이터셋.</li>
+        <li>Spotting Korea. <a href="https://www.youtube.com/watch?v=wVVlhfh724Q" target="_blank" rel="noopener">삼성역 교차로 자동차 영상 4K Spotting Seoul</a>. YouTube. (테스트 영상)</li>
+      </ol>
+    </div>
+  </div>
+</article>
+{% endblock %}
