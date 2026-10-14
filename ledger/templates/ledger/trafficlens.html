@@ -1,7 +1,7 @@
 {% extends "ledger/base.html" %}
 {% load static %}
 {% block title %}TrafficLens{% endblock %}
-{% block extra_head %}<link rel="stylesheet" href="{% static 'ledger/css/trafficlens.css' %}?v=6">{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'ledger/css/trafficlens.css' %}?v=7">{% endblock %}
 {% block content %}
 <article class="chapter tl">
   {% include "ledger/_trafficlens_head.html" %}
@@ -168,6 +168,22 @@
     </div>
   </section>
 
+  <section class="tl-section" aria-labelledby="tl-logos">
+    <h2 id="tl-logos">로고 시안</h2>
+    <p>TrafficLens 로고 후보 7종입니다. 모두 같은 남색 타일 위에 흰색과 노란색으로 그렸고, 그중 01 렌즈 도로를 지금 로고로 쓰고 있습니다.</p>
+    <ul class="tl-logos">
+      {% for l in logos %}
+      <li class="tl-logo{% if l.chosen %} chosen{% endif %}">
+        <img src="{% static 'ledger/projects/trafficlens/logos/'|add:l.file %}" alt="로고 시안 {{ l.n }}: {{ l.name }}" width="72" height="72" loading="lazy">
+        <div class="tl-logo-text">
+          <strong><span class="tl-logo-n">{{ l.n|stringformat:"02d" }}</span> {{ l.name }}{% if l.chosen %} <span class="tl-badge">채택</span>{% endif %}</strong>
+          <span>{{ l.desc }}</span>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
   <section class="tl-section" aria-labelledby="tl-origin">
     <h2 id="tl-origin">원본 문서</h2>
     <p>이 페이지의 보고서와 발표 자료는 claude.ai에서 작성한 원본을 옮긴 것입니다. 원본은 새 탭에서 열립니다.</p>
@@ -178,7 +194,7 @@
       <a class="tl-link" href="https://claude.ai/code/artifact/1ee58bfd-2852-4e85-b803-dbc4024635b7#d4b36e21-2203" target="_blank" rel="noopener">
         <span class="tl-kind">claude.ai</span><strong>과제 보고서</strong><span class="tl-go">원본 열기 ↗</span>
       </a>
-      <a class="tl-link" href="https://claude.ai/artifact/VR8jsYQ5wpmUkTv6Pf7foj#slide-c73fe23465bb" target="_blank" rel="noopener">
+      <a class="tl-link" href="https://claude.ai/artifact/CJADA52QxA4JoWeYdUBoJh" target="_blank" rel="noopener">
         <span class="tl-kind">claude.ai</span><strong>발표 자료 (PPTX·PDF 내려받기)</strong><span class="tl-go">원본 열기 ↗</span>
       </a>
     </div>

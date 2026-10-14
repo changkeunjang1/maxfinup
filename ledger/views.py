@@ -10,7 +10,7 @@ from .asset_topics import ASSET_TOPICS, ASSET_TOPICS_BY_SLUG
 from .data import CHAPTERS, get_chapter
 from .forms import AssetForm
 from .models import Asset
-from .trafficlens_data import SLIDES as TRAFFICLENS_SLIDES
+from .trafficlens_data import LOGOS as TRAFFICLENS_LOGOS, SLIDES as TRAFFICLENS_SLIDES
 
 CATEGORY_COLORS = {
     "real_estate": "#2a78d6",
@@ -32,7 +32,7 @@ def trends(request):
 
 
 def trafficlens(request):
-    return render(request, "ledger/trafficlens.html", {"tl_tab": "overview", "slide_count": len(TRAFFICLENS_SLIDES)})
+    return render(request, "ledger/trafficlens.html", {"tl_tab": "overview", "slide_count": len(TRAFFICLENS_SLIDES), "logos": TRAFFICLENS_LOGOS})
 
 
 def trafficlens_report(request):
