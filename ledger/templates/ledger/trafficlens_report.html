@@ -179,7 +179,19 @@ python traffic_detect.py --save ""                        # 영상 저장 끄기
         </tbody>
       </table></div>
       <p>추적·화면 표시·영상 저장까지 포함한 전체 처리(90초, 2,698프레임)는 CPU 19분(약 2.4 FPS), GPU 238초(약 11 FPS)가 걸렸고, 탐지·카운팅 결과는 두 장치에서 같았다.</p>
-      <p class="tl-note">측정 환경: CPU Intel Core i5-6600, 메모리 16GB, GPU NVIDIA GeForce GTX 1060 3GB, PyTorch 2.14 (CUDA 12.6), Python 3.14. mAP는 COCO 데이터 다운로드가 커서 직접 재지 않고 6.1절의 공식 수치를 따른다.</p>
+      <p><b>정확도(mAP) 직접 측정</b></p>
+      <p><code>evaluate.py</code>로 COCO val2017(5,000장)에서 교통 관련 5개 클래스(사람·승용차·오토바이·버스·트럭)의 mAP를 재고, 같은 실행에서 GPU 탐지 FPS도 함께 쟀다(2026-10-14). 모델이 클수록 mAP는 오르고 속도는 떨어졌으며, s는 n보다 mAP가 0.075 높으면서 속도는 비슷했다.</p>
+      <div class="tl-table-wrap"><table class="tl-table">
+        <thead><tr><th>모델</th><th>해상도</th><th>mAP50-95</th><th>mAP50</th><th>GPU FPS</th></tr></thead>
+        <tbody>
+          <tr><td>YOLOv8n</td><td>640</td><td>0.438</td><td>0.626</td><td>60.5</td></tr>
+          <tr><td>YOLOv8s</td><td>640</td><td>0.513</td><td>0.708</td><td>57.9</td></tr>
+          <tr class="hl"><td>YOLOv8s (본 시스템)</td><td>1280</td><td>0.438</td><td>0.670</td><td>25.5</td></tr>
+          <tr><td>YOLOv8m</td><td>640</td><td>0.567</td><td>0.759</td><td>34.2</td></tr>
+        </tbody>
+      </table></div>
+      <p>COCO에서는 YOLOv8s·1280(0.438)이 640(0.513)보다 낮다. 모델이 640으로 학습됐고 COCO 물체는 대부분 중간 크기 이상이기 때문이다. 본 시스템이 1280을 쓰는 근거는 테스트 영상의 작은 보행자다. <code>road.mp4</code>에서 고르게 뽑은 60프레임을 YOLOv8s로 탐지하면 사람이 640에서 12개(높이 40픽셀 미만 5개), 1280에서 190개(100개) 잡혔다(<code>compare_resolution.py</code>, 2026-10-15).</p>
+      <p class="tl-note">측정 환경: CPU Intel Core i5-6600, 메모리 16GB, GPU NVIDIA GeForce GTX 1060 3GB, PyTorch 2.14 (CUDA 12.6), Python 3.14. 6.1절 공식 mAP는 80개 클래스 기준이고 위 직접 측정은 5개 클래스 평균이라 두 값은 직접 비교하지 않는다.</p>
       <h3>6.3 탐지 화면</h3>
       <p>삼성역 교차로 영상 90초(2,698프레임)를 YOLOv8s·1280 설정으로 처리한 <code>result.mp4</code>의 장면이다. 왼쪽 위 표가 now·line·total, 가운데 노란 세로선이 기준선이다.</p>
       <figure class="tl-shot">
