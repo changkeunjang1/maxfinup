@@ -425,7 +425,7 @@ ASSET_TOPICS = [
         (수익자)이 누구인지로 결정됩니다. 상속 재원으로 종신보험을 준비한다면 가입 단계에서 구조를
         정해야 합니다. 아래는 <strong>피보험자가 아버지</strong>인 종신보험의 예입니다.</p>
         <div class="table-wrap"><table class="table">
-          <thead><tr><th>계약자(보험료 납부)</th><th>수익자</th><th>사망보험금 세금</th></tr></thead>
+          <thead><tr><th>계약자</th><th>수익자</th><th>사망보험금 세금</th></tr></thead>
           <tbody>
             <tr><td>아버지</td><td>자녀</td><td>상속세(간주상속재산)</td></tr>
             <tr><td>자녀</td><td>자녀</td><td>없음(자녀가 자기 소득으로 보험료를 낸 경우)</td></tr>
