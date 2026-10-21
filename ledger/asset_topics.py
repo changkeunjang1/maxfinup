@@ -400,14 +400,14 @@ ASSET_TOPICS = [
         </div>
 
         <h5>연금저축·IRP와 즉시연금, 무엇이 다른가</h5>
-        <div class="table-wrap"><table class="table">
+        <div class="table-wrap"><table class="table table-stack" style="--stack-label: 84px">
           <thead><tr><th>구분</th><th>연금저축·IRP(은행·증권사)</th><th>즉시연금(보험사)</th></tr></thead>
           <tbody>
-            <tr><td>가입 방식</td><td>매달 적립(적립식)</td><td>목돈 일시납</td></tr>
-            <tr><td>수령 개시</td><td>만 55세 이후</td><td>가입 즉시(다음 달부터)</td></tr>
-            <tr><td>세제 혜택</td><td>납입액 세액공제(연 900만원 한도)</td><td>보험차익 비과세(요건 충족 시)</td></tr>
-            <tr><td>수령 시 과세</td><td>연금소득세 3.3~5.5%</td><td>비과세 요건 충족 시 전액 비과세</td></tr>
-            <tr><td>평생 지급 보증</td><td>불가능(적립금 소진 시 종료)</td><td>종신형 선택 시 가능</td></tr>
+            <tr><td>가입 방식</td><td data-label="연금저축·IRP">매달 적립(적립식)</td><td data-label="즉시연금">목돈 일시납</td></tr>
+            <tr><td>수령 개시</td><td data-label="연금저축·IRP">만 55세 이후</td><td data-label="즉시연금">가입 즉시(다음 달부터)</td></tr>
+            <tr><td>세제 혜택</td><td data-label="연금저축·IRP">납입액 세액공제(연 900만원 한도)</td><td data-label="즉시연금">보험차익 비과세(요건 충족 시)</td></tr>
+            <tr><td>수령 시 과세</td><td data-label="연금저축·IRP">연금소득세 3.3~5.5%</td><td data-label="즉시연금">비과세 요건 충족 시 전액 비과세</td></tr>
+            <tr><td>평생 지급 보증</td><td data-label="연금저축·IRP">불가능(적립금 소진 시 종료)</td><td data-label="즉시연금">종신형 선택 시 가능</td></tr>
           </tbody>
         </table></div>
 
