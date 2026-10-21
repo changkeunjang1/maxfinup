@@ -562,10 +562,10 @@ ASSET_TOPICS = [
         <div class="table-wrap"><table class="table">
           <thead><tr><th>단계</th><th>세금</th><th>핵심</th></tr></thead>
           <tbody>
-            <tr><td>취득</td><td>취득세</td><td>주택 1~3%(1주택 기준), 다주택자·법인은 중과</td></tr>
-            <tr><td>보유</td><td>재산세<br>종부세</td><td>종부세는 주택 공시가격 합계 9억원(1세대 1주택
+            <tr><td>취득</td><td class="text-nowrap">취득세</td><td>주택 1~3%(1주택 기준), 다주택자·법인은 중과</td></tr>
+            <tr><td>보유</td><td class="text-nowrap">재산세<br>종부세</td><td>종부세는 주택 공시가격 합계 9억원(1세대 1주택
             12억원)을 넘는 부분에 부과</td></tr>
-            <tr><td>양도</td><td>양도세</td><td>1세대 1주택을 2년 이상 보유(조정대상지역에서 취득했다면
+            <tr><td>양도</td><td class="text-nowrap">양도세</td><td>1세대 1주택을 2년 이상 보유(조정대상지역에서 취득했다면
             2년 거주)하면 양도가액 12억원까지 비과세, 장기보유특별공제 최대 80%</td></tr>
           </tbody>
         </table></div>
