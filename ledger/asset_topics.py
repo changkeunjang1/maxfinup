@@ -340,15 +340,18 @@ ASSET_TOPICS = [
         쌓입니다.</p>
 
         <h5>생명보험 3형제 — 종신·정기·변액</h5>
-        <div class="table-wrap"><table class="table">
+        <div class="table-wrap"><table class="table table-stack">
           <thead><tr><th>구분</th><th>종신보험</th><th>정기보험</th><th>변액보험</th></tr></thead>
           <tbody>
-            <tr><td>보험기간</td><td>제한 없음(평생)</td><td>정해진 기간까지</td><td>상품에 따라 다름</td></tr>
-            <tr><td>사망보험금</td><td>확정</td><td>기간 내 사망 시 지급</td>
-            <td>투자 실적 연동(최저사망보험금 보증)</td></tr>
-            <tr><td>같은 보장의 보험료</td><td>높음</td><td>가장 저렴</td><td>사업비·위험보험료 우선 차감</td></tr>
-            <tr><td>맞는 목적</td><td>상속 재원·평생 보장</td><td>자녀 독립 전까지 등 한시적 보장</td>
-            <td>보장+투자수익을 함께 노릴 때</td></tr>
+            <tr><td>보험기간</td><td data-label="종신">제한 없음(평생)</td><td data-label="정기">정해진 기간까지</td>
+            <td data-label="변액">상품에 따라 다름</td></tr>
+            <tr><td>사망보험금</td><td data-label="종신">확정</td><td data-label="정기">기간 내 사망 시 지급</td>
+            <td data-label="변액">투자 실적 연동(최저사망보험금 보증)</td></tr>
+            <tr><td>같은 보장의 보험료</td><td data-label="종신">높음</td><td data-label="정기">가장 저렴</td>
+            <td data-label="변액">사업비·위험보험료 우선 차감</td></tr>
+            <tr><td>맞는 목적</td><td data-label="종신">상속 재원·평생 보장</td>
+            <td data-label="정기">자녀 독립 전까지 등 한시적 보장</td>
+            <td data-label="변액">보장+투자수익을 함께 노릴 때</td></tr>
           </tbody>
         </table></div>
         <p class="muted">예) 같은 사망보험금 1억원을 준비하더라도, 정기보험료는 종신보험료의 대략 10분의

@@ -404,6 +404,18 @@ a { color: inherit; text-decoration: none; }
 .step-content tbody tr:last-child td { border-bottom: none; }
 .step-content tbody tr:nth-child(even) { background: var(--surface-2); }
 .step-content td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+/* 비교표: 모바일에서는 행마다 카드로 쌓고, 각 칸 앞에 data-label을 붙인다 */
+@media (max-width: 575.98px) {
+  .step-content .table-stack thead { display: none; }
+  .step-content .table-stack, .step-content .table-stack tbody,
+  .step-content .table-stack tr, .step-content .table-stack td { display: block; width: 100%; }
+  .step-content .table-stack tr { padding: 12px 14px; border-bottom: 1px solid var(--line-soft); }
+  .step-content .table-stack tr:last-child { border-bottom: none; }
+  .step-content .table-stack td { padding: 3px 0; border: none; }
+  .step-content .table-stack td:first-child { font-weight: 700; color: var(--brass-strong); padding-bottom: 6px; }
+  .step-content .table-stack td[data-label] { display: flex; gap: 10px; }
+  .step-content .table-stack td[data-label]::before { content: attr(data-label); flex: 0 0 34px; font-weight: 600; color: var(--ink-soft); }
+}
 
 .callout { border-radius: 8px; padding: 16px 18px; margin: 16px 0 20px; font-size: 13.5px; line-height: 1.7; }
 .callout .tag {
