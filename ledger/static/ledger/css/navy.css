@@ -125,7 +125,7 @@ html{scroll-padding-top:175px}.topbar{position:sticky;top:0;background:var(--bra
 .step-content h5{padding-left:12px;border-left:3px solid var(--gold);line-height:1.4}
 
 /* 한글이 들어가는 작은 라벨은 고정폭 글꼴 대신 본문 글꼴로 */
-.callout .tag,.related .label,.pager-link .plabel,.source,.expert-fact dt,.section-kicker,.dek,.ct-count{font-family:var(--sans)}
+.callout .tag,.related .label,.pager-link .plabel,.source,.expert-fact dt,.section-kicker,.dek,.ct-count,.expert-tag,.course-badge,.expert-fact .note{font-family:var(--sans)}
 .callout .tag{letter-spacing:.02em;font-size:13.5px;font-weight:700}
 .callout{border-radius:12px}
 .callout-tip{background:var(--gold-tint);border-color:var(--gold-line)}
