@@ -10,6 +10,7 @@ from .asset_topics import ASSET_TOPICS, ASSET_TOPICS_BY_SLUG
 from .data import CHAPTERS, get_chapter
 from .forms import AssetForm
 from .models import Asset
+from .second_half import CHECKLIST as SECOND_HALF_CHECKLIST, SECTIONS as SECOND_HALF_SECTIONS
 from .trafficlens_data import LOGOS as TRAFFICLENS_LOGOS, SLIDES as TRAFFICLENS_SLIDES
 
 CATEGORY_COLORS = {
@@ -124,6 +125,10 @@ def asset_topic(request, slug):
         "next_topic": next_topic,
         "asset_topics": ASSET_TOPICS,
     })
+
+
+def second_half(request):
+    return render(request, "ledger/second_half.html", {"sections": SECOND_HALF_SECTIONS, "checklist": SECOND_HALF_CHECKLIST})
 
 
 def privacy_policy(request):
