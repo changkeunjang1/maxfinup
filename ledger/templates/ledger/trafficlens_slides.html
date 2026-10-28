@@ -40,6 +40,37 @@
     </ol>
     <p class="tl-note">PPTX·PDF 파일이 필요하면 <a href="https://claude.ai/artifact/CJADA52QxA4JoWeYdUBoJh" target="_blank" rel="noopener">원본 발표 자료</a>에서 내려받을 수 있습니다.</p>
   </section>
+
+  <section class="tl-section" aria-labelledby="tl-qa">
+    <h2 id="tl-qa">질문 시간: 프로젝트 진행 정리</h2>
+    <p>20장 '감사합니다' 뒤 질문 시간에 함께 답하는 내용입니다 (2026년 10월 28일 기준).</p>
+    <div class="tl-two">
+      <div class="tl-box">
+        <h3>왜 모델을 학습하지 않았나요?</h3>
+        <p>과제 기간이 3주라 직접 학습할 데이터와 시간이 없었습니다. 그래서 COCO로 사전 학습된 YOLOv8s에 ByteTrack 추적, 개선 필터, 기준선 카운팅을 더하는 데 집중했습니다.</p>
+      </div>
+      <div class="tl-box">
+        <h3>핵심 숫자와 남은 일</h3>
+        <ul>
+          <li>기준선을 지난 차량 151대는 기본 · 개선 버전이 같고, 부풀던 차량 total은 753 → 485로 36% 줄었습니다.</li>
+          <li>남은 일은 사람이 직접 센 정답과 비교한 오차 측정이고, 마감까지 새 기능은 추가하지 않습니다.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-table-wrap">
+      <table class="tl-table text">
+        <thead><tr><th>날짜</th><th>진행</th></tr></thead>
+        <tbody>
+          <tr><td class="tl-date">10.12</td><td>기본 · 개선 버전 코드</td></tr>
+          <tr><td class="tl-date">10.13</td><td>1차 발표, 중복 박스 제거 (버스 total 67 → 29)</td></tr>
+          <tr><td class="tl-date">10.15</td><td>정확도 · 해상도 측정 (작은 보행자 탐지 12 → 190개)</td></tr>
+          <tr><td class="tl-date">10.16</td><td>발표 준비</td></tr>
+          <tr><td class="tl-date">10.26</td><td>작업일지, 보고서 PDF, 사이트 자료실</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tl-note">자세한 내용은 <a href="{{ tl_urls.overview }}#tl-progress">개요의 진행 과정</a>과 <a href="{{ tl_urls.report }}#r7">보고서 7.3절</a>에 있습니다. 날짜별 진행은 <a href="{{ tl_urls.overview }}#tl-files">자료실</a>의 프로젝트 작업일지에서 볼 수 있습니다.</p>
+  </section>
 </article>
 {{ slides_json|json_script:"tlSlidesData" }}
 {% endblock %}
