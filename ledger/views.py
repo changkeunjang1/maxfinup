@@ -10,7 +10,7 @@ from .asset_topics import ASSET_TOPICS, ASSET_TOPICS_BY_SLUG
 from .data import CHAPTERS, get_chapter
 from .forms import AssetForm
 from .models import Asset
-from .second_half import CHECKLIST as SECOND_HALF_CHECKLIST, SECTIONS as SECOND_HALF_SECTIONS
+from .second_half import BY_SLUG as SECOND_HALF_BY_SLUG, CHECKLIST as SECOND_HALF_CHECKLIST, SECTIONS as SECOND_HALF_SECTIONS
 from .trafficlens_data import LOGOS as TRAFFICLENS_LOGOS, SLIDES as TRAFFICLENS_SLIDES
 
 CATEGORY_COLORS = {
@@ -129,6 +129,20 @@ def asset_topic(request, slug):
 
 def second_half(request):
     return render(request, "ledger/second_half.html", {"sections": SECOND_HALF_SECTIONS, "checklist": SECOND_HALF_CHECKLIST})
+
+
+def second_half_topic(request, slug):
+    topic = SECOND_HALF_BY_SLUG.get(slug)
+    if topic is None:
+        raise Http404("존재하지 않는 주제입니다.")
+
+    pos = SECOND_HALF_SECTIONS.index(topic)
+    return render(request, "ledger/second_half_topic.html", {
+        "topic": topic,
+        "sections": SECOND_HALF_SECTIONS,
+        "prev_topic": SECOND_HALF_SECTIONS[pos - 1] if pos > 0 else None,
+        "next_topic": SECOND_HALF_SECTIONS[pos + 1] if pos < len(SECOND_HALF_SECTIONS) - 1 else None,
+    })
 
 
 def privacy_policy(request):

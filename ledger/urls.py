@@ -15,6 +15,7 @@ urlpatterns = [
     path("asset-management/api/assets/", views.asset_api_list, name="asset_api_list"),
     path("asset-management/api/assets/<int:pk>/", views.asset_api_detail, name="asset_api_detail"),
     path("second-half/", views.second_half, name="second_half"),
+    path("second-half/<slug:slug>/", views.second_half_topic, name="second_half_topic"),
     path("experts/", views.experts, name="experts"),
     path("experts/<slug:slug>/", views.asset_topic, name="asset_topic"),
     path("privacy-policy/", views.privacy_policy, name="privacy_policy"),

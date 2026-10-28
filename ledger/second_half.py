@@ -9,9 +9,13 @@
 SECTIONS = [
     {
         "slug": "pension",
+        "short": "연금",
         "num": "01",
         "title": "연금 3층 쌓기",
         "dek": "국민연금 · 기초연금 · 퇴직연금 · 개인연금으로 평생 월급 만들기",
+        "lede": "국민연금 위에 퇴직연금과 개인연금을 쌓고, 기초연금과 절세 계좌까지 챙겨 평생 나오는 월급을 만드는 방법입니다.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M32 10 L56 22 L32 34 L8 22 Z"/><path d="M8 32 L32 44 L56 32"/><path d="M8 42 L32 54 L56 42"/></svg>',
         "html": """
         <p>노후 소득은 세 층으로 쌓습니다. <strong>1층 국민연금</strong>(공적연금), <strong>2층 퇴직연금</strong>(IRP),
         <strong>3층 개인연금</strong>(연금저축·연금보험). 세 층이 모자라면 집을 담보로 한 <strong>주택연금</strong>이나
@@ -78,9 +82,13 @@ SECTIONS = [
     },
     {
         "slug": "health-insurance",
+        "short": "건강보험·혜택",
         "num": "02",
         "title": "건강보험료와 65세 이후 혜택",
         "dek": "새는 돈을 막고, 신청해야 받는 혜택을 챙긴다",
+        "lede": "은퇴 후 가장 크게 체감하는 고정비인 건강보험료를 줄이는 법과, 신청해야만 받는 65세 이후 혜택을 모았습니다.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M32 8 L52 16 V30 C52 44 43 52 32 56 C21 52 12 44 12 30 V16 Z"/><line x1="32" y1="22" x2="32" y2="40"/><line x1="23" y1="31" x2="41" y2="31"/></svg>',
         "html": """
         <h5>건강보험료 — 은퇴 후 가장 크게 체감하는 고정비</h5>
         <ul>
@@ -113,9 +121,13 @@ SECTIONS = [
     },
     {
         "slug": "investing",
+        "short": "투자",
         "num": "03",
         "title": "투자 원칙",
         "dek": "시장 전체를, 오래, 꾸준히, 나눠서",
+        "lede": "시장 전체를, 오래, 꾸준히, 나눠서. 노후 자산을 불리고 꺼내 쓰는 투자의 기본 원칙과 자산 배분 예시입니다.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><polyline points="8,48 22,34 32,42 54,18"/><polyline points="42,18 54,18 54,30"/><line x1="8" y1="56" x2="56" y2="56"/></svg>',
         "html": """
         <h5>다섯 가지 기본 원칙</h5>
         <ol>
@@ -172,9 +184,13 @@ SECTIONS = [
     },
     {
         "slug": "real-estate",
+        "short": "부동산",
         "num": "04",
         "title": "집과 부동산",
         "dek": "실거주 · 입지 · 감당할 수 있는 대출",
+        "lede": "내 집 마련부터 좋은 집 고르는 기준, 재개발 분담금 계산과 경매까지 — 실거주와 입지 중심으로 정리했습니다.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M8 30 L32 10 L56 30"/><path d="M14 26 V54 H50 V26"/><rect x="27" y="38" width="10" height="16"/></svg>',
         "html": """
         <h5>내 집 마련</h5>
         <ul>
@@ -218,9 +234,13 @@ SECTIONS = [
     },
     {
         "slug": "money-safety",
+        "short": "금융 안전",
         "num": "05",
         "title": "금융 안전과 사기 예방",
         "dek": "버는 것보다 지키는 것이 어렵다",
+        "lede": "버는 것보다 지키는 것이 어렵습니다. 예금자 보호, 사기꾼을 알아보는 9가지 특징, 큰돈이 생겼을 때의 원칙입니다.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="28" width="36" height="26" rx="4"/><path d="M22 28 V20 A10 10 0 0 1 42 20 V28"/><line x1="32" y1="38" x2="32" y2="44"/></svg>',
         "html": """
         <h5>금융기관이 망하면</h5>
         <ul>
@@ -255,9 +275,13 @@ SECTIONS = [
     },
     {
         "slug": "money-habits",
+        "short": "돈 습관",
         "num": "06",
         "title": "돈 습관과 부자 마인드",
         "dek": "번다 → 지킨다 → 불린다 → 가치 있게 쓴다",
+        "lede": "통장 3개 관리법, 종잣돈 1억의 의미, 부자들의 공통 습관과 『돈의 심리학』 — 돈이 모이는 생각과 습관입니다.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="16" rx="18" ry="6"/><path d="M14 16 V28 C14 31 22 34 32 34 C42 34 50 31 50 28 V16"/><path d="M14 28 V40 C14 43 22 46 32 46 C42 46 50 43 50 40 V28"/><path d="M14 40 V50 C14 53 22 56 32 56 C42 56 50 53 50 50 V40"/></svg>',
         "html": """
         <h5>돈이 모이는 기본</h5>
         <ul>
@@ -329,9 +353,13 @@ SECTIONS = [
     },
     {
         "slug": "health",
+        "short": "건강",
         "num": "07",
         "title": "건강",
         "dek": "가장 확실한 노후 자산",
+        "lede": "가장 확실한 노후 자산은 건강입니다. 매일 지킬 습관, 먹는 것, 노년 건강의 4M과 몸이 가벼워지는 12가지 습관.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M32 54 C14 42 8 32 8 23 C8 15 14 10 21 10 C26 10 30 13 32 17 C34 13 38 10 43 10 C50 10 56 15 56 23 C56 32 50 42 32 54 Z"/><polyline points="14,30 24,30 28,22 34,38 38,30 50,30"/></svg>',
         "html": """
         <h5>매일 지킬 습관</h5>
         <ul>
@@ -368,9 +396,13 @@ SECTIONS = [
     },
     {
         "slug": "relationships",
+        "short": "관계",
         "num": "08",
         "title": "관계와 품위 있는 노년",
         "dek": "말은 줄이고, 마음은 넓히고",
+        "lede": "거리를 둘 사람과 곁에 둘 사람, 말하지 않을 것, 존경받는 노년의 태도와 은퇴 후 잘 살고 있다는 10가지 신호.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="20" r="8"/><circle cx="44" cy="22" r="7"/><path d="M8 52 C8 40 14 34 22 34 C30 34 36 40 36 52"/><path d="M34 38 C36 35 40 34 44 34 C51 34 56 40 56 50"/></svg>',
         "html": """
         <h5>거리를 둘 사람</h5>
         <ul>
@@ -420,9 +452,13 @@ SECTIONS = [
     },
     {
         "slug": "mindset",
+        "short": "마음가짐",
         "num": "09",
         "title": "마음가짐과 자기계발",
         "dek": "운은 기다리는 것이 아니라 움직여서 만든다",
+        "lede": "운은 기다리는 것이 아니라 움직여서 만듭니다. 성공의 원칙, 시간 관리, 흔들리지 않는 마음을 만드는 습관입니다.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M24 42 C18 38 14 32 14 25 C14 15 22 8 32 8 C42 8 50 15 50 25 C50 32 46 38 40 42 V48 H24 Z"/><line x1="25" y1="54" x2="39" y2="54"/><path d="M28 30 L32 34 L36 30"/></svg>',
         "html": """
         <h5>성공의 원칙</h5>
         <ul>
@@ -450,9 +486,13 @@ SECTIONS = [
     },
     {
         "slug": "crisis",
+        "short": "위기 대비",
         "num": "10",
         "title": "위기 대비와 경제 흐름",
         "dek": "위기는 반복되고, 준비한 사람에게는 기회가 된다",
+        "lede": "위기는 반복되고, 준비한 사람에게는 기회가 됩니다. 과거의 위기에서 배운 원칙과 다가오는 구조 변화를 짚습니다.",
+        "icon_svg": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" '
+        'stroke-linecap="round" stroke-linejoin="round"><path d="M8 32 C8 18 19 8 32 8 C45 8 56 18 56 32 C52 28 46 28 44 32 C40 28 36 28 32 32 C28 28 24 28 20 32 C18 28 12 28 8 32 Z"/><path d="M32 32 V50 C32 54 28 56 25 54"/></svg>',
         "html": """
         <ul>
           <li><strong>반복된 위기</strong> — 1929년 대공황, 1987년 블랙먼데이, 2000년 닷컴 버블, 2008년 금융위기, 2020년 코로나.
@@ -481,3 +521,5 @@ CHECKLIST = [
     ("건강", "매일 걷기, 주 2회 근력, 7시간 수면, 정기 검진"),
     ("관계", "말 줄이기, 감사 표현, 부부 대화, 좋은 친구 한 명"),
 ]
+
+BY_SLUG = {s["slug"]: s for s in SECTIONS}

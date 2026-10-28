@@ -481,16 +481,29 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* 인생 후반전 실전 노트 (/second-half/) */
-.sh-toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
-.sh-toc a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink-soft); font-size: 13px; text-decoration: none; word-break: keep-all; }
-.sh-toc a:hover { color: var(--brass-strong); border-color: var(--brass); }
-.sh-toc-num { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); }
-.sh-section { margin-bottom: 20px; scroll-margin-top: 90px; }
-.sh-num { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--ink-faint); margin: 0 0 2px !important; }
-.sh-section h2 { font-family: var(--serif); font-size: 22px; font-weight: 700; margin: 0 0 4px; color: var(--ink); word-break: keep-all; }
-.sh-dek { color: var(--ink-soft); font-size: 13.5px; margin: 0 0 18px !important; padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); }
-.sh-section p, .sh-section li { word-break: keep-all; overflow-wrap: anywhere; }
-@media (max-width: 575.98px) {
-  .sh-section { padding: 22px 18px; }
-  .sh-section h2 { font-size: 19.5px; }
+.sh-pillars { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 10px; }
+.sh-pillars li { display: flex; gap: 12px; align-items: center; padding: 14px; background: var(--brass-tint); border-radius: 10px; }
+.sh-pillars b { display: block; font-size: 15px; color: var(--ink); }
+.sh-pillars small { display: block; font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; white-space: normal; word-break: keep-all; }
+.sh-section-head { margin: 0 0 18px; }
+.sh-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--gold-ink, var(--brass-strong)); margin: 0 0 6px !important; }
+.sh-section-head h2, .sh-checklist h2 { font-family: var(--serif); font-size: 24px; font-weight: 700; margin: 0; color: var(--ink); }
+.sh-grid { margin-bottom: 34px; }
+.sh-card { gap: 10px; }
+.sh-card-top { display: flex; justify-content: space-between; align-items: center; }
+.sh-card-icon { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--brand-gradient, var(--brass)); color: #fff; }
+.sh-card-icon svg { width: 26px; height: 26px; display: block; }
+.sh-card p { word-break: keep-all; }
+.sh-checklist { margin-bottom: 8px; }
+.sh-dek { color: var(--ink-soft); font-size: 13.5px; margin: 4px 0 18px !important; }
+.sh-checks { list-style: none !important; padding: 0 !important; margin: 0 !important; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 22px; }
+.sh-checks li { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line-soft); border-radius: 10px; margin: 0 !important; word-break: keep-all; }
+.sh-checks li::before { content: ""; flex: none; width: 16px; height: 16px; margin-top: 3px; border: 2px solid var(--brass); border-radius: 4px; }
+.sh-check-area { flex: none; min-width: 44px; font-weight: 700; color: var(--brass-strong); }
+.sh-hero h1, .sh .lede, .sh .dek, .sh .step-content p, .sh .step-content li, .sh .step-content td { word-break: keep-all; overflow-wrap: anywhere; }
+@media (min-width: 768px) {
+  .sh-grid > .sh-card:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
+}
+@media (max-width: 700px) {
+  .sh-checks { grid-template-columns: 1fr; }
 }
