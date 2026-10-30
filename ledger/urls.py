@@ -1,3 +1,4 @@
+from django.contrib.auth.views import LogoutView
 from django.urls import path
 
 from . import views
@@ -15,6 +16,10 @@ urlpatterns = [
     path("asset-management/api/assets/", views.asset_api_list, name="asset_api_list"),
     path("asset-management/api/assets/<int:pk>/", views.asset_api_detail, name="asset_api_detail"),
     path("second-half/", views.second_half, name="second_half"),
+    path("accounts/login/", views.MemberLoginView.as_view(), name="login"),
+    path("accounts/logout/", LogoutView.as_view(next_page="ledger:second_half"), name="logout"),
+    path("accounts/signup/", views.signup, name="signup"),
+    path("accounts/signup/done/", views.signup_done, name="signup_done"),
     path("second-half/<slug:slug>/", views.second_half_topic, name="second_half_topic"),
     path("second-half-1/", views.second_half1, name="second_half1"),
     path("second-half-1/<slug:slug>/", views.second_half1_topic, name="second_half1_topic"),

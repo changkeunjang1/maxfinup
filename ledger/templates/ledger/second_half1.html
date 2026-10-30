@@ -1,9 +1,8 @@
 {% extends "ledger/base.html" %}
-{% load static %}
 {% block title %}인생 후반전1 — 2026 실전 노트 · MaxFinUp{% endblock %}
-{% block extra_head %}<link rel="stylesheet" href="{% static 'ledger/css/second_half1.css' %}?v=1">{% endblock %}
 {% block content %}
 <article class="chapter sh">
+  {% include "ledger/_sh_account.html" %}
   <section class="home-hero sh-hero" aria-labelledby="sh-title">
     <div>
       <p class="hero-eyebrow">THE SECOND-HALF PLAYBOOK · 2026</p>
@@ -61,6 +60,7 @@
         <h2 id="checklist-title">실천 체크리스트</h2>
         <p class="sh-dek">읽고 끝내지 않도록 — 한 일을 눌러 하나씩 지워 가세요. 체크한 내용은 이 기기에만 저장됩니다.</p>
       </div>
+      {% if access == "member" %}
       <div class="sh-progress">
         <div class="sh-ring" id="shRing" role="img" aria-label="진행률 0%"><span><b id="shPct">0</b>%</span></div>
         <div>
@@ -69,7 +69,9 @@
           <button type="button" class="sh-reset" id="shReset">처음부터 다시</button>
         </div>
       </div>
+      {% endif %}
     </div>
+    {% if access == "member" %}
     <div class="sh-check-groups" id="shChecks">
       {% for g in checklist %}
       <div class="sh-check-group">
@@ -89,6 +91,9 @@
       </div>
       {% endfor %}
     </div>
+    {% else %}
+    {% include "ledger/_sh_lock.html" with what="실천 체크리스트" %}
+    {% endif %}
   </section>
 
   <footer class="chapter-foot">

@@ -1,0 +1,10 @@
+<div class="sh-account">
+  {% if user.is_authenticated %}
+  <span class="sh-account-who"><span class="sh-badge {{ access }}">{% if access == "member" %}회원{% else %}승인 대기{% endif %}</span>{{ user.first_name|default:user.email }} 님</span>
+  <form method="post" action="{% url 'ledger:logout' %}">{% csrf_token %}<input type="hidden" name="next" value="{{ request.path }}"><button type="submit" class="sh-account-link">로그아웃</button></form>
+  {% else %}
+  <span class="sh-account-who">본문은 회원 전용입니다</span>
+  <a class="sh-account-link" href="{% url 'ledger:login' %}?next={{ request.path|urlencode }}">로그인</a>
+  <a class="sh-account-link strong" href="{% url 'ledger:signup' %}?next={{ request.path|urlencode }}">회원가입</a>
+  {% endif %}
+</div>

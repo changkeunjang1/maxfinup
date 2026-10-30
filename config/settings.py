@@ -43,6 +43,19 @@ if TRAFFICLENS_HOST and TRAFFICLENS_HOST not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(TRAFFICLENS_HOST)
 
 
+# 로그인 (인생 후반전 회원 전용 본문)
+LOGIN_URL = 'ledger:login'
+LOGIN_REDIRECT_URL = 'ledger:second_half'
+LOGOUT_REDIRECT_URL = 'ledger:second_half'
+
+# nginx가 X-Forwarded-Proto를 넘겨준다 (Cloudflare Full strict → nginx 443). 로그인 폼 POST의 CSRF 확인용.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_TRUSTED_ORIGINS = [f'https://{h}' for h in TRAFFICLENS_MAIN_HOSTS]
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30  # 30일 동안 로그인 유지
+
+
 # Application definition
 
 INSTALLED_APPS = [

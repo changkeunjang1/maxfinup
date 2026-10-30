@@ -1,0 +1,15 @@
+{% extends "ledger/base.html" %}
+{% block title %}{{ title }} — 회원 전용 · MaxFinUp{% endblock %}
+{% block content %}
+<article class="chapter sh">
+  {% include "ledger/_sh_account.html" %}
+  <header class="chapter-head">
+    <div>
+      <p class="kicker">MEMBERS ONLY</p>
+      <h1>{{ title }}</h1>
+      <p class="dek">자산관리 · 인생 후반전 · 인생 후반전1은 승인된 회원만 읽을 수 있습니다.</p>
+    </div>
+  </header>
+  {% include "ledger/_sh_lock.html" %}
+</article>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "ledger/auth_base.html" %}
+{% block title %}로그인 — MaxFinUp 회원{% endblock %}
+{% block auth %}
+<p class="sh-eyebrow">MEMBER LOGIN</p>
+<h1>로그인</h1>
+<p class="sh-auth-dek">가입한 이메일과 비밀번호로 로그인하세요.</p>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% for e in form.non_field_errors %}<p class="sh-form-alert">{{ e }}</p>{% endfor %}
+  {% with field=form.username %}{% include "ledger/_form_field.html" %}{% endwith %}
+  {% with field=form.password %}{% include "ledger/_form_field.html" %}{% endwith %}
+  <input type="hidden" name="next" value="{{ next }}">
+  <button type="submit" class="sh-btn">로그인</button>
+</form>
+<p class="sh-auth-switch">아직 회원이 아니신가요? <a href="{% url 'ledger:signup' %}{% if next %}?next={{ next|urlencode }}{% endif %}">회원가입</a></p>
+<p class="sh-auth-help">비밀번호를 잊으셨다면 <a href="mailto:contact@maxfinup.com">contact@maxfinup.com</a>으로 알려 주세요.</p>
+{% endblock %}

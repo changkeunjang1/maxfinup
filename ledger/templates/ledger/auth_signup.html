@@ -1,0 +1,32 @@
+{% extends "ledger/auth_base.html" %}
+{% block title %}회원가입 — MaxFinUp 회원{% endblock %}
+{% block auth %}
+<p class="sh-eyebrow">JOIN</p>
+<h1>회원가입</h1>
+<p class="sh-auth-dek">가입 신청 후 관리자 승인이 끝나면 본문을 읽을 수 있습니다.</p>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {% for e in form.non_field_errors %}<p class="sh-form-alert">{{ e }}</p>{% endfor %}
+  {% with field=form.name %}{% include "ledger/_form_field.html" %}{% endwith %}
+  {% with field=form.email %}{% include "ledger/_form_field.html" %}{% endwith %}
+  <div class="sh-field-row">
+    {% with field=form.password1 %}{% include "ledger/_form_field.html" %}{% endwith %}
+    {% with field=form.password2 %}{% include "ledger/_form_field.html" %}{% endwith %}
+  </div>
+  <div class="sh-consent{% if form.agree.errors %} has-error{% endif %}">
+    <p class="sh-consent-title">개인정보 수집·이용 안내</p>
+    <dl>
+      <dt>수집 항목</dt><dd>이름, 이메일, 비밀번호(암호화 저장)</dd>
+      <dt>이용 목적</dt><dd>회원 확인, 가입 승인, 회원 전용 콘텐츠 제공, 문의 응대</dd>
+      <dt>보유 기간</dt><dd>회원 탈퇴 시까지 (탈퇴 요청 시 지체 없이 파기)</dd>
+    </dl>
+    <p class="sh-consent-note">동의를 거부할 수 있으며, 거부하면 회원가입과 회원 전용 콘텐츠 이용이 제한됩니다.
+    자세한 내용은 <a href="{% url 'ledger:privacy_policy' %}" target="_blank" rel="noopener">개인정보처리방침</a>을 확인하세요.</p>
+    <label class="sh-consent-check">{{ form.agree }}<span>{{ form.agree.label }}</span></label>
+    {% for e in form.agree.errors %}<p class="sh-field-error">{{ e }}</p>{% endfor %}
+  </div>
+  <input type="hidden" name="next" value="{{ next }}">
+  <button type="submit" class="sh-btn">가입 신청하기</button>
+</form>
+<p class="sh-auth-switch">이미 회원이신가요? <a href="{% url 'ledger:login' %}{% if next %}?next={{ next|urlencode }}{% endif %}">로그인</a></p>
+{% endblock %}

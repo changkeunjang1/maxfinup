@@ -1,0 +1,6 @@
+<div class="sh-field{% if field.errors %} has-error{% endif %}">
+  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+  {{ field }}
+  {% if field.help_text %}<small class="sh-field-help">{{ field.help_text }}</small>{% endif %}
+  {% for e in field.errors %}<p class="sh-field-error">{{ e }}</p>{% endfor %}
+</div>

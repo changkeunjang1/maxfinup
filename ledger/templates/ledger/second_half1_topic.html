@@ -1,7 +1,5 @@
 {% extends "ledger/base.html" %}
-{% load static %}
 {% block title %}{{ topic.title }} — 인생 후반전1 · MaxFinUp{% endblock %}
-{% block extra_head %}<link rel="stylesheet" href="{% static 'ledger/css/second_half1.css' %}?v=1">{% endblock %}
 {% block content %}
 <article class="chapter sh">
   <div class="sh-topbar">
@@ -10,6 +8,7 @@
     <a href="{% url 'ledger:second_half1' %}#pillar-{{ pillar.key }}">{{ pillar.name }}</a><span aria-hidden="true">›</span>
     <span aria-current="page">{{ topic.title }}</span>
   </nav>
+  {% include "ledger/_sh_account.html" %}
   </div>
   <header class="chapter-head chapter-head--watermark">
     <div class="head-watermark" aria-hidden="true">{{ topic.icon_svg|safe }}</div>
@@ -42,6 +41,7 @@
     </div>
   </section>
 
+  {% if access == "member" %}
   <div class="sh-layout">
     <div class="step-content sh-body">
       {{ body_html|safe }}
@@ -56,6 +56,12 @@
     </aside>
     {% endif %}
   </div>
+  {% else %}
+  <div class="sh-locked">
+    <div class="sh-locked-preview step-content" aria-hidden="true">{{ preview_html|safe }}</div>
+    {% include "ledger/_sh_lock.html" with what="이 주제의 본문" %}
+  </div>
+  {% endif %}
 
   <footer class="chapter-foot">
     <p>금액·비율은 작성 시점 기준이며 해마다 바뀝니다. 실행 전 관계 기관에서 최신 기준을 확인하세요.</p>

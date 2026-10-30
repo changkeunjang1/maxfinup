@@ -1,0 +1,15 @@
+{% extends "ledger/auth_base.html" %}
+{% block title %}가입 신청 완료 — MaxFinUp 회원{% endblock %}
+{% block auth %}
+<div class="sh-done-icon" aria-hidden="true">✓</div>
+<p class="sh-eyebrow">WELCOME</p>
+<h1>가입 신청이 접수되었습니다</h1>
+{% if access == "member" %}
+<p class="sh-auth-dek">이미 승인된 계정입니다. 지금 바로 모든 본문을 읽을 수 있습니다.</p>
+{% else %}
+<p class="sh-auth-dek">{% if user.first_name %}{{ user.first_name }} 님, {% endif %}관리자가 확인한 뒤 승인하면 모든 본문과 체크리스트를 읽을 수 있습니다.
+보통 1~2일 안에 승인됩니다. 승인 후에는 지금 로그인된 상태 그대로 읽을 수 있습니다.</p>
+{% endif %}
+<a class="sh-btn" href="{% if next %}{{ next }}{% else %}{% url 'ledger:second_half' %}{% endif %}">보던 페이지로 돌아가기</a>
+<p class="sh-auth-help">급하게 확인이 필요하면 <a href="mailto:contact@maxfinup.com">contact@maxfinup.com</a>으로 알려 주세요.</p>
+{% endblock %}
