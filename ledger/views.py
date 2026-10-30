@@ -1,4 +1,5 @@
 import json
+import re
 
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, render
@@ -11,6 +12,11 @@ from .data import CHAPTERS, get_chapter
 from .forms import AssetForm
 from .models import Asset
 from .second_half import BY_SLUG as SECOND_HALF_BY_SLUG, CHECKLIST as SECOND_HALF_CHECKLIST, SECTIONS as SECOND_HALF_SECTIONS
+from .second_half1 import (
+    BY_SLUG as SECOND_HALF1_BY_SLUG, CHECKLIST as SECOND_HALF1_CHECKLIST, CHECKLIST_COUNT as SECOND_HALF1_CHECKLIST_COUNT,
+    PILLARS as SECOND_HALF1_PILLARS,
+    SECTIONS as SECOND_HALF1_SECTIONS,
+)
 from .trafficlens_data import LOGOS as TRAFFICLENS_LOGOS, SLIDES as TRAFFICLENS_SLIDES
 
 CATEGORY_COLORS = {
@@ -187,3 +193,47 @@ def chapter_detail(request, slug):
         "next_chapter": next_chapter,
     }
     return render(request, "ledger/chapter.html", context)
+
+
+def _with_heading_ids(html, slug):
+    """Give each <h5> an anchor id and return (html, [(id, text), ...]) for the side contents."""
+    toc = []
+
+    def repl(m):
+        anchor = f"{slug}-{len(toc) + 1}"
+        toc.append((anchor, re.sub(r"<[^>]+>", "", m.group(1)).strip()))
+        return f'<h5 id="{anchor}">{m.group(1)}</h5>'
+
+    return re.sub(r"<h5>(.*?)</h5>", repl, html, flags=re.S), toc
+
+
+def second_half1(request):
+    """인생 후반전1 시안 — 2026 노트 정리본. 기존 인생 후반전과 합치기 전까지 회원 제한 없이 공개한다."""
+    pillars = [
+        {**p, "sections": [s for s in SECOND_HALF1_SECTIONS if s["pillar"] == p["key"]]}
+        for p in SECOND_HALF1_PILLARS
+    ]
+    return render(request, "ledger/second_half1.html", {
+        "sections": SECOND_HALF1_SECTIONS,
+        "pillars": pillars,
+        "checklist": SECOND_HALF1_CHECKLIST,
+        "checklist_count": SECOND_HALF1_CHECKLIST_COUNT,
+    })
+
+
+def second_half1_topic(request, slug):
+    topic = SECOND_HALF1_BY_SLUG.get(slug)
+    if topic is None:
+        raise Http404("존재하지 않는 주제입니다.")
+
+    pos = SECOND_HALF1_SECTIONS.index(topic)
+    body_html, toc = _with_heading_ids(topic["html"], slug)
+    return render(request, "ledger/second_half1_topic.html", {
+        "topic": topic,
+        "body_html": body_html,
+        "toc": toc,
+        "pillar": next(p for p in SECOND_HALF1_PILLARS if p["key"] == topic["pillar"]),
+        "sections": SECOND_HALF1_SECTIONS,
+        "prev_topic": SECOND_HALF1_SECTIONS[pos - 1] if pos > 0 else None,
+        "next_topic": SECOND_HALF1_SECTIONS[pos + 1] if pos < len(SECOND_HALF1_SECTIONS) - 1 else None,
+    })

@@ -1,0 +1,140 @@
+{% extends "ledger/base.html" %}
+{% load static %}
+{% block title %}인생 후반전1 — 2026 실전 노트 · MaxFinUp{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'ledger/css/second_half1.css' %}?v=1">{% endblock %}
+{% block content %}
+<article class="chapter sh">
+  <section class="home-hero sh-hero" aria-labelledby="sh-title">
+    <div>
+      <p class="hero-eyebrow">THE SECOND-HALF PLAYBOOK · 2026</p>
+      <h1 id="sh-title">인생 후반전1,<br><em>신청하고, 굴리고,</em> 버틴다.</h1>
+      <p class="hero-intro">2026년 1월부터 9월까지 손으로 적은 노트 32쪽을 {{ sections|length }}가지 주제로 엮었습니다.<br>
+      국민연금·기초연금 신청부터 절세 계좌, 지수 투자, 부자의 태도까지 — 관심 있는 주제부터 읽어 보세요.</p>
+      <div class="hero-actions">
+        <a class="hero-primary" href="{% url 'ledger:second_half1_topic' sections.0.slug %}">국민연금 점검부터 <span aria-hidden="true">↗</span></a>
+        <a class="hero-secondary" href="#checklist">실천 체크리스트 ↓</a>
+      </div>
+    </div>
+    <aside class="roadmap" aria-labelledby="sh-pillars-title">
+      <div class="roadmap-head"><strong id="sh-pillars-title">인생 후반전의 다섯 기둥</strong><span>PLAYBOOK</span></div>
+      <h2>연금 · 절세 · 투자 · 생활 · 마음</h2><p>신청해야 받고, 자동으로 쌓고, 오래 버팁니다</p>
+      <ol class="sh-pillars">
+        {% for p in pillars %}
+        <li><a href="#pillar-{{ p.key }}"><span class="roadmap-num">{{ forloop.counter }}</span><span><b>{{ p.name }}</b><small>{% for s in p.sections %}{{ s.short }}{% if not forloop.last %} · {% endif %}{% endfor %}</small></span></a></li>
+        {% endfor %}
+      </ol>
+      <p class="roadmap-note">금액·비율은 작성 시점 기준입니다. 실행 전 최신 기준을 확인하세요.</p>
+    </aside>
+  </section>
+
+  <div class="home-metrics sh-metrics">
+    <div><b>{{ sections|length|stringformat:"02d" }}</b><span>핵심 주제</span></div>
+    <div><b>{{ pillars|length|stringformat:"02d" }}</b><span>기둥</span></div>
+    <div><b>{{ checklist_count|stringformat:"02d" }}</b><span>실천 항목</span></div>
+    <p>준비 → 실천 → 점검</p>
+  </div>
+
+  {% for p in pillars %}
+  <section class="sh-pillar" id="pillar-{{ p.key }}" aria-labelledby="pillar-{{ p.key }}-title">
+    <div class="home-section-head sh-pillar-head">
+      <div><p>{{ forloop.counter|stringformat:"02d" }} · {{ p.en }}</p><h2 id="pillar-{{ p.key }}-title">{{ p.name }}</h2></div>
+      <span>{{ p.dek }}</span>
+    </div>
+    <div class="service-grid sh-grid{% if p.sections|length == 1 %} sh-grid-one{% endif %}">
+      {% for s in p.sections %}
+      <a class="service-card sh-card" href="{% url 'ledger:second_half1_topic' s.slug %}">
+        <span class="sh-card-top"><span class="sh-card-icon" aria-hidden="true">{{ s.icon_svg|safe }}</span><span class="service-num">{{ s.num }}</span></span>
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.lede }}</p>
+        <span class="sh-card-stat"><b>{{ s.stats.0.0 }}</b>{{ s.stats.0.1 }}</span>
+        <span class="service-link">읽어 보기 ↗</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+
+  <section class="sh-checklist" id="checklist" aria-labelledby="checklist-title">
+    <div class="sh-checklist-head">
+      <div>
+        <p class="sh-eyebrow">ACTION CHECKLIST</p>
+        <h2 id="checklist-title">실천 체크리스트</h2>
+        <p class="sh-dek">읽고 끝내지 않도록 — 한 일을 눌러 하나씩 지워 가세요. 체크한 내용은 이 기기에만 저장됩니다.</p>
+      </div>
+      <div class="sh-progress">
+        <div class="sh-ring" id="shRing" role="img" aria-label="진행률 0%"><span><b id="shPct">0</b>%</span></div>
+        <div>
+          <p class="sh-progress-num" aria-live="polite"><b id="shDone">0</b> / {{ checklist_count }} 완료</p>
+          <p class="sh-progress-msg" id="shMsg">첫 항목부터 시작해 보세요.</p>
+          <button type="button" class="sh-reset" id="shReset">처음부터 다시</button>
+        </div>
+      </div>
+    </div>
+    <div class="sh-check-groups" id="shChecks">
+      {% for g in checklist %}
+      <div class="sh-check-group">
+        <div class="sh-check-group-head"><span class="sh-check-group-num">{{ forloop.counter|stringformat:"02d" }}</span><h3>{{ g.name }}</h3><span class="sh-check-group-count" data-group="{{ forloop.counter }}">0 / {{ g.items|length }}</span></div>
+        <ul class="sh-checks">
+          {% for key, todo, hint, slug in g.items %}
+          <li>
+            <label class="sh-check">
+              <input type="checkbox" data-key="{{ key }}" data-group="{{ forloop.parentloop.counter }}">
+              <span class="sh-check-box" aria-hidden="true"></span>
+              <span class="sh-check-body"><span class="sh-check-text">{{ todo }}</span><span class="sh-check-hint">{{ hint }}</span></span>
+            </label>
+            <a class="sh-check-link" href="{% url 'ledger:second_half1_topic' slug %}" aria-label="{{ todo }} — 관련 주제 읽기">자세히 ↗</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <footer class="chapter-foot">
+    <p>금액·비율은 작성 시점 기준이며, 연금·세금·보험 기준은 해마다 바뀝니다. 실행 전에 국민연금공단(1355), 국세청(126),
+    국민건강보험공단(1577-1000), 복지로(129)에서 최신 기준을 확인하세요.</p>
+  </footer>
+</article>
+{% endblock %}
+{% block extra_js %}
+<script>
+(function () {
+  "use strict";
+  var KEY = "sh1-checklist-v1";
+  if (!document.getElementById("shChecks")) return;
+  var boxes = Array.prototype.slice.call(document.querySelectorAll("#shChecks input[type=checkbox]"));
+  var done = document.getElementById("shDone"), pct = document.getElementById("shPct");
+  var ring = document.getElementById("shRing"), msg = document.getElementById("shMsg");
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { saved = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} }
+  function update() {
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    var p = boxes.length ? Math.round((n / boxes.length) * 100) : 0;
+    done.textContent = n;
+    pct.textContent = p;
+    ring.style.setProperty("--p", p);
+    ring.setAttribute("aria-label", "진행률 " + p + "%");
+    msg.textContent = n === 0 ? "첫 항목부터 시작해 보세요."
+      : n === boxes.length ? "모두 완료했습니다. 해마다 한 번씩 다시 점검하세요."
+      : "좋습니다. 남은 " + (boxes.length - n) + "개도 하나씩!";
+    document.querySelectorAll(".sh-check-group-count").forEach(function (el) {
+      var g = boxes.filter(function (b) { return b.dataset.group === el.dataset.group; });
+      var c = g.filter(function (b) { return b.checked; }).length;
+      el.textContent = c + " / " + g.length;
+      el.classList.toggle("full", c === g.length);
+    });
+  }
+  boxes.forEach(function (b) {
+    b.checked = !!saved[b.dataset.key];
+    b.addEventListener("change", function () { saved[b.dataset.key] = b.checked; save(); update(); });
+  });
+  document.getElementById("shReset").addEventListener("click", function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    saved = {}; save(); update();
+  });
+  update();
+})();
+</script>
+{% endblock %}

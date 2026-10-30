@@ -1,0 +1,111 @@
+{% extends "ledger/base.html" %}
+{% load static %}
+{% block title %}{{ topic.title }} — 인생 후반전1 · MaxFinUp{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'ledger/css/second_half1.css' %}?v=1">{% endblock %}
+{% block content %}
+<article class="chapter sh">
+  <div class="sh-topbar">
+  <nav class="sh-crumbs" aria-label="현재 위치">
+    <a href="{% url 'ledger:second_half1' %}">인생 후반전1</a><span aria-hidden="true">›</span>
+    <a href="{% url 'ledger:second_half1' %}#pillar-{{ pillar.key }}">{{ pillar.name }}</a><span aria-hidden="true">›</span>
+    <span aria-current="page">{{ topic.title }}</span>
+  </nav>
+  </div>
+  <header class="chapter-head chapter-head--watermark">
+    <div class="head-watermark" aria-hidden="true">{{ topic.icon_svg|safe }}</div>
+    <div class="stamp topic-stamp">{{ topic.icon_svg|safe }}</div>
+    <div>
+      <p class="kicker">The Second-Half Playbook 2026 · {{ topic.num }}</p>
+      <h1>{{ topic.title }}</h1>
+      <p class="dek">{{ topic.dek }}</p>
+    </div>
+  </header>
+  <nav class="category-tabs" aria-label="인생 후반전1 주제">
+    <a href="{% url 'ledger:second_half1' %}" class="category-tab">전체</a>
+    {% for s in sections %}
+    <a href="{% url 'ledger:second_half1_topic' s.slug %}" class="category-tab{% if s.slug == topic.slug %} active{% endif %}"{% if s.slug == topic.slug %} aria-current="page"{% endif %}>{{ s.short }}</a>
+    {% endfor %}
+  </nav>
+  <p class="lede">{{ topic.lede }}</p>
+
+  <section class="sh-brief" aria-label="핵심 요약">
+    <div class="sh-stats">
+      {% for value, label in topic.stats %}
+      <div class="sh-stat"><b>{{ value }}</b><span>{{ label }}</span></div>
+      {% endfor %}
+    </div>
+    <div class="sh-points">
+      <p class="sh-eyebrow">KEY TAKEAWAYS</p>
+      <ol>
+        {% for t in topic.points %}<li>{{ t }}</li>{% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <div class="sh-layout">
+    <div class="step-content sh-body">
+      {{ body_html|safe }}
+    </div>
+    {% if toc %}
+    <aside class="sh-side" aria-label="이 페이지 목차">
+      <p class="sh-eyebrow">IN THIS TOPIC</p>
+      <ol class="sh-side-toc">
+        {% for anchor, text in toc %}<li><a href="#{{ anchor }}">{{ text }}</a></li>{% endfor %}
+      </ol>
+      <a class="sh-side-cta" href="{% url 'ledger:experts' %}">전문가와 점검하기 <span aria-hidden="true">↗</span></a>
+    </aside>
+    {% endif %}
+  </div>
+
+  <footer class="chapter-foot">
+    <p>금액·비율은 작성 시점 기준이며 해마다 바뀝니다. 실행 전 관계 기관에서 최신 기준을 확인하세요.</p>
+    <p class="expert-contact">내 상황에 맞춰 점검하고 싶다면 — <a href="{% url 'ledger:experts' %}">전문가 소개</a>를 보거나
+    <a href="mailto:contact@maxfinup.com">contact@maxfinup.com</a>으로 문의해 주세요.</p>
+  </footer>
+
+  <nav class="pager">
+    {% if prev_topic %}
+    <a class="pager-link prev" href="{% url 'ledger:second_half1_topic' prev_topic.slug %}"><span class="plabel">이전 주제</span>{{ prev_topic.title }}</a>
+    {% else %}
+    <a class="pager-link prev" href="{% url 'ledger:second_half1' %}"><span class="plabel">처음으로</span>인생 후반전1</a>
+    {% endif %}
+    {% if next_topic %}
+    <a class="pager-link next" href="{% url 'ledger:second_half1_topic' next_topic.slug %}"><span class="plabel">다음 주제</span>{{ next_topic.title }}</a>
+    {% else %}
+    <a class="pager-link next" href="{% url 'ledger:second_half1' %}#checklist"><span class="plabel">마지막 주제</span>실천 체크리스트로</a>
+    {% endif %}
+  </nav>
+</article>
+{% endblock %}
+{% block extra_js %}
+<script>
+(function () {
+  "use strict";
+  var nav = document.querySelector(".sh .category-tabs");
+  var active = nav && nav.querySelector(".category-tab.active");
+  if (active) {
+    var center = function () {
+      var navBox = nav.getBoundingClientRect(), tabBox = active.getBoundingClientRect();
+      nav.scrollLeft += (tabBox.left + tabBox.width / 2) - (navBox.left + navBox.width / 2);
+    };
+    center();
+    window.addEventListener("load", center);
+  }
+
+  // highlight the section being read in the side contents
+  var links = document.querySelectorAll(".sh-side-toc a");
+  if (!links.length || !("IntersectionObserver" in window)) return;
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove("on"); });
+      var a = byId[e.target.id];
+      if (a) a.classList.add("on");
+    });
+  }, { rootMargin: "-20% 0px -70% 0px" });
+  Object.keys(byId).forEach(function (id) { var h = document.getElementById(id); if (h) io.observe(h); });
+})();
+</script>
+{% endblock %}
