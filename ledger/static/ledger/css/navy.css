@@ -179,3 +179,11 @@ html{scroll-padding-top:175px}.topbar{position:sticky;top:0;background:var(--bra
 /* 표 첫 칸(항목명)은 단어 중간에서 끊지 않는다 */
 @media(max-width:575.98px){.step-content tbody td:first-child{overflow-wrap:normal}.step-content thead th,.step-content tbody td{padding-left:9px;padding-right:9px}}
 @media(max-width:380px){.home-metrics>div+div{padding-left:14px}}
+
+/* 2026-11 헤더 로그아웃 버튼 (로그인한 사용자에게만 보임) */
+.header-logout{margin:0;display:flex}
+.header-logout button{font:inherit;font-family:var(--sans);cursor:pointer;background:transparent}
+.header-links .header-logout button{color:rgba(255,255,255,.86);font-weight:600;font-size:13px;padding:5px 12px;border:1px solid rgba(255,255,255,.4);border-radius:999px;transition:background .15s,color .15s}
+.header-links .header-logout button:hover{background:rgba(255,255,255,.14);color:#fff}
+.mobile-nav .header-logout button{width:100%;text-align:left;padding:14px 0;border:0;color:var(--ink);font-size:15px}
+.mobile-nav .header-logout button:hover{color:var(--gold-ink)}

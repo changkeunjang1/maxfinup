@@ -90,6 +90,14 @@ class MembersOnlyTests(TestCase):
         for link in links:
             self.assertContains(r, link, count=2)  # 데스크톱 + 모바일 메뉴
 
+    def test_header_logout_button(self):
+        self.assertNotContains(self.client.get("/"), 'class="header-logout"')
+        self.client.force_login(self.make_user("out@example.com"))
+        self.assertContains(self.client.get("/"), 'class="header-logout"', count=2)
+        r = self.client.post("/accounts/logout/", {"next": "/"})
+        self.assertRedirects(r, "/", fetch_redirect_response=False)
+        self.assertNotContains(self.client.get("/"), 'class="header-logout"')
+
 
 @PLAIN_STATIC
 class AssetApiTests(TestCase):
