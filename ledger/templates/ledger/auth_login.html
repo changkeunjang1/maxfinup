@@ -3,7 +3,7 @@
 {% block auth %}
 <p class="sh-eyebrow">MEMBER LOGIN</p>
 <h1>로그인</h1>
-<p class="sh-auth-dek">가입한 이메일과 비밀번호로 로그인하세요.</p>
+<p class="sh-auth-dek">가입한 이메일(또는 아이디)과 비밀번호로 로그인하세요.</p>
 <form method="post" novalidate>
   {% csrf_token %}
   {% for e in form.non_field_errors %}<p class="sh-form-alert">{{ e }}</p>{% endfor %}

@@ -91,9 +91,14 @@ class MembersOnlyTests(TestCase):
             self.assertContains(r, link, count=2)  # 데스크톱 + 모바일 메뉴
 
     def test_header_logout_button(self):
-        self.assertNotContains(self.client.get("/"), 'class="header-logout"')
+        r = self.client.get("/chapter/ch1/")
+        self.assertNotContains(r, 'class="header-logout"')
+        self.assertContains(r, 'class="header-login" href="/accounts/login/?next=/chapter/ch1/"', count=2)
+        self.assertContains(self.client.get("/accounts/login/"), 'class="header-login" href="/accounts/login/"', count=2)
         self.client.force_login(self.make_user("out@example.com"))
-        self.assertContains(self.client.get("/"), 'class="header-logout"', count=2)
+        r = self.client.get("/")
+        self.assertContains(r, 'class="header-logout"', count=2)
+        self.assertNotContains(r, 'class="header-login"')
         r = self.client.post("/accounts/logout/", {"next": "/"})
         self.assertRedirects(r, "/", fetch_redirect_response=False)
         self.assertNotContains(self.client.get("/"), 'class="header-logout"')
@@ -141,6 +146,14 @@ class SignupLoginTests(TestCase):
         self.client.logout()
         r = self.client.post(reverse("ledger:login"), {"username": "a@example.com", "password": "safe-pass-9876", "next": "https://evil.example/"})
         self.assertRedirects(r, reverse("ledger:second_half"), fetch_redirect_response=False)
+
+    def test_staff_logs_in_with_plain_username(self):
+        User.objects.create_user(username="cgjang", password="pw-Staff-1!", is_staff=True)
+        r = self.client.post(reverse("ledger:login"), {"username": "cgjang", "password": "pw-Staff-1!", "next": "/"})
+        self.assertRedirects(r, "/", fetch_redirect_response=False)
+        r = self.client.get("/")
+        for link in ('href="/asset-management/"', 'href="/second-half/"', 'href="/second-half-1/"'):
+            self.assertContains(r, link, count=2)
 
     def test_logout_returns_to_same_page(self):
         self.client.force_login(User.objects.create_user(username="a@example.com", password="x"))

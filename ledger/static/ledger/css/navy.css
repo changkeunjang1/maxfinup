@@ -187,3 +187,7 @@ html{scroll-padding-top:175px}.topbar{position:sticky;top:0;background:var(--bra
 .header-links .header-logout button:hover{background:rgba(255,255,255,.14);color:#fff}
 .mobile-nav .header-logout button{width:100%;text-align:left;padding:14px 0;border:0;color:var(--ink);font-size:15px}
 .mobile-nav .header-logout button:hover{color:var(--gold-ink)}
+/* 2026-11 헤더 로그인 링크 (로그인 전) — 로그아웃 버튼과 같은 모양 */
+.header-links a.header-login{font-family:var(--sans);font-size:13px;padding:5px 12px;border:1px solid rgba(255,255,255,.4);border-radius:999px;transition:background .15s}
+.header-links a.header-login:after{display:none}
+.header-links a.header-login:hover{background:rgba(255,255,255,.14);text-decoration:none}

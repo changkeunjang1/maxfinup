@@ -16,18 +16,20 @@ class AssetForm(forms.ModelForm):
 
 
 class EmailLoginForm(AuthenticationForm):
-    """이메일(= username)로 로그인. 대소문자 구분 없이 받는다."""
+    """이메일(= username) 또는 아이디(admin, cgjang 같은 관리 계정)로 로그인. 이메일은 대소문자 구분 없이 받는다."""
 
-    username = forms.EmailField(label="이메일", widget=forms.EmailInput(attrs={"autocomplete": "email", "autofocus": True}))
+    username = forms.CharField(label="이메일 또는 아이디", max_length=150,
+                               widget=forms.TextInput(attrs={"autocomplete": "username", "autofocus": True, "autocapitalize": "none"}))
     password = forms.CharField(label="비밀번호", strip=False, widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}))
 
     error_messages = {
-        "invalid_login": "이메일 또는 비밀번호가 올바르지 않습니다.",
+        "invalid_login": "이메일(아이디) 또는 비밀번호가 올바르지 않습니다.",
         "inactive": "사용이 중지된 계정입니다. 관리자에게 문의해 주세요.",
     }
 
     def clean_username(self):
-        return self.cleaned_data["username"].strip().lower()
+        name = self.cleaned_data["username"].strip()
+        return name.lower() if "@" in name else name
 
 
 class SignupForm(forms.Form):
