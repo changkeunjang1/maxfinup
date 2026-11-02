@@ -94,6 +94,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'ledger.context_processors.nav_chapters',
                 'ledger.context_processors.trafficlens_urls',
+                'ledger.context_processors.member_menus',
             ],
         },
     },

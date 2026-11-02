@@ -75,6 +75,21 @@ class MembersOnlyTests(TestCase):
             self.assertEqual(r.status_code, 200, url)
             self.assertNotContains(r, MARK, msg_prefix=url)
 
+    def test_header_menus_hidden_from_guests_and_pending(self):
+        links = ('href="/asset-management/"', 'href="/second-half/"', 'href="/second-half-1/"')
+        for url in ("/", "/chapter/ch1/"):
+            r = self.client.get(url)
+            for link in links:
+                self.assertNotContains(r, link, msg_prefix=url)
+        self.client.force_login(self.make_user("wait2@example.com"))
+        r = self.client.get("/")
+        for link in links:
+            self.assertNotContains(r, link)
+        self.client.force_login(self.make_user("m2@example.com", member=True))
+        r = self.client.get("/")
+        for link in links:
+            self.assertContains(r, link, count=2)  # 데스크톱 + 모바일 메뉴
+
 
 @PLAIN_STATIC
 class AssetApiTests(TestCase):
