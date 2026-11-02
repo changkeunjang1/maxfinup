@@ -15,4 +15,19 @@
     {% block auth %}{% endblock %}
   </section>
 </div>
+<script>
+/* 비밀번호 칸 오른쪽 눈 버튼: 누르면 입력한 비밀번호를 보이거나 다시 가린다 */
+document.querySelectorAll("[data-pw-toggle]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var input = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!input) return;
+    var show = input.type === "password";
+    input.type = show ? "text" : "password";
+    btn.setAttribute("aria-pressed", show ? "true" : "false");
+    btn.setAttribute("aria-label", show ? "비밀번호 숨기기" : "비밀번호 보기");
+    btn.title = btn.getAttribute("aria-label");
+    input.focus();
+  });
+});
+</script>
 {% endblock %}

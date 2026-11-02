@@ -99,9 +99,12 @@ class MembersOnlyTests(TestCase):
         r = self.client.get("/")
         self.assertContains(r, 'class="header-logout"', count=2)
         self.assertNotContains(r, 'class="header-login"')
+        self.assertContains(r, '<span class="header-user-label">로그인</span>out@example.com</span>', count=2)
         r = self.client.post("/accounts/logout/", {"next": "/"})
         self.assertRedirects(r, "/", fetch_redirect_response=False)
-        self.assertNotContains(self.client.get("/"), 'class="header-logout"')
+        r = self.client.get("/")
+        self.assertNotContains(r, 'class="header-logout"')
+        self.assertNotContains(r, 'class="header-user"')
 
 
 @PLAIN_STATIC
@@ -146,6 +149,10 @@ class SignupLoginTests(TestCase):
         self.client.logout()
         r = self.client.post(reverse("ledger:login"), {"username": "a@example.com", "password": "safe-pass-9876", "next": "https://evil.example/"})
         self.assertRedirects(r, reverse("ledger:second_half"), fetch_redirect_response=False)
+
+    def test_password_fields_have_eye_toggle(self):
+        self.assertContains(self.client.get(reverse("ledger:login")), "data-pw-toggle aria-controls", count=1)
+        self.assertContains(self.client.get(reverse("ledger:signup")), "data-pw-toggle aria-controls", count=2)
 
     def test_staff_logs_in_with_plain_username(self):
         User.objects.create_user(username="cgjang", password="pw-Staff-1!", is_staff=True)

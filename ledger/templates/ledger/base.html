@@ -19,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="{% static 'ledger/css/ledger.css' %}?v=23">
-<link rel="stylesheet" href="{% static 'ledger/css/navy.css' %}?v=8">
+<link rel="stylesheet" href="{% static 'ledger/css/navy.css' %}?v=9">
 {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -52,7 +52,7 @@
         </a>
         <span class="brand-tagline"><span class="tag-chip">AI</span><span class="tag-label">종합법인자산 관리허브</span></span>
       </div>
-      <nav class="header-links" aria-label="주요 메뉴"><a href="{% url 'ledger:home' %}#chapters">전체 목차</a><a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a><a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a>{% if show_member_menus %}<a href="{% url 'ledger:asset_management' %}">자산관리</a><a href="{% url 'ledger:second_half' %}"{% if request.resolver_match.url_name == 'second_half' or request.resolver_match.url_name == 'second_half_topic' %} aria-current="page"{% endif %}>인생 후반전</a><a href="{% url 'ledger:second_half1' %}"{% if request.resolver_match.url_name == 'second_half1' or request.resolver_match.url_name == 'second_half1_topic' %} aria-current="page"{% endif %}>인생 후반전1</a>{% endif %}{% if user.is_authenticated %}<form class="header-logout" method="post" action="{% url 'ledger:logout' %}">{% csrf_token %}<input type="hidden" name="next" value="/"><button type="submit">로그아웃</button></form>{% else %}<a class="header-login" href="{% url 'ledger:login' %}{% if request.resolver_match.url_name not in 'login signup signup_done' %}?next={{ request.get_full_path|urlencode }}{% endif %}">로그인</a>{% endif %}</nav>
+      <nav class="header-links" aria-label="주요 메뉴"><a href="{% url 'ledger:home' %}#chapters">전체 목차</a><a href="{% url 'ledger:chapter' 'ch1' %}">법인 설립</a><a href="{% url 'ledger:chapter' 'ch3' %}">세무와 재무</a>{% if show_member_menus %}<a href="{% url 'ledger:asset_management' %}">자산관리</a><a href="{% url 'ledger:second_half' %}"{% if request.resolver_match.url_name == 'second_half' or request.resolver_match.url_name == 'second_half_topic' %} aria-current="page"{% endif %}>인생 후반전</a><a href="{% url 'ledger:second_half1' %}"{% if request.resolver_match.url_name == 'second_half1' or request.resolver_match.url_name == 'second_half1_topic' %} aria-current="page"{% endif %}>인생 후반전1</a>{% endif %}{% if user.is_authenticated %}<span class="header-user" title="로그인한 아이디: {{ user.get_username }}"><span class="header-user-label">로그인</span>{{ user.get_username }}</span><form class="header-logout" method="post" action="{% url 'ledger:logout' %}">{% csrf_token %}<input type="hidden" name="next" value="/"><button type="submit">로그아웃</button></form>{% else %}<a class="header-login" href="{% url 'ledger:login' %}{% if request.resolver_match.url_name not in 'login signup signup_done' %}?next={{ request.get_full_path|urlencode }}{% endif %}">로그인</a>{% endif %}</nav>
       <button class="menu-toggle" id="mobileMenuBtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileNav">☰</button>
       <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴">
         <a href="{% url 'ledger:home' %}#chapters">전체 목차</a>
@@ -63,7 +63,7 @@
         <a href="{% url 'ledger:second_half' %}">인생 후반전</a>
         <a href="{% url 'ledger:second_half1' %}">인생 후반전1</a>
         {% endif %}
-        {% if user.is_authenticated %}<form class="header-logout" method="post" action="{% url 'ledger:logout' %}">{% csrf_token %}<input type="hidden" name="next" value="/"><button type="submit">로그아웃</button></form>{% else %}<a class="header-login" href="{% url 'ledger:login' %}{% if request.resolver_match.url_name not in 'login signup signup_done' %}?next={{ request.get_full_path|urlencode }}{% endif %}">로그인</a>{% endif %}
+        {% if user.is_authenticated %}<span class="header-user" title="로그인한 아이디: {{ user.get_username }}"><span class="header-user-label">로그인</span>{{ user.get_username }}</span><form class="header-logout" method="post" action="{% url 'ledger:logout' %}">{% csrf_token %}<input type="hidden" name="next" value="/"><button type="submit">로그아웃</button></form>{% else %}<a class="header-login" href="{% url 'ledger:login' %}{% if request.resolver_match.url_name not in 'login signup signup_done' %}?next={{ request.get_full_path|urlencode }}{% endif %}">로그인</a>{% endif %}
       </nav>
       {% endif %}
     </div>

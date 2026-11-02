@@ -1,6 +1,13 @@
 <div class="sh-field{% if field.errors %} has-error{% endif %}">
   <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-  {{ field }}
+  {% if field.widget_type == "password" %}<div class="sh-pw">
+    {{ field }}
+    <button type="button" class="sh-pw-toggle" data-pw-toggle aria-controls="{{ field.id_for_label }}" aria-label="비밀번호 보기" aria-pressed="false" title="비밀번호 보기">
+      <svg class="pw-eye" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+      <svg class="pw-eye-off" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 5.1A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-2.6 3.5M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a10 10 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M3 3l18 18"/></svg>
+    </button>
+  </div>{% else %}
+  {{ field }}{% endif %}
   {% if field.help_text %}<small class="sh-field-help">{{ field.help_text }}</small>{% endif %}
   {% for e in field.errors %}<p class="sh-field-error">{{ e }}</p>{% endfor %}
 </div>
